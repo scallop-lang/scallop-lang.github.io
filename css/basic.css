@@ -1,11 +1,8 @@
-* {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  color: rgb(78, 83, 100);
-}
-
 body {
   padding: 0;
   margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: rgb(78, 83, 100);
 }
 
 .flex-fill {
@@ -61,7 +58,8 @@ nav a {
   text-decoration: none;
   display: inline-block;
   padding: 0 20px;
-  font-size: 20px;
+  font-size: 18px;
+  color: rgba(78, 83, 100, 1);
 }
 
 section {
@@ -76,15 +74,19 @@ p {
   display: flex;
 }
 
+#nav-title {
+  font-weight: bold;
+  padding: 0;
+  margin-right: 20px;
+  font-size: 24px;
+  display: flex;
+}
+
 #nav-logo {
-  margin: 0 0 0 10px;
+  margin: 0 10px 0 10px;
   padding: 5px;
   width: 50px;
   height: 50px;
-}
-
-#nav-title {
-  font-weight: bold;
 }
 
 .nav-tab {
@@ -129,4 +131,64 @@ p {
 
 #getting-started-button:active {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.markdown-holder {
+  display: flex;
+  padding: 40px;
+}
+
+.markdown-sidebar {
+  width: 300px;
+}
+
+.markdown-content {
+  flex: 1;
+}
+
+.markdown-content code {
+  border-radius: 3px;
+  background-color: rgba(228, 235, 241, 1);
+  color: rgba(240, 117, 173, 1);
+  padding: 0 3px;
+}
+
+.markdown-content p {
+  line-height: 24px;
+  font-size: 18px;
+}
+
+.markdown-content a {
+  color: rgba(240, 117, 173, 1);
+}
+
+.markdown-content pre {
+  background-color: rgba(228, 235, 241, 1);
+  overflow-x: scroll;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.markdown-content pre code {
+  background-color: unset;
+  padding: unset;
+  color: unset;
+  border-radius: unset;
+}
+
+.markdown-content * + h1 {
+  margin-top: 50px;
+}
+
+.markdown-content blockquote {
+  margin-left: 0;
+  padding: 5px 30px;
+  border-left: 4px solid rgba(240, 117, 173, 1);
+  background-color: rgba(240, 117, 173, 0.05);
+}
+
+.markdown-content blockquote p {
+  color: rgba(240, 117, 173, 1);
 }

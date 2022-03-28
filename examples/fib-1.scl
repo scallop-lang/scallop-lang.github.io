@@ -1,0 +1,8 @@
+// The two base cases for fibonacci sequence
+rel fib = {(0, 1), (1, 1)}
+
+// The recursive formula: fib(x) = fib(x - 1) + fib(x - 2)
+rel fib(x, a + b) = fib(x - 1, a), fib(x - 2, b), x < 10
+
+// We want to compute the 8-th fibonacci number
+query fib(8, y)
