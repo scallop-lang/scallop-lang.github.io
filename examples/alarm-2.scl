@@ -1,0 +1,10 @@
+// earthquake happens with 0.01 probability
+rel 0.01::earthquake()
+
+// burglary happens with 0.12 probability
+rel 0.12::burglary()
+
+// alarm goes off when either earthquake or burglary happens
+rel alarm() = earthquake() or burglary()
+
+query alarm

@@ -32,7 +32,7 @@ it with `scli`.
 After that, we will dive into how to use Scallop as a Python library and
 use it under some simple learning tasks.
 
-# Your First Scallop Program
+# Hello World, Your First Scallop Program
 
 Let's write a very simple "Hello World" program with Scallop.
 Create a new file named `hello.scl` and write the following inside:
@@ -60,6 +60,7 @@ Note that here we have parenthesis wrapping around the string since internally
 every relation inside Scallop stores *tuples* of simple values.
 In this case, `hello` is an *arity-1* relation (all the tuples in this relation
 is of size 1), and therefore you see the tuple only wrapping one single value.
+We call such a tuple **fact**.
 
 ```
 hello: {("Hello World")}
@@ -140,6 +141,190 @@ compute the 8-th fibonacci number.
 Executing `scli` on this program will give you `fib(8, y): {(8, 34)}` -- that is,
 the 8-th fib number is 34.
 
-## Probabilistic Reasoning with Counting Objects
+## Would the Alarm Go Off? Simple Probabilistic Events with Scallop
 
-Scallop supports probabilistic reasoning, and this means that Scallop
+Scallop can be used to reason about probabilistic events.
+In the following classical probabilistic reasoning example, we can see Scallop
+calculating the resulting probability of whether there will be an alarm:
+
+``` scl
+// examples/alarm-2.scl
+// earthquake happens with 0.01 probability
+rel 0.01::earthquake()
+
+// burglary happens with 0.12 probability
+rel 0.12::burglary()
+
+// alarm goes off when either earthquake or burglary happens
+rel alarm() = earthquake() or burglary()
+
+query alarm
+```
+
+Note that here we introduced a new syntax for defining facts (`rel earthquake()`).
+When we associate a floating point in front of a fact, we are associating a
+probability with this fact being happening.
+
+If you simply follow the previous instruction to execute this file, you might end
+up with a simple result `alarm: {()}`.
+This is because when executing this, we have not used a proper **provenance** to
+perform probabilistic reasoning, yet.
+To allow probabilistic reasoning, use the following command:
+
+```
+$ scli alarm-2.scl --provenance topkproofs
+```
+
+and the result will be
+
+```
+alarm: {0.1288::()}
+```
+
+suggesting that the `alarm` will go off with `0.1288` probability.
+
+**provenance** is a core concept when using Scallop, since it configures how to
+perform logical, probabilistic, and differentiable reasoning.
+A provenance will associate some information along with the deduction process,
+and can facilitate the probabilistic reasoning in this case.
+Here we are suggesting you use a provenance called `topkproofs`.
+There are other probabilistic reasoning provenances as well:
+
+- `minmaxprob`
+- `addmultprob`
+- `samplekproofs`
+- `topbottomkclauses`
+- ...
+
+each of them will approximate the probabilistic result in different ways.
+Some might be very fast but inaccurate, others might be slow but very accurate.
+For the sake of this example, let's stick with `topkproofs`.
+
+## Counting Objects Probabilistically
+
+Scallop supports aggregation, allowing people to perform operations such as
+`count`, `exists`, `(arg)min`, and `sum`.
+In the following example, we assume that we are in a learning setting, where
+each conceptual "object" can be predicted as having colors "red", "green",
+and "blue".
+We represent the prediction in this way:
+
+``` scl
+// count-green.scl
+rel object_color = {
+  0.98::(0, "red"), 0.01::(0, "green"), 0.01::(0, "blue"),
+  0.01::(1, "red"), 0.98::(1, "green"), 0.01::(1, "blue"),
+  0.02::(2, "red"), 0.97::(2, "green"), 0.01::(2, "blue"),
+}
+```
+
+`object_color` is an arity-2 relation where the first element is integer and
+the second element is string.
+Conceptually, we represent each object using an ID.
+In this case, we have three objects, marked using `0`, `1`, and `2`.
+Now, each object can be three colors with different probabilities.
+Object `0` is most likely red;
+object `1` is most likely green;
+and object `2` is also most likely green.
+
+Now, one can count over the set using the following rule:
+
+``` scl
+// count-green.scl
+rel how_many_green(x) = x = count(o: object_color(o, "green"))
+```
+
+This rule has an aggregation `count(o: object_color(o, "green"))`, which reads
+
+> Count the number of object `o`, such that the color of that object is `"green"`.
+
+The result of this aggregation is then stored in the variable `x`, which is
+stored in the arity-1 relation `how_many_green` at the end.
+
+Since aggregation requires more provenance information to be stored, `topkproofs`
+is not sufficient here.
+We will use a provenance called `topbottomkclauses`, which supports negation and
+aggregation, to aid the execution of this probabilistic program:
+
+```
+$ scli count-green.scl --provenance topbottomkclauses
+```
+
+After executing this command, you will get the result
+
+```
+how_many_green: {0.000594::(0), 0.048318::(1), 0.941582::(2), 0.009506::(3)}
+```
+
+We interpret this result this way:
+by counting over a set of 3 probabilistic objects, there could be 4 outcomes.
+There could be either 0 green objects, or 1, or 2, or 3.
+In this case, we indeed have 2 ranked the highest, with around 0.94 probability.
+This matches our expectation where the object `1` and object `2` are most likely
+to be of color green.
+
+# Scallop as Python Library
+
+The most exciting thing of Scallop is when it can be used with PyTorch, a
+very popular machine learning framework.
+But before that, we need to first get familiar with how to use Scallop inside
+Python, by using our Python binding, `scallopy`.
+Make sure you [follow the instruction](/download.html?scallopy) and let's jump
+right in this following example.
+
+## Hello World, Revisited
+
+First, make sure you can import `scallopy` inside Python:
+
+``` python
+import scallopy
+```
+
+With this, we can now create a Scallop context where you can execute arbitrary
+Scallop program within:
+
+``` python
+ctx = scallopy.ScallopContext()
+```
+
+For a starter, we will recreate our "hello world" example with `scallopy`.
+Therefore we first create a relation called `hello`:
+
+``` python
+ctx.add_relation("hello", str)
+```
+
+This line says that we want to add a relation into the context, with a name `hello`
+and its type `str`.
+Then, we can add simple fact into this context:
+
+``` python
+ctx.add_facts("hello", [("Hello World",)])
+```
+
+Here we are adding the list of tuples `[("Hello World",)]` into the relation `"hello"`.
+Note that we intentionally made that `"Hello World"` into a tuple by `("Hello World",)`
+(pay attention to the comma near the end), because `scallopy` only accepts tuple as
+fact.
+
+Now, with a simple execution of the Scallop program context,
+
+``` python
+ctx.run()
+```
+
+we can obtain the final result
+
+``` python
+print(list(ctx.relation("hello")))
+```
+
+Here the `ctx.relation("hello")` obtains an iterator over tuples in the relation `hello`.
+We wrap it with a `list` and print the list.
+You should obtain the result back:
+
+```
+[('Hello World',)]
+```
+
+## Transitive Closure with Edge and Path

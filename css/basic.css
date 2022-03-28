@@ -146,14 +146,15 @@ p {
   flex: 1;
 }
 
-.markdown-content code {
+.markdown-content code, .markdown-content li code {
   border-radius: 3px;
   background-color: rgba(228, 235, 241, 1);
   color: rgba(240, 117, 173, 1);
   padding: 0 3px;
+  font-size: 16px;
 }
 
-.markdown-content p {
+.markdown-content p, .markdown-content li {
   line-height: 24px;
   font-size: 18px;
 }

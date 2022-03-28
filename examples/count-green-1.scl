@@ -1,0 +1,7 @@
+rel object_color = {
+  0.98::(0, "red"), 0.01::(0, "green"), 0.01::(0, "blue"),
+  0.01::(1, "red"), 0.98::(1, "green"), 0.01::(1, "blue"),
+  0.02::(2, "red"), 0.97::(2, "green"), 0.01::(2, "blue"),
+}
+
+rel how_many_green(x) = x = count(o: object_color(o, "green"))
