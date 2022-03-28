@@ -1,0 +1,132 @@
+* {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: rgb(78, 83, 100);
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.flex-fill {
+  flex: 1;
+}
+
+.non-bold {
+  font-weight: normal;
+}
+
+.wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.row .col-3 {
+  width: 33.3333%;
+}
+
+.card {
+  margin: 15px;
+  border-radius: 20px;
+  padding: 4px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(to bottom right, rgba(109, 207, 246, 1), rgba(240, 117, 173, 1));
+}
+
+.card-inner {
+  padding: 30px 30px 0 30px;
+  border-radius: 16px;
+  flex: 1;
+  background-color: white;
+}
+
+.center {
+  text-align: center;
+}
+
+nav {
+  height: 60px;
+  line-height: 60px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background-color: white;
+}
+
+nav a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 20px;
+  font-size: 20px;
+}
+
+section {
+  padding: 50px 0;
+}
+
+p {
+  font-size: 16px;
+}
+
+#nav-inner {
+  display: flex;
+}
+
+#nav-logo {
+  margin: 0 0 0 10px;
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+}
+
+#nav-title {
+  font-weight: bold;
+}
+
+.nav-tab {
+  transition: all 0.1s;
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 4px solid rgba(0, 0, 0, 0);
+}
+
+.nav-tab:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-bottom: 4px solid rgba(240, 117, 173, 1);
+  color: rgba(240, 117, 173, 1);
+}
+
+#getting-started-banner {
+  background-image: linear-gradient(to bottom right, rgba(109, 207, 246, 1), rgba(240, 117, 173, 1));
+  padding: 160px 0;
+  text-align: center;
+}
+
+#getting-started-banner * {
+  color: white;
+}
+
+#getting-started-button {
+  margin-top: 20px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 4px solid white;
+  line-height: 50px;
+  padding: 0 50px;
+  font-size: 18px;
+  background-color: transparent;
+  text-align: center;
+}
+
+#getting-started-button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+#getting-started-button:active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
