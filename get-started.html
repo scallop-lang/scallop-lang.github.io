@@ -25,17 +25,30 @@
       <div class="wrapper markdown-holder">
         <div class="markdown-sidebar">
           <ul>
-            <li>laksjdfls</li>
-            <li>adsljfkalsf l</li>
+            <li>
+              <a href="">1. SDLFKLJLSDKJ</a>
+              <ul>
+                <li><a href="">1.1. Alksadfl SDFl </a></li>
+                <li><a href="">1.2. Alksadfl SDFl </a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="">2. SDLFKLJLSDKJ</a>
+            </li>
+            <li>
+              <a href="">3. SDLFKLJLSDKJ</a>
+            </li>
           </ul>
         </div>
         <div class="markdown-content"></div>
       </div>
     </main>
+    <script src="js/load-sidebar.js"></script>
     <script>
       let md = window.markdownit({html: true}).use(window.markdownitFootnote);
       let render = (markdown) => {
         $(".markdown-content").html(md.render(markdown));
+        loadSidebar();
       };
       $.ajax({ url: "/md/get-started.md", success: render });
     </script>

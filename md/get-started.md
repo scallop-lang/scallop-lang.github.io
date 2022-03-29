@@ -141,7 +141,7 @@ compute the 8-th fibonacci number.
 Executing `scli` on this program will give you `fib(8, y): {(8, 34)}` -- that is,
 the 8-th fib number is 34.
 
-## Would the Alarm Go Off? Simple Probabilistic Events with Scallop
+## Would the Alarm Go Off?
 
 Scallop can be used to reason about probabilistic events.
 In the following classical probabilistic reasoning example, we can see Scallop
@@ -287,25 +287,26 @@ Scallop program within:
 ctx = scallopy.ScallopContext()
 ```
 
-For a starter, we will recreate our "hello world" example with `scallopy`.
-Therefore we first create a relation called `hello`:
+Since we are recreating our "hello world" example with `scallopy`,
+we first introduce a relation called `hello`:
 
 ``` python
 ctx.add_relation("hello", str)
 ```
 
-This line says that we want to add a relation into the context, with a name `hello`
-and its type `str`.
+This line says that we want to add a relation into the context, with a name
+`hello` and its type `str`.
 Then, we can add simple fact into this context:
 
 ``` python
 ctx.add_facts("hello", [("Hello World",)])
 ```
 
-Here we are adding the list of tuples `[("Hello World",)]` into the relation `"hello"`.
-Note that we intentionally made that `"Hello World"` into a tuple by `("Hello World",)`
-(pay attention to the comma near the end), because `scallopy` only accepts tuple as
-fact.
+Here we are adding the list of tuples `[("Hello World",)]` into the relation
+`"hello"`.
+Note that we intentionally made that `"Hello World"` into a tuple by
+`("Hello World",)` (pay attention to the comma near the end), because
+`scallopy` only accepts tuple as fact.
 
 Now, with a simple execution of the Scallop program context,
 
@@ -319,7 +320,8 @@ we can obtain the final result
 print(list(ctx.relation("hello")))
 ```
 
-Here the `ctx.relation("hello")` obtains an iterator over tuples in the relation `hello`.
+Here the `ctx.relation("hello")` obtains an iterator over tuples in the
+relation `hello`.
 We wrap it with a `list` and print the list.
 You should obtain the result back:
 
@@ -327,4 +329,77 @@ You should obtain the result back:
 [('Hello World',)]
 ```
 
-## Transitive Closure with Edge and Path
+## Probabilistic Digit Addition
+
+This example will tell you how to associate probabilistic information
+when using `scallopy`.
+Let's imagine inside a learning application, there are two hand-written
+digits ranging from 0 to 3, and the goal is to compute the most likely
+sum of the two digits.
+In such case, we write the following Python code:
+
+``` python
+import scallopy
+import random
+
+# Create a scallop context using the `topkproofs` provenance
+ctx = scallopy.ScallopContext(provenance="topkproofs")
+
+# Add a relation storing the possibilities for the first digit (0-3)
+ctx.add_relation("digit_1", int)
+ctx.add_facts("digit_1", [(random.random(), (i,)) for i in range(4)])
+
+# Add a relation storing the possibilities for the second digit (0-3)
+ctx.add_relation("digit_2", int)
+ctx.add_facts("digit_2", [(random.random(), (i,)) for i in range(4)])
+
+ctx.add_rule("sum_2(a + b) = digit_1(a), digit_2(b)")
+
+# Run the scallop program
+ctx.run()
+
+# Get the results from relation sum_2
+for prob, tup in ctx.relation("sum_2"):
+  print(prob, tup)
+```
+
+The general usage is similar to our previous example.
+However there are few important points to note:
+
+- When initializing a `ScallopContext`, we added the `provenance="topkproofs"`
+  option so that this Scallop context can help us do probabilistic reasoning.
+
+- When inserting facts (tuples) into the relation, each tuple is now additionally
+  wrapped with another tuple, where the first element is the probability of that
+  tuple, and the second element is that tuple itself.
+  (i.e. the arity-1 tuple `(i,)` now becomes a 2-tuple `(random.random(), (i,))`
+  and the `random.random()` expression will create a random 0.0 to 1.0 value to
+  represent a probability)
+
+- We add a rule `sum_2(a + b) = digit_1(a), digit_2(b)` to the context.
+  Note that we did not add a `rel` prefix here.
+
+- Since we are using a probabilistic provenance here, all the resulting tuple
+  will also be associated with a probability, in a similar format as our input
+  tuples: `(probability, tuple)`.
+  Therefore when we are iterating through `ctx.relation("sum_2")` we can
+  decompose each element into `prob` and `tup`, and print them individually.
+
+After running the above program, we should see something like the following:
+
+``` python
+0.08434000433501627 (0,)
+0.21680020593483537 (1,)
+0.2357574207282053 (2,)
+0.510827111694817 (3,)
+0.5148603492582838 (4,)
+0.3488522080940467 (5,)
+0.4995156659539793 (6,)
+```
+
+You can see that since the two digits are both ranging from 0 to 3, the
+summation of the two will be ranging from 0 to 6.
+Now, not only do we get the result, we also get the probabilities associated
+with the result (e.g. the sum is `0` with 0.084 probability).
+
+# MNIST Sum2 Experiment with Scallop

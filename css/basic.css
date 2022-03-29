@@ -139,7 +139,31 @@ p {
 }
 
 .markdown-sidebar {
-  width: 300px;
+  width: 360px;
+  padding-right: 30px;
+}
+
+.markdown-sidebar ul {
+  list-style: none;
+  padding-left: 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+}
+
+.markdown-sidebar ul li a {
+  transition: all 0.1s;
+  text-decoration: none;
+  color: rgb(78, 83, 100);
+  display: block;
+  border-left: 0px solid rgba(240, 117, 173, 1);
+  line-height: 36px;
+  padding: 0 10px;
+}
+
+.markdown-sidebar ul li a:hover, .markdown-sidebar ul li a.active {
+  border-left: 4px solid rgba(240, 117, 173, 1);
+  color: rgba(240, 117, 173, 1);
 }
 
 .markdown-content {
