@@ -1,6 +1,6 @@
 # Download
 
-We currently offer the download of three compiled executables/libraries
+We currently offer the download of three compiled executables/libraries:
 
 ## Scallop Interpreter `scli`
 
@@ -37,3 +37,14 @@ You should consider your Python version and your system and architecture version
 - [`scallopy-0.1.0-cp39-cp39-macosx_11_0_arm64.whl`, Python 3.9, Mac OS, Apple M1](#)
 - [`scallopy-0.1.0-cp39-cp39-macosx_10_7_x86_64.whl`, Python 3.8, Mac OS, Intel x86_64](#)
 - [`scallopy-???????`, Python 3.9, Linux, Intel x86_64](#)
+
+## Scallop Language Syntax Highlight in VSCode
+
+We offer a VSCode plugin for you to write Scallop program in VSCode more comfortably.
+You can visit
+[Scallop Language Support in VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=scallop-lang.scallop)
+or directly search "Scallop" in VSCode Extensions:
+
+<div class="center">
+  <img src="/img/scallop-vscode-marketplace.png" width="500px" />
+</div>

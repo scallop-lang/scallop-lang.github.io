@@ -184,9 +184,13 @@ p {
   width: calc(100% - 390px);
 }
 
+.markdown-content h1 code, .markdown-content h2 code, .markdown-content h3 code, .markdown-content h4 code, .markdown-content h5 code, .markdown-content h6 code {
+  font-size: inherit;
+}
+
 .markdown-content code, .markdown-content li code {
   border-radius: 3px;
-  background-color: rgba(244, 248, 255, 1);
+  background-color: rgb(231, 235, 241);
   color: rgba(240, 117, 173, 1);
   padding: 0 3px;
   font-size: 14px;
@@ -202,7 +206,7 @@ p {
 }
 
 .markdown-content pre {
-  background-color: rgba(244, 248, 255, 1);
+  background-color: rgb(231, 235, 241);
   font-family: 'menlo', Courier, monospace;
   overflow-x: scroll;
   width: calc(100% - 40px);

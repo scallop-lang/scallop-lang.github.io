@@ -276,7 +276,7 @@ install `scallopy` in your Python environment.
 
 First, make sure you can import `scallopy` inside Python:
 
-``` py
+``` python
 import scallopy
 ```
 
@@ -570,3 +570,5 @@ Here is some training log you might see if you execute this file.
 [Train Epoch 3] Loss: 0.0271: 100%|███████████████████████████████████████| 469/469 [00:43<00:00, 10.88it/s]
 ...
 ```
+
+# More Applications
