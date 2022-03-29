@@ -48,7 +48,7 @@
       let md = window.markdownit({html: true}).use(window.markdownitFootnote);
       let render = (markdown) => {
         $(".markdown-content").html(md.render(markdown));
-        loadSidebar();
+        load_sidebar();
       };
       $.ajax({ url: "/md/get-started.md", success: render });
     </script>

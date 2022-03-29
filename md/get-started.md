@@ -269,8 +269,8 @@ The most exciting thing of Scallop is when it can be used with PyTorch, a
 very popular machine learning framework.
 But before that, we need to first get familiar with how to use Scallop inside
 Python, by using our Python binding, `scallopy`.
-Make sure you [follow the instruction](/download.html?scallopy) and let's jump
-right in this following example.
+Make sure you first [follow the instruction](/download.html?scallopy) to
+install `scallopy` in your Python environment.
 
 ## Hello World, Revisited
 
@@ -402,4 +402,171 @@ summation of the two will be ranging from 0 to 6.
 Now, not only do we get the result, we also get the probabilities associated
 with the result (e.g. the sum is `0` with 0.084 probability).
 
-# MNIST Sum2 Experiment with Scallop
+## Learning MNIST Sum-2
+
+The most exciting thing about Scallop is that it is a Neuro-symbolic
+programming language that can be easily integrated with popular machine
+learning libraries such as [PyTorch](https://pytorch.org/).
+In the following example, we will demonstrate how to create a very simple
+experiment that will learn to recognize hand-written digits (MNIST digits)
+with the only supervision being the sum of two digits.
+We have already seen a part of this experiment in our previous example.
+Now, let's make it into a full fledged learning pipeline!
+
+<div class="center flex">
+  <img src="/img/mnist/mnist_2.png" width="40px" />
+  <div style="font-size: 36px">+</div>
+  <img src="/img/mnist/mnist_5.png" width="50px" />
+  <div style="font-size: 36px">= 7</div>
+</div>
+
+Before we dive in, please be informed that we provide the full
+version of this Python program [`sum_2.py`](/examples/sum_2.py).
+The file includes the construction of a `Sum2` dataset from normal
+MNIST dataset, constructing the `Dataloader`, the `Trainer`, and
+of course, the model `MNISTSum2Net`.
+The whole file only contains 200+ lines of code.
+Before running it, please make sure that you have the following
+prerequisites installed:
+
+- `scallopy`
+- `torch`
+- `torchvision`
+- `tqdm`
+
+The first step to create a model that recognizes MNIST digit is to create
+a Convolutional Neural Network (CNN) based digit recognition model.
+The following is a text-book implementation of such a digit recognition model:
+
+``` python
+class MNISTNet(nn.Module):
+  def __init__(self):
+    super(MNISTNet, self).__init__()
+    self.conv1 = nn.Conv2d(1, 32, kernel_size=5)
+    self.conv2 = nn.Conv2d(32, 64, kernel_size=5)
+    self.fc1 = nn.Linear(1024, 1024)
+    self.fc2 = nn.Linear(1024, 10)
+
+  def forward(self, x):
+    x = F.max_pool2d(self.conv1(x), 2)
+    x = F.max_pool2d(self.conv2(x), 2)
+    x = x.view(-1, 1024)
+    x = F.relu(self.fc1(x))
+    x = F.dropout(x, p = 0.5, training=self.training)
+    x = self.fc2(x)
+    return F.softmax(x, dim=1)
+```
+
+Then, it's time to create our core model `MNISTSum2Net`.
+Usually, when defining a module inside PyTorch one would implement two
+member functions: the constructor and the `forward` function.
+Let's start with the constructor first:
+
+``` python
+class MNISTSum2Net(nn.Module):
+  def __init__(self):
+    super(MNISTSum2Net, self).__init__()
+
+    # MNIST Digit Recognition Network
+    self.mnist_net = MNISTNet()
+
+    # Scallop Context
+    self.scl_ctx = scallopy.ScallopContext(provenance="difftopkproofs")
+    self.scl_ctx.add_relation("digit_1", (int,), input_mapping=[(i,) for i in range(10)])
+    self.scl_ctx.add_relation("digit_2", (int,), input_mapping=[(i,) for i in range(10)])
+    self.scl_ctx.add_rule("sum_2(a + b) :- digit_1(a), digit_2(b)")
+
+    # The `sum_2` logical reasoning module
+    self.sum_2 = self.scl_ctx.forward_function("sum_2", output_mapping=[(i,) for i in range(19)])
+```
+
+The first component of our `MNISTSum2Net` is just our MNIST digit
+recognition network `MNISTNet`.
+Then, we come to include a Scallop context within our network.
+Note that when providing the `provenance`, we will use the `"difftopkproofs"`
+provenance.
+This is the differentiable version of the `"topkproofs"` provenance we used
+in the previous examples.
+
+Similar to before, we add two relations `digit_1` and `digit_2`.
+They are both arity-1 relation with the only element being an `int`.
+This time, however, we also tell our context that there is an `input_mapping`
+to this relation.
+This is because when interacting with PyTorch, probabilities are usually stored
+in high-dimensional tensors.
+We want to map each element inside this tensor to a symbolic tuple in scallop.
+In our case, since each digit will be predicted to be 0 to 9, we will have a
+size 10 tensor representing the distribution.
+The first element of this tensor will represent the probability for tuple `(0,)`,
+and the second element will represent that of `(1,)`,
+so on and so forth.
+
+After adding the rule just like our previous example,
+we compose a **Forward Function** from this Scallop context.
+The forward function encodes the output we want to get from Scallop:
+we want the symbols being computed in the relation `sum_2`,
+and we want to vectorize the output probabilities with an `output_mapping`.
+That is, when we get the probability for an outcome, say `(0,)`, we want to put it
+at the first position inside of a size 19 tensor.
+Similarly a tuple `(18,)` will be put at the last position.
+We have the magic-number 19 here because if we have the two digits recognized as
+0 to 9, the sum of the two will be ranging from 0 to 18, hence the 19 output elements.
+
+Lastly, let's look at the `forward` function of our module:
+
+``` python
+# MNISTSum2Net.forward
+def forward(self, x: Tuple[torch.Tensor, torch.Tensor]):
+  (a_imgs, b_imgs) = x
+
+  # First recognize the two digits
+  a_distrs = self.mnist_net(a_imgs) # Tensor 64 x 10
+  b_distrs = self.mnist_net(b_imgs) # Tensor 64 x 10
+
+  # Then execute the reasoning module; the result is a size 19 tensor
+  return self.sum_2(digit_1=a_distrs, digit_2=b_distrs) # Tensor 64 x 19
+```
+
+Here, our forward function is used for computing the result of the sum of two
+hand-written digits.
+In our case, each input image is a size `(1, 27, 27)` tensor:
+the first 1 is the number of color channels (since we only have black and white
+hand-written digit),
+and the second and third 27 are the width and height of each image.
+When used in a learning setting, the input is usually batched.
+Assuming a batch size of 64, we would have the image tensors
+being of size `(64, 1, 27, 27)`.
+Since the input to our network, `x`, contains two (batches of) images,
+we decompose `x` into `a_imgs` and `b_imgs`, each of them being of size
+`(64, 1, 27, 27)`.
+
+We then apply our MNIST neural network to the two (batches of) images.
+Each image will be recognized into a tensor of size 10 since we want a
+distribution over probabilities of 0 to 9.
+The resulting `a_distrs` and `b_distrs` will be of size `(64, 10)`:
+the first dimension 64 is still our batch size, and the second dimension
+10 represents the probability of 10 classes we classify each image into.
+
+Lastly, we put the two distributions as relations `digit_1` and `digit_2`
+into our Scallop forward function `sum_2`.
+Internally, since we have a batch size of 64, Scallop will be executed 64
+times to obtain the sum for each pair of input images.
+This gives us our final result being size `(64, 19)` -- note that the second
+dimension 19 represents the size of our output mapping.
+The tensor can then be passed to any loss functions, such as
+NLL loss, Binary Cross Entropy loss, and so on.
+
+Now, the whole training loop is closed.
+With a simple training script, we can train the whole pipeline comfortably.
+Here is some training log you might see if you execute this file.
+(The data is obtained on an Apple M1-Pro MacBook Pro, Late 2021)
+
+```
+[Test Epoch 0] Total loss: 16.5859, Accuracy: 417/5000 (8.34%): 100%|█████| 79/79 [00:04<00:00, 16.53it/s]
+[Train Epoch 1] Loss: 0.0148: 100%|███████████████████████████████████████| 469/469 [00:43<00:00, 10.83it/s]
+[Test Epoch 1] Total loss: 0.7494, Accuracy: 4841/5000 (96.82%): 100%|████| 79/79 [00:04<00:00, 16.63it/s]
+[Train Epoch 2] Loss: 0.0274: 100%|███████████████████████████████████████| 469/469 [00:43<00:00, 10.86it/s]
+[Test Epoch 2] Total loss: 0.5645, Accuracy: 4889/5000 (97.78%): 100%|████| 79/79 [00:04<00:00, 16.57it/s]
+[Train Epoch 3] Loss: 0.0271: 100%|███████████████████████████████████████| 469/469 [00:43<00:00, 10.88it/s]
+...
+```

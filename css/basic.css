@@ -5,6 +5,15 @@ body {
   color: rgb(78, 83, 100);
 }
 
+.flex {
+  display: flex;
+}
+
+.flex.center {
+  justify-content: center;
+  align-items: center;
+}
+
 .flex-fill {
   flex: 1;
 }
@@ -167,7 +176,7 @@ p {
 }
 
 .markdown-content {
-  flex: 1;
+  width: calc(100% - 390px);
 }
 
 .markdown-content code, .markdown-content li code {
@@ -190,6 +199,7 @@ p {
 .markdown-content pre {
   background-color: rgba(228, 235, 241, 1);
   overflow-x: scroll;
+  width: calc(100% - 40px);
   border-radius: 5px;
   padding: 20px;
   font-size: 16px;
