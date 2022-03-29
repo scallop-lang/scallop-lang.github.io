@@ -114,6 +114,10 @@ p {
   color: rgba(240, 117, 173, 1);
 }
 
+.nav-tab.active {
+  color: rgba(240, 117, 173, 1);
+}
+
 #getting-started-banner {
   background-image: linear-gradient(to bottom right, rgba(109, 207, 246, 1), rgba(240, 117, 173, 1));
   padding: 160px 0;
