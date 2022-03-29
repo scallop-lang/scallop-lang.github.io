@@ -8,6 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.0/markdown-it.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.1/markdown-it-footnote.js"></script> -->
     <link rel="stylesheet" href="css/basic.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <title>Scallop</title>
   </head>
   <body>
     <nav>
@@ -18,7 +20,7 @@
         <a href="#" class="nav-tab">Docs</a>
         <a href="/contact.html" class="nav-tab">Contact</a>
         <div class="flex-fill"></div>
-        <a href="#" class="nav-tab">Github (WIP)</a>
+        <a href="#" class="nav-tab">Github</a>
       </div>
     </nav>
     <main>
@@ -28,17 +30,24 @@
             <img src="img/scallop-logo-ws-512.png" width="200px" />
           </div>
           <div>
-	    <font size="+4">Neuro-Symbolic Programming with Scallop</font>
+            <h1 size="+4">Neuro-Symbolic Programming with Scallop</h1>
           </div>
         </div>
         <a id="getting-started-button" href="/get-started.html">Get Started</a>
+        <!-- <div class="flex center">
+          <img src="img/scallop-logo-ws-512.png" width="200px" />
+          <div style="text-align: left">
+            <h1><font size="+3">Neuro-Symbolic Programming with Scallop</font></h1>
+            <a id="getting-started-button" href="/get-started.html">Get Started</a>
+          </div>
+        </div> -->
       </section>
       <section>
         <div class="wrapper row">
           <div class="col-3">
             <div class="card">
-              <div class="card-inner center">
-                <h2>Language</h2>
+              <div class="card-inner">
+                <h2 class="center">Language</h2>
                 <p>
                   Scallop is a declarative relational programming language suited for logic reasoning in AI applications.
                   The core of the language is Datalog with support for aggregation and negation.
@@ -48,8 +57,8 @@
           </div>
           <div class="col-3">
             <div class="card">
-              <div class="card-inner center">
-                <h2>Solver</h2>
+              <div class="card-inner">
+                <h2 class="center">Solver</h2>
                 <p>
                   Scallop is a scalable Datalog solver equipped with support for discrete, probabilistic, and
                   differentiable modes of reasoning.
@@ -60,8 +69,8 @@
           </div>
           <div class="col-3">
             <div class="card">
-              <div class="card-inner center">
-                <h2>Framework</h2>
+              <div class="card-inner">
+                <h2 class="center">Framework</h2>
                 <p>
                   Scallop provides Pytorch bindings to easily integrate logic reasoning modules into existing
                   PyTorch machine learning pipelines.

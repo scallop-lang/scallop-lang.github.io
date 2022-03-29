@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.0/markdown-it.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.1/markdown-it-footnote.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/base16/tomorrow.min.css">
+
+    <!-- Custom -->
     <link rel="stylesheet" href="css/basic.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <title>Scallop - Get Started</title>
   </head>
   <body>
     <nav>
@@ -18,39 +27,16 @@
         <a href="#" class="nav-tab">Docs</a>
         <a href="/contact.html" class="nav-tab">Contact</a>
         <div class="flex-fill"></div>
-        <a href="#" class="nav-tab">Github (WIP)</a>
+        <a href="#" class="nav-tab">Github</a>
       </div>
     </nav>
     <main>
       <div class="wrapper markdown-holder">
-        <div class="markdown-sidebar">
-          <ul>
-            <li>
-              <a href="">1. SDLFKLJLSDKJ</a>
-              <ul>
-                <li><a href="">1.1. Alksadfl SDFl </a></li>
-                <li><a href="">1.2. Alksadfl SDFl </a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="">2. SDLFKLJLSDKJ</a>
-            </li>
-            <li>
-              <a href="">3. SDLFKLJLSDKJ</a>
-            </li>
-          </ul>
-        </div>
+        <div class="markdown-sidebar"></div>
         <div class="markdown-content"></div>
       </div>
     </main>
-    <script src="js/load-sidebar.js"></script>
-    <script>
-      let md = window.markdownit({html: true}).use(window.markdownitFootnote);
-      let render = (markdown) => {
-        $(".markdown-content").html(md.render(markdown));
-        load_sidebar();
-      };
-      $.ajax({ url: "/md/get-started.md", success: render });
-    </script>
+    <script src="js/load_markdown.js"></script>
+    <script>load_markdown("get-started")</script>
   </body>
 </html>

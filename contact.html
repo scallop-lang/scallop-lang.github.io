@@ -8,6 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.0/markdown-it.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.1/markdown-it-footnote.js"></script>
     <link rel="stylesheet" href="css/basic.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <title>Scallop - Contact</title>
   </head>
   <body>
     <nav>
@@ -18,26 +20,16 @@
         <a href="#" class="nav-tab">Docs</a>
         <a href="/contact.html" class="nav-tab">Contact</a>
         <div class="flex-fill"></div>
-        <a href="#" class="nav-tab">Github (WIP)</a>
+        <a href="#" class="nav-tab">Github</a>
       </div>
     </nav>
     <main>
       <div class="wrapper markdown-holder">
-        <div class="markdown-sidebar">
-          <ul>
-            <li>laksjdfls</li>
-            <li>adsljfkalsf l</li>
-          </ul>
-        </div>
+        <div class="markdown-sidebar"></div>
         <div class="markdown-content"></div>
       </div>
     </main>
-    <script>
-      let md = window.markdownit({html: true}).use(window.markdownitFootnote);
-      let render = (markdown) => {
-        $(".markdown-content").html(md.render(markdown));
-      };
-      $.ajax({ url: "/md/contact.md", success: render });
-    </script>
+    <script src="js/load_markdown.js"></script>
+    <script>load_markdown("contact")</script>
   </body>
 </html>

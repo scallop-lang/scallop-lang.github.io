@@ -276,7 +276,7 @@ install `scallopy` in your Python environment.
 
 First, make sure you can import `scallopy` inside Python:
 
-``` python
+``` py
 import scallopy
 ```
 

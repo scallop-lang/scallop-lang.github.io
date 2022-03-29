@@ -108,3 +108,23 @@ function load_sidebar() {
   sidebar_window_scroll_update(stack);
   $(window).scroll(() => sidebar_window_scroll_update(stack));
 }
+
+function render(markdown) {
+  let md = window.markdownit({
+    html: true,
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return '<pre class="hljs"><code>' + hljs.highlight(str, { language: lang, ignoreIllegals: true }).value + '</code></pre>';
+        } catch (__) {}
+      }
+      return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+    }
+  }).use(window.markdownitFootnote);
+  $(".markdown-content").html(md.render(markdown));
+  load_sidebar();
+}
+
+function load_markdown(file) {
+  $.ajax({ url: `/md/${file}.md`, success: render });
+}

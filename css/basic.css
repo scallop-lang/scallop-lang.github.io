@@ -67,7 +67,7 @@ nav a {
   text-decoration: none;
   display: inline-block;
   padding: 0 20px;
-  font-size: 18px;
+  font-size: 16px;
   color: rgba(78, 83, 100, 1);
 }
 
@@ -87,7 +87,7 @@ p {
   font-weight: bold;
   padding: 0;
   margin-right: 20px;
-  font-size: 24px;
+  font-size: 20px;
   display: flex;
 }
 
@@ -100,12 +100,16 @@ p {
 
 .nav-tab {
   transition: all 0.1s;
+  line-height: 60px;
+  height: 60px;
   background-color: rgba(0, 0, 0, 0);
   border-bottom: 4px solid rgba(0, 0, 0, 0);
 }
 
 .nav-tab:hover {
   background-color: rgba(0, 0, 0, 0.05);
+  line-height: 56px;
+  height: 56px;
   border-bottom: 4px solid rgba(240, 117, 173, 1);
   color: rgba(240, 117, 173, 1);
 }
@@ -167,6 +171,7 @@ p {
   display: block;
   border-left: 0px solid rgba(240, 117, 173, 1);
   line-height: 36px;
+  font-size: 14px;
   padding: 0 10px;
 }
 
@@ -181,15 +186,15 @@ p {
 
 .markdown-content code, .markdown-content li code {
   border-radius: 3px;
-  background-color: rgba(228, 235, 241, 1);
+  background-color: rgba(244, 248, 255, 1);
   color: rgba(240, 117, 173, 1);
   padding: 0 3px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .markdown-content p, .markdown-content li {
   line-height: 24px;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .markdown-content a {
@@ -197,16 +202,18 @@ p {
 }
 
 .markdown-content pre {
-  background-color: rgba(228, 235, 241, 1);
+  background-color: rgba(244, 248, 255, 1);
+  font-family: 'menlo', Courier, monospace;
   overflow-x: scroll;
   width: calc(100% - 40px);
   border-radius: 5px;
   padding: 20px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
 }
 
 .markdown-content pre code {
+  font-family: 'menlo', Courier, monospace;
   background-color: unset;
   padding: unset;
   color: unset;
