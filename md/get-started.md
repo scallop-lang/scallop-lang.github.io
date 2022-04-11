@@ -159,26 +159,23 @@ rel alarm() = earthquake() or burglary()
 query alarm
 ```
 
-Note that here we introduced a new syntax for defining facts (`rel earthquake()`).
+Here, we introduced new syntax for defining facts (`rel earthquake()`).
 When we associate a floating point in front of a fact, we are associating a
 probability with this fact being happening.
 
-If you simply follow the previous instructions to execute this file, you will end
-up with a simple result `alarm: {()}`.
-This is because we did not indicate the need for probabilistic reasoning.
-To enable probabilistic reasoning, use the following command:
+Executing this file as before will produce the result `alarm: {()}`.
+Scallop performs probabilistic reasoning by using a particular form of
+**provenance** which is enabled via the command:
 
 ```
 $ scli alarm-2.scl --provenance topkproofs
 ```
 
-and the result will be
+which yields the desired result suggesting that the `alarm` will go off with `0.1288` probability:
 
 ```
 alarm: {0.1288::()}
 ```
-
-suggesting that the `alarm` will go off with `0.1288` probability.
 
 **provenance** is a core concept when using Scallop, since it configures how to
 perform logical, probabilistic, and differentiable reasoning.
