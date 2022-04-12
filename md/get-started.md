@@ -194,7 +194,7 @@ each of them will approximate the probabilistic result in different ways.
 Some might be very fast but inaccurate, others might be slow but very accurate.
 For the sake of this example, let's stick with `topkproofs`.
 
-## Counting Objects Probabilistically
+## How Many Green Object?
 
 Scallop supports aggregation, allowing people to perform operations such as
 `count`, `exists`, `(arg)min`, and `sum`.
