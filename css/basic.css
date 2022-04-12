@@ -290,6 +290,10 @@ footer {
 }
 
 .markdown-content table td, .markdown-content table th {
-  padding: 10px 20px;
+  padding: 10px 15px;
   border: 1px solid rgb(231, 235, 241);
+}
+
+.markdown-content table td code {
+  font-size: 12px;
 }
