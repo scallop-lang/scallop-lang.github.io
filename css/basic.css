@@ -242,3 +242,18 @@ p {
 .markdown-content blockquote p {
   color: rgba(240, 117, 173, 1);
 }
+
+.markdown-content table {
+  border: 1px solid rgb(231, 235, 241);
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.markdown-content table th {
+  background-color: rgba(231, 235, 241, 0.5);
+}
+
+.markdown-content table td, .markdown-content table th {
+  padding: 10px 20px;
+  border: 1px solid rgb(231, 235, 241);
+}
