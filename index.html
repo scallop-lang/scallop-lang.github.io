@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.0/markdown-it.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.1/markdown-it-footnote.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.1/markdown-it-footnote.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/base16/tomorrow.min.css">
+
     <link rel="stylesheet" href="css/basic.css" />
+    <link rel="stylesheet" href="vendor/css/font-awesome.min.css" />
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <title>Scallop</title>
   </head>
@@ -25,15 +30,19 @@
     </nav>
     <main>
       <section id="getting-started-banner">
-        <div class="flex center">
-          <img src="img/scallop-logo-ws-512.png" width="200px" />
-          <div style="text-align: left">
-            <font size="+4">Neuro-Symbolic Programming with Scallop</font>
+        <div class="center">
+          <img src="img/scallop-logo-ws-512.png" width="150px" />
+          <div>
+            <font size="+3">Neuro-Symbolic Programming, with Scallop</font>
+          </div>
+          <div>
+            <a href="/download.html" class="getting-started-button">Install <i class="fa fa-caret-right" style="margin-left: 5px"></i></a>
+            <a href="/get-started.html" class="getting-started-button">Tutorial <i class="fa fa-caret-right" style="margin-left: 5px"></i></a>
           </div>
         </div>
       </section>
       <section>
-        <div class="wrapper row">
+        <div class="wrapper row" style="padding-bottom: 50px">
           <div class="col-3">
             <div class="card">
               <div class="card-inner">
@@ -70,29 +79,46 @@
           </div>
         </div>
       </section>
-      <section>
-        <h2></h2>
-        <div class="wrapper row">
-          <div class="col-5">
-            <h2></h2>
+      <section class="bg-light-blue">
+        <div class="wrapper center">
+          <h2>Wide Range of Applications</h2>
+          <div style="width: 500px; margin: 0 auto;">
             <p>
-
-            </p>
-          </div>
-          <div class="col-7">
-            <h2></h2>
-            <p>
-
+              With Scallop, applications in the Vision and NLP communities can be formalized
+              under a unified framework.
+              One can program with Scallop to provide the symbolic reasoning component,
+              which can then be deeply integrated with the other machine learning modules, such as
+              convolutional neural networks and transformers.
             </p>
           </div>
         </div>
       </section>
       <section>
-
+        <div class="wrapper row">
+          <div class="col-5 flex center">
+            <div class="application-image-holder" style="background-image: url(/img/clevr/CLEVR_train_000013.png)"></div>
+          </div>
+          <div class="col-7">
+            <div id="clevr-scallop-sample" class="markdown-content"></div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-light-blue">
+        <div class="wrapper row">
+          <div class="col-7">
+            <div id="pathfinder-scallop-sample" class="markdown-content element-bg-white"></div>
+          </div>
+          <div class="col-5">
+            <div class="application-image-holder" style="background-image: url(/img/pathfinder/banner.png)"></div>
+          </div>
+        </div>
       </section>
     </main>
+    <script src="js/hljs_scallop.js"></script>
+    <script src="js/load_markdown.js"></script>
     <script>
-
+      load_markdown("snippets/clevr-sample", $("#clevr-scallop-sample"), null)
+      load_markdown("snippets/pathfinder-sample", $("#pathfinder-scallop-sample"), null)
     </script>
   </body>
 </html>

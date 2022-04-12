@@ -35,6 +35,18 @@ body {
   width: 33.3333%;
 }
 
+.row .col-5 {
+  width: calc(100% / 12 * 5);
+}
+
+.row .col-7 {
+  width: calc(100% / 12 * 7);
+}
+
+.bg-light-blue {
+  background-color: rgb(231, 235, 241, 0.5);
+}
+
 .card {
   margin: 15px;
   border-radius: 20px;
@@ -77,6 +89,7 @@ section {
 
 p {
   font-size: 16px;
+  line-height: 24px;
 }
 
 #nav-inner {
@@ -120,7 +133,7 @@ p {
 
 #getting-started-banner {
   background-image: linear-gradient(to bottom right, rgba(109, 207, 246, 1), rgba(240, 117, 173, 1));
-  padding: 100px 0;
+  padding: 200px 0;
   text-align: center;
 }
 
@@ -128,26 +141,39 @@ p {
   color: white;
 }
 
-#getting-started-button {
+.getting-started-button {
   margin-top: 20px;
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
-  border-radius: 10px;
-  border: 4px solid white;
-  line-height: 50px;
-  padding: 0 50px;
-  font-size: 18px;
+  border-radius: 5px;
+  border: 2px solid white;
+  line-height: 36px;
+  padding: 0 20px;
+  font-size: 16px;
   background-color: transparent;
   text-align: center;
 }
 
-#getting-started-button:hover {
+.getting-started-button + .getting-started-button {
+  margin-left: 20px;
+}
+
+.getting-started-button:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-#getting-started-button:active {
+.getting-started-button:active {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.application-image-holder {
+  margin: 0 auto;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  height: 280px;
+  background-size: cover;
 }
 
 .markdown-holder {
@@ -184,7 +210,7 @@ p {
   color: rgba(240, 117, 173, 1);
 }
 
-.markdown-content {
+.markdown-content.main {
   width: calc(100% - 390px);
 }
 
@@ -218,6 +244,10 @@ p {
   padding: 20px;
   font-size: 14px;
   line-height: 24px;
+}
+
+.markdown-content.element-bg-white pre {
+  background-color: white;
 }
 
 .markdown-content pre code {

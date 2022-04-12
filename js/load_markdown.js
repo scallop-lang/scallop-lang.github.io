@@ -93,23 +93,23 @@ function sidebar_window_scroll_update(stack) {
   }
 }
 
-function load_sidebar() {
+function load_sidebar($content, $sidebar) {
   // Read the markdown content and populate element stack
   let stack = new SidebarElementStack();
-  $(".markdown-content").children("h1, h2, h3, h4, h5, h6").each(function () {
+  $content.children("h1, h2, h3, h4, h5, h6").each(function () {
     stack.add_element(this);
   });
   stack.stablize_stack();
 
   // Turn the stack into an html
-  $(".markdown-sidebar").html(stack.to_html());
+  $sidebar.html(stack.to_html());
 
   // Create window onscroll event to automatically highlight sidebar links
   sidebar_window_scroll_update(stack);
   $(window).scroll(() => sidebar_window_scroll_update(stack));
 }
 
-function render(markdown) {
+function render(markdown, $content, $sidebar) {
   let md = window.markdownit({
     html: true,
     highlight: function (str, lang) {
@@ -121,10 +121,25 @@ function render(markdown) {
       return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
     }
   }).use(window.markdownitFootnote);
-  $(".markdown-content").html(md.render(markdown));
-  load_sidebar();
+
+  // Load the markdown content
+  $content.html(md.render(markdown));
+
+  // Load the sidebar if it presents
+  if ($sidebar) {
+    load_sidebar($content, $sidebar);
+  }
 }
 
-function load_markdown(file) {
-  $.ajax({ url: `/md/${file}.md`, success: render });
+function load_markdown(file, $content, $sidebar) {
+  $.ajax({ url: `/md/${file}.md`, success: (md) => render(md, $content, $sidebar) });
+}
+
+function load_markdown_default(file) {
+  $.ajax({
+    url: `/md/${file}.md`,
+    success: (md) => {
+      render(md, $(".markdown-content"), $(".markdown-sidebar"));
+    },
+  });
 }
