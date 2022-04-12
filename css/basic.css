@@ -92,6 +92,12 @@ p {
   line-height: 24px;
 }
 
+footer {
+  line-height: 60px;
+  text-align: center;
+  color: rgba(120, 120, 120, 1);
+}
+
 #nav-inner {
   display: flex;
 }
