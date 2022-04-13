@@ -193,10 +193,10 @@ each of them will approximate the probabilistic result in different ways.
 Some might be very fast but inaccurate, others might be slow but very accurate.
 For the sake of this example, let's stick with `topkproofs`.
 
-## How Many Green Object?
+## How Many Green Objects?
 
-Scallop supports aggregation, allowing people to perform operations such as
-`count`, `exists`, `(arg)min`, and `sum`.
+Scallop supports aggregation, allowing to perform operations such as `count`,
+`exists`, `(arg)min`, and `sum`.
 In the following example, we assume that we are in a learning setting, where
 each conceptual "object" can be predicted as having colors "red", "green",
 and "blue".
@@ -258,8 +258,8 @@ to be of color green.
 
 # Scallop as Python Library
 
-The most exciting thing of Scallop is when it can be used with PyTorch, a
-very popular machine learning framework.
+One of the most powerful features of Scallop concerns using it with PyTorch,
+a popular machine learning framework.
 But before that, we need to first get familiar with how to use Scallop inside
 Python, by using our Python binding, `scallopy`.
 Make sure you first [follow the instruction](/download.html?scallopy) to
@@ -324,12 +324,12 @@ You should obtain the result back:
 
 ## Probabilistic Digit Addition
 
-This example will tell you how to associate probabilistic information
-when using `scallopy`.
-Let's imagine inside a learning application, there are two hand-written
-digits ranging from 0 to 3, and the goal is to compute the most likely
-sum of the two digits.
-In such case, we write the following Python code:
+This example demonstrates how to associate probabilistic information when
+using `scallopy`.
+Consider a machine learning application whose input is two hand-written
+digits ranging from 0 to 3, and whose output is the digit corresponding to
+the sum of the two input digits.
+We write the following Python code to program this application:
 
 ``` python
 import scallopy
@@ -397,14 +397,14 @@ with the result (e.g. the sum is `0` with 0.084 probability).
 
 ## Learning MNIST Sum-2
 
-The most exciting thing about Scallop is that it is a Neuro-symbolic
+One of the most exciting aspects of Scallop is that it is a neurosymbolic
 programming language that can be easily integrated with popular machine
 learning libraries such as [PyTorch](https://pytorch.org/).
 In the following example, we will demonstrate how to create a very simple
-experiment that will learn to recognize hand-written digits (MNIST digits)
-with the only supervision being the sum of two digits.
-We have already seen a part of this experiment in our previous example.
-Now, let's make it into a full fledged learning pipeline!
+task to learn to recognize hand-written digits (MNIST digits) with the only
+supervision being the sum of two digits.
+We have already seen a part of this task in our previous example.
+Now, let's develop it into a full-fledged learning pipeline!
 
 <div class="center flex">
   <img src="/img/mnist/mnist_2.png" width="40px" />
