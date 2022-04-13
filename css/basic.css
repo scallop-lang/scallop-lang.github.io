@@ -194,7 +194,7 @@ footer {
 
 .markdown-sidebar ul {
   list-style: none;
-  padding-left: 15px;
+  padding-left: 30px;
   position: -webkit-sticky;
   position: sticky;
   top: 50px;
