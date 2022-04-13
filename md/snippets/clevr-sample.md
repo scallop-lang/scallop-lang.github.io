@@ -1,23 +1,23 @@
 ## CLEVR, Compositional Language and Elementary Visual Reasoning
 
 In [this task](https://cs.stanford.edu/people/jcjohns/clevr/), we seek to reason
-about images containing objects on the scene, in order to answer questions like
-"How many blue objects are there in the scene".
-Neural components are responsible for generating correct symbolic representation
-of the image, a.k.a. *scene graphs*, and also a *programmatic query* representing
-the question.
-With Scallop, all of them can be integrated in a same framework and training can
-be performed in an end-to-end fashion.
+about objects in a scene such as that in the adjoining image, in order to answer
+questions such as "how many blue objects are there in the scene?".
+Neural components are responsible for generating a symbolic representation of
+the image, in the form of a *scene graph*, as well as a *programmatic query*
+representing the question.
+Scallop enables to integrate all of these components in a common framework
+and perform training in an end-to-end fashion.
 
 ``` scl
-// 3 Objects in the scene; the first and the third are blue, and the second is red
+// 3 objects in the scene; the first and the third are blue, and the second is red
 rel obj = {0, 1, 2}
 rel color = {(0, "blue"), (1, "red"), (2, "blue")}
 
-// The programmatic query asks about how many blue objects are there in the scene
+// the programmatic query asks for the number of blue objects occurring in the scene
 rel scene_expr = {0}
 rel filter_color_expr = {(1, 0, "blue")}
 rel count_expr = {(2, 1)}
 rel root_expr = {2}
-query num_result // Query should return `(2)`
+query num_result // query should return `(2)`
 ```
