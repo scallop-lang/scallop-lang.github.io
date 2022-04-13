@@ -1,27 +1,26 @@
 # Getting Started
 
-Scallop is a neuro-symbolic programming language based on Datalog.
-You can use it simply as discrete Datalog, and can also use it as
-probabilistic Datalog or even differentiable Datalog.
-We currently provide three ways to interact with Scallop:
+Scallop is a neurosymbolic programming language, solver, and framework.
+Based on Datalog, it supports discrete, probabilistic, and differentiable
+modes of reasoning.
+
+There are three ways to interact with Scallop:
 
 - Scallop Interpreter `scli` [(download)](/download.html#scli).
-  This interpreter can be run as a command-line program.
-  `scli` accepts a `.scl` file which is executed to produce the
-  reasoning result.
-  This version of Scallop supports discrete reasoning and probabilistic
-  reasoning.
+  This interpreter can be run as a command-line program `scli` which accepts
+  a `.scl` file that is executed to produce the result.
+  This version of Scallop supports discrete and probabilistic modes of reasoning.
 
 - Scallop REPL `sclrepl` [(download)](/download.html#sclrepl).
   This interpreter can be run in an interactive shell environment and is
   suitable for demo purposes.
-  Similar to `scli`, this version of Scallop supports discrete reasoning
-  and probabilistic reasoning.
+  Similar to `scli`, this version of Scallop supports discrete and probabilistic
+  modes of reasoning.
 
 - Python Binding `scallopy` [(download)](/download.html#scallopy).
-  This is a Python binding for Scallop, which allows you to run Scallop
-  in a native Python environment.
-  In addition to supporting discrete and probabilistic reasoning, this
+  This is a Python binding which allows to run Scallop in a native Python
+  environment.
+  Besides supporting discrete and probabilistic modes of reasoning, this
   Python library includes PyTorch support and enables differentiable
   reasoning.
   You can integrate Scallop modules with your PyTorch machine learning
