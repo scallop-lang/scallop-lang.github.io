@@ -64,6 +64,12 @@ body {
   background-color: white;
 }
 
+.card-icon {
+  display: block;
+  width: 200px;
+  margin: -30px auto -30px;
+}
+
 .center {
   text-align: center;
 }

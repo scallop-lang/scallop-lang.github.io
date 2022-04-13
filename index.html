@@ -44,6 +44,7 @@
           <div class="col-3">
             <div class="card">
               <div class="card-inner">
+                <img class="card-icon" src="/img/icon-language.png" />
                 <h2 class="center">Language</h2>
                 <p>
                   Scallop is a declarative relational programming language suited for logic reasoning in AI applications.
@@ -55,6 +56,7 @@
           <div class="col-3">
             <div class="card">
               <div class="card-inner">
+                <img class="card-icon" src="/img/icon-solver.png" />
                 <h2 class="center">Solver</h2>
                 <p>
                   Scallop is a scalable Datalog solver equipped with support for discrete, probabilistic, and
@@ -67,10 +69,12 @@
           <div class="col-3">
             <div class="card">
               <div class="card-inner">
+                <img class="card-icon" src="/img/icon-framework.png" />
                 <h2 class="center">Framework</h2>
                 <p>
-                  Scallop provides Python bindings to easily integrate logic reasoning modules into existing
-                  PyTorch machine learning pipelines for computer vision, natural language processing, and more.
+                  Scallop provides a friendly Python binding to easily create logic reasoning
+                  modules within Python programs.
+                  Most importantly, Scallop can be deeply integrated within existing PyTorch machine learning pipelines.
                 </p>
               </div>
             </div>
@@ -109,6 +113,16 @@
           </div>
         </div>
       </section>
+      <section>
+        <div class="wrapper row">
+          <div class="col-5 flex center">
+            <div class="application-image-holder" style="background-image: url(/img/hwf/banner.png)"></div>
+          </div>
+          <div class="col-7">
+            <div id="hwf-scallop-sample" class="markdown-content"></div>
+          </div>
+        </div>
+      </section>
     </main>
     <footer>&copy; 2022 Scallop Team, University of Pennsylvania</footer>
     <script src="js/hljs_scallop.js"></script>
@@ -116,6 +130,7 @@
     <script>
       load_markdown("snippets/clevr-sample", $("#clevr-scallop-sample"), null)
       load_markdown("snippets/pathfinder-sample", $("#pathfinder-scallop-sample"), null)
+      load_markdown("snippets/hwf-sample", $("#hwf-scallop-sample"), null)
     </script>
   </body>
 </html>
