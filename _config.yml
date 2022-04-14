@@ -1,0 +1,13 @@
+# this goes inside _config.yml. Change as required
+home:
+        - text: Scallop
+          url: /index.html
+navigation:
+        - text: Tutorial
+          url: /tutorial.html
+        - text: Download
+          url: /download.html
+        - text: Contact
+          url: /contact.html
+
+toolname: Scallop
