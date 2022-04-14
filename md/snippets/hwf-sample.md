@@ -1,18 +1,18 @@
-## Evaluating Hand-Written Formula
+## Evaluating Hand-Written Formulae
 
-In this task, the model is given a sequence of hand-written symbols
-including 0 to 9 and simple arithmetic operations.
+In this task, we are given a sequence of hand-written symbols, including 0 to 9
+and simple arithmetic operations.
 The goal is to recognize the formula and evaluate the expression.
-In this example, the input should be representing a formula 1 + 3 / 5 and
-be evaluated to 1.6.
-One can easily craft a full context-free grammar parser with Scallop
-that can parse probabilistic inputs.
-Our Scallop program will automatically find the most likely parse
-and return the evaluated result.
-Therefore the whole pipeline can be trained in an end-to-end fashion.
-
-Here is how a probabilistic parser for this grammar can be written
-in just 5 lines of Scallop code:
+In the adjoining example, the input represents the formula 1 + 3 / 5, which
+evaluates to 1.6.
+One can craft a full context-free grammar parser in Scallop that can parse
+probabilistic inputs.
+A parser and evaluator for the above formulae can be written in just 5 lines
+of Scallop code shown below.
+This program can be trained in an end-to-end fashion with the neural model
+for recognizing individual symbols.
+Once trained, the resulting program will automatically find the most likely
+formula and return the evaluated result.
 
 ``` scl
 rel value_node(x, v) = symbol(x, d), digit(d, v), length(n), x < n
