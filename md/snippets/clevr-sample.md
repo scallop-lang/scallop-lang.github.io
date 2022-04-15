@@ -1,11 +1,12 @@
-## CLEVR, Compositional Language and Elementary Visual Reasoning
+## [CLEVR](https://cs.stanford.edu/people/jcjohns/clevr/), Compositional Language and Elementary Visual Reasoning
 
-In [this task](https://cs.stanford.edu/people/jcjohns/clevr/), we seek to reason
-about objects in a scene such as that in the adjoining image, in order to answer
-questions such as "how many blue objects are there in the scene?".
-Neural components are responsible for generating a symbolic representation of
-the image, in the form of a *scene graph*, as well as a *programmatic query*
-representing the question.
+This task concerns reasoning about simple 3D objects in a given image in order to
+answer questions such as "how many objects are colored blue?".
+To express this task in Scallop, we use neural components to generate a symbolic
+representation of the image, in the form of a *scene graph*, as well as a
+*programmatic query* to represent the question.  On the other hand, the reasoning
+component specifies various operations such as selecting, comparing, and counting
+objects with the specified attributes.
 Scallop enables to integrate all of these components in a common framework
 and perform training in an end-to-end fashion.
 
