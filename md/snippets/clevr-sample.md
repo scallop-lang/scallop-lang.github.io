@@ -15,10 +15,22 @@ and perform training in an end-to-end fashion.
 rel obj = {0, 1, 2}
 rel color = {(0, "blue"), (1, "red"), (2, "blue")}
 
-// the programmatic query asks for the number of blue objects occurring in the scene
+// representation of the programmatic query 'count(filter_color(scene(), "blue"))'
+// which seeks the number of blue objects in the scene
 rel scene_expr = {0}
 rel filter_color_expr = {(1, 0, "blue")}
 rel count_expr = {(2, 1)}
 rel root_expr = {2}
+
+// filter objects by color
+rel eval_objs(e, o) = scene_expr(e), obj(o)
+rel eval_objs(e, o) = filter_color_expr(e, f, c), eval_objs(f, o), color(o, c)
+
+// count objects
+rel eval_num(e, n) = n = count(o: eval_objs(f, o) where e: count_expr(e, f))
+
+// final result
+rel num_result(y) = root_expr(e), eval_num(e, y)
+
 query num_result // query should return `(2)`
 ```
