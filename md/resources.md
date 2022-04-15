@@ -2,9 +2,12 @@
 
 ## Authors
 
-- [Ziyang Li](mailto:liby99@seas.upenn.edu)
-- [Jiani Huang](mailto:jianih@seas.upenn.edu)
-- [Mayur Naik](mailto:mnaik@seas.upenn.edu)
+- University of Pennsylvania
+  - [Ziyang Li](https://liby99.github.io/)
+  - [Jiani Huang](http://cis.upenn.edu/~jianih)
+  - [Mayur Naik](https://www.cis.upenn.edu/~mhnaik/)
+- Google Brain
+  - [Hanjun Dai](https://hanjun-dai.github.io/)
 
 ## Papers
 
