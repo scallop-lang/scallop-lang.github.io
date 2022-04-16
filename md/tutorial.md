@@ -31,7 +31,7 @@ it with `scli`.
 After that, we will dive into how to use Scallop as a Python library and
 apply it to some simple learning tasks.
 
-# Hello World in Scallop
+# Hello World in Scallop <a class="source-button" href="/examples/hello.scl" target="_blank">Source<i class="fa fa-caret-right"></i></a>
 
 Let's write a very simple "Hello World" program in Scallop.
 Create a new file named `hello.scl` with the following code:
@@ -67,7 +67,7 @@ hello: {("Hello World")}
 
 We now demonstrate Scallop using a few examples.
 
-## Parent and Grandparent
+## Parent and Grandparent <a class="source-button" href="/examples/parent.scl" target="_blank">Source<i class="fa fa-caret-right"></i></a>
 
 Scallop is a full-fledged logic programming language based on Datalog.
 Here is a traditional relational logic program expressed in Datalog:
@@ -100,7 +100,7 @@ be an arity-2 relation.
 The last line of the program queries the tuples in the relation
 `grandparent`, which will be `{("Emily", "Alice")}`, as expected.
 
-## Fibonnacci Sequence
+## Fibonnacci Sequence <a class="source-button" href="/examples/fib-1.scl" target="_blank">Source<i class="fa fa-caret-right"></i></a>
 
 While we've been dealing with strings in our previous examples, Scallop supports
 various numeric manipulations.
@@ -138,7 +138,7 @@ the 8-th fib number.
 Executing `scli` on this program will yield `fib(8, y): {(8, 34)}` -- that is,
 the 8-th fib number is 34.
 
-## Would the Alarm Go Off?
+## Would the Alarm Go Off? <a class="source-button" href="/examples/alarm-2.scl" target="_blank">Source<i class="fa fa-caret-right"></i></a>
 
 Scallop can be used to reason about probabilistic events.
 The following classical probabilistic reasoning example shows how to use Scallop
@@ -176,6 +176,18 @@ which yields the desired result suggesting that the `alarm` will go off with `0.
 alarm: {0.1288::()}
 ```
 
+Note that the probability is calculated this way:
+
+```
+  Pr(alarm)
+= Pr(earthquake or burglary)
+= 1 - Pr(no earthquake and no burglary)
+= 1 - Pr(no earthquake) * Pr(no burglary)
+= 1 - (1 - Pr(earthquake)) * (1 - Pr(burglary))
+= 1 - (1 - 0.01) * (1 - 0.12)
+= 0.1288
+```
+
 **provenance** is a core concept when using Scallop, since it configures how to
 perform logical, probabilistic, and differentiable reasoning.
 A provenance will associate some information along with the deduction process,
@@ -193,7 +205,7 @@ each of them will approximate the probabilistic result in different ways.
 Some might be very fast but inaccurate, others might be slow but very accurate.
 For the sake of this example, let's stick with `topkproofs`.
 
-## How Many Green Objects?
+## How Many Green Objects? <a class="source-button" href="/examples/count-green.scl" target="_blank">Source<i class="fa fa-caret-right"></i></a>
 
 Scallop supports aggregation, allowing to perform operations such as `count`,
 `exists`, `(arg)min`, and `sum`.
@@ -265,7 +277,7 @@ Python, by using our Python binding, `scallopy`.
 Make sure you first [follow the instruction](/download.html?scallopy) to
 install `scallopy` in your Python environment.
 
-## Hello World, Revisited
+## Hello World, Revisited <a class="source-button" href="/examples/hello.py" target="_blank">Source<i class="fa fa-caret-right"></i></a>
 
 First, make sure you can import `scallopy` inside Python:
 
@@ -322,7 +334,7 @@ You should obtain the result back:
 [('Hello World',)]
 ```
 
-## Probabilistic Digit Addition
+## Probabilistic Digit Addition <a class="source-button" href="/examples/digit_addition.py" target="_blank">Source<i class="fa fa-caret-right"></i></a>
 
 This example demonstrates how to associate probabilistic information when
 using `scallopy`.
@@ -395,7 +407,7 @@ summation of the two will be ranging from 0 to 6.
 Now, not only do we get the result, we also get the probabilities associated
 with the result (e.g. the sum is `0` with 0.084 probability).
 
-## Learning MNIST Sum-2
+## Learning MNIST Sum-2 <a class="source-button" href="/examples/sum_2.py" target="_blank">Source<i class="fa fa-caret-right"></i></a>
 
 One of the most exciting aspects of Scallop is that it is a neurosymbolic
 programming language that can be easily integrated with popular machine

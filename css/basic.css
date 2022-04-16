@@ -274,6 +274,34 @@ footer {
   margin-top: 50px;
 }
 
+.markdown-content .source-button {
+  transition: all 0.1s;
+  float: right;
+  display: block;
+  padding: 0 10px;
+  margin-top: 2px;
+  background-color: rgba(240, 117, 173, 0);
+  color: rgba(240, 117, 173, 1);
+  border: 1px solid rgba(240, 117, 173, 1);
+  border-radius: 5px;
+  line-height: 30px;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.markdown-content .source-button:hover {
+  background-color: rgba(240, 117, 173, 0.05);
+}
+
+.markdown-content .source-button:active {
+  background-color: rgba(240, 117, 173, 0.1);
+}
+
+.markdown-content .source-button i {
+  margin-left: 10px;
+}
+
 .markdown-content blockquote {
   margin-left: 0;
   padding: 5px 30px;

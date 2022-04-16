@@ -1,0 +1,8 @@
+rel parent = {
+  ("Emily", "Bob"), // Emily is Bob's parent
+  ("Bob", "Alice"), // Bob is Alice's parent
+}
+
+rel grandparent(a, c) = parent(a, b), parent(b, c)
+
+query grandparent // {("Emily", "Alice")}
