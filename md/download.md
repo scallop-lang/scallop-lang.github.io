@@ -43,7 +43,7 @@ Here is a screenshot of `sclrepl` in a terminal.
 `scallopy` is a python library that can be installed via `pip`.
 After downloading the `.whl` file, you can install using `pip` in the following way.
 
-```
+``` bash
 $ pip install PATH/TO/YOUR/scallopy-[YOUR_VERSION].whl
 ```
 
@@ -51,6 +51,14 @@ Please be sure to download a relevant `scallopy` version.
 You should consider your Python version and your system and architecture version.
 We advise you to use [Python Virtual Env](#) or [Anaconda](#) to manage your Python version
 so that you can install the following wheels with ease.
+For example, you can create a Python 3.9 conda environment and install scallop with the following
+commands:
+
+``` bash
+$ conda create --name scallop-env python=3.9
+$ conda activate scallop-env
+$ pip install PATH/TO/YOUR/scallopy-0.1.0-cp39-cp39-[YOUR_VERSION].whl
+```
 
 Note that if you want to use `scallopy` inside a Conda environment using an M1 Mac, you should
 download the `x86_64` version of `scallopy`.
