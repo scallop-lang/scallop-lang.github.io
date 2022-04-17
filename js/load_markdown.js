@@ -32,7 +32,8 @@ class SidebarElementStack {
     let id = `section-${this.id_counter}`;
     $(elem).attr("id", id);
     this.id_counter += 1;
-    this.stack.push(new SidebarElement(curr_level, $(elem).text(), id));
+    let text = $(elem).clone().children().remove().end().text();
+    this.stack.push(new SidebarElement(curr_level, text, id));
   }
 
   pop_one() {
