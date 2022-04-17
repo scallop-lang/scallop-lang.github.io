@@ -15,16 +15,7 @@
     <title>Scallop</title>
   </head>
   <body>
-    <nav>
-      <div class="wrapper" id="nav-inner">
-        <a href="/" id="nav-title"><img id="nav-logo" src="img/scallop-logo-transp-128.png" />Scallop</a>
-        <a href="/tutorial.html" class="nav-tab">Tutorial</a>
-        <a href="/download.html" class="nav-tab">Download</a>
-        <a href="/resources.html" class="nav-tab">Resources</a>
-        <div class="flex-fill"></div>
-        <a href="https://github.com/scallop-lang/scallop-v2" target="_blank" class="nav-tab">Github</a>
-      </div>
-    </nav>
+    <nav class="template" data-template="navbar"></nav>
     <main>
       <section id="getting-started-banner">
         <div class="center">
@@ -123,9 +114,10 @@
         </div>
       </section>
     </main>
-    <footer>&copy; 2022 Scallop Team, University of Pennsylvania</footer>
+    <footer class="template" data-template="footer"></footer>
     <script src="js/hljs_scallop.js"></script>
     <script src="js/load_markdown.js"></script>
+    <script src="js/load_templates.js"></script>
     <script>
       load_markdown("snippets/clevr-sample", $("#clevr-scallop-sample"), null)
       load_markdown("snippets/pathfinder-sample", $("#pathfinder-scallop-sample"), null)
