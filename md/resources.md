@@ -8,7 +8,7 @@
   - [Mayur Naik](https://www.cis.upenn.edu/~mhnaik/)
 - Collaborators
   - [Hanjun Dai](https://hanjun-dai.github.io/)
-  - [Binghong Chen](https://binghongchen.net/)
+  - [Binghong Chen](http://binghongchen.net/)
   - [Karan Samel](https://karans.github.io/)
   - [Le Song](https://scholar.google.com/citations?user=Xl4E0CsAAAAJ&hl=en)
 
