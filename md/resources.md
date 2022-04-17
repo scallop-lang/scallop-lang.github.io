@@ -1,13 +1,16 @@
 # Resources
 
-## Authors
+## Team
 
-- University of Pennsylvania
+- Core
   - [Ziyang Li](https://liby99.github.io/)
   - [Jiani Huang](http://cis.upenn.edu/~jianih)
   - [Mayur Naik](https://www.cis.upenn.edu/~mhnaik/)
-- Google Brain
+- Collaborators
   - [Hanjun Dai](https://hanjun-dai.github.io/)
+  - [Binghong Chen](https://binghongchen.net/)
+  - [Karan Samel](https://karans.github.io/)
+  - [Le Song](https://scholar.google.com/citations?user=Xl4E0CsAAAAJ&hl=en)
 
 ## Papers
 
