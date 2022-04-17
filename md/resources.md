@@ -2,7 +2,7 @@
 
 ## Team
 
-- Core
+- Core Members
   - [Ziyang Li](https://liby99.github.io/)
   - [Jiani Huang](http://cis.upenn.edu/~jianih)
   - [Mayur Naik](https://www.cis.upenn.edu/~mhnaik/)
