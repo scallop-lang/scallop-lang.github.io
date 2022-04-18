@@ -10,6 +10,7 @@
   - [Hanjun Dai](https://hanjun-dai.github.io/)
   - [Binghong Chen](http://binghongchen.net/)
   - [Karan Samel](https://karans.github.io/)
+  - [Xujie Si](https://www.cs.mcgill.ca/~xsi/)
   - [Le Song](https://scholar.google.com/citations?user=Xl4E0CsAAAAJ&hl=en)
 
 ## Papers
