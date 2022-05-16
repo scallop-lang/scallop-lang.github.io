@@ -334,6 +334,110 @@ You should obtain the result back:
 [('Hello World',)]
 ```
 
+## Edge-Path-SCC <a class="source-button" href="/examples/edge_path_scc.py" target="_blank">Source<i class="fa fa-caret-right"></i></a>
+
+In this example we want to use `scallopy` to write a simple program that
+reasons about a graph that looks like the following
+(adapted from [geeksforgeeks](https://www.geeksforgeeks.org/strongly-connected-components/)).
+
+![Example SCC](/img/example-scc.png)
+
+First, we want to use Python to setup the Scallop Context for us to establish
+the graph data structure.
+
+``` python
+import scallopy
+
+ctx = scallopy.ScallopContext()
+
+ctx.add_relation("node", (int,))
+ctx.add_relation("edge", (int, int))
+ctx.add_relation("path", (int, int))
+ctx.add_relation("scc", (int, int))
+```
+
+The first relation we add is called `node`.
+It is an arity-1 relation which holds all the nodes in the graph.
+We then added three relations into the context, namely `edge`, `path`,
+and `scc`.
+They are all of type `(int, int)`, as we will be using `int` to represent
+each node.
+According to the above picture, we have the nodes from 0 to 4 and
+the following edges:
+
+```
+0 -> 2
+2 -> 1
+1 -> 0
+0 -> 3
+3 -> 4
+```
+
+When encoded in `scallopy`, we are going to add the following facts to
+the relations:
+
+``` python
+ctx.add_facts("node", [(0,), (1,), (2,), (3,), (4,)])
+ctx.add_facts("edge", [(0, 2), (2, 1), (1, 0), (0, 3), (3, 4)])
+```
+
+Note that the facts (tuples) are exactly of the type we declared it to be.
+
+Next, we need to come up with rules to define `path`.
+The following rule is basically saying:
+- if there is an edge, then there is a path;
+- if there is an edge connected with a computed path, then the joined chain is a path.
+
+We usually call this a "transitive closure".
+
+``` python
+ctx.add_rule("path(a, c) = edge(a, c) or (edge(a, b) and path(b, c))")
+```
+
+We can run the program to see the `path`s being computed right now.
+Simply call `ctx.run()` and investigate the `path` relation!
+
+``` python
+ctx.run()
+print("paths:", list(ctx.relation("path")))
+```
+
+Lastly, let's try to add the rule for `scc` into the context.
+It's actually quite simple:
+- a node is in the same SCC as itself;
+- if there is a path from A to B and a path from B to A,
+  then they belong to the same strongly connected component (SCC).
+
+``` python
+ctx.add_rule("scc(a, a) = node(a)")
+ctx.add_rule("scc(a, b) = path(a, b) and path(b, a)")
+```
+
+After running the Scallop program using the following code
+
+``` python
+ctx.run()
+print("sccs:", list(ctx.relation("scc")))
+```
+
+we get the following result:
+
+```
+scc: [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2), (3, 3), (4, 4)]
+```
+
+Now, we've correctly identified that `0`, `1`, and `2` are in the same SCC, while `3` and `4` are in their own SCC, respectively.
+This is the expected result as we can see in the picture above.
+
+You might have already noticed that in this program we have `run` the Scallop
+Context twice, and it's ok!
+Scallop supports incremental computation (though limited).
+Therefore the `edge` and `path` being computed in the first run through will
+not be re-computed in the second execution.
+This can help quite a bit when one needs to run thousands of programs
+simultaneously.
+Additionally, `ctx.clone()` can be used to branch-off a series of executions.
+
 ## Probabilistic Digit Addition <a class="source-button" href="/examples/digit_addition.py" target="_blank">Source<i class="fa fa-caret-right"></i></a>
 
 This example demonstrates how to associate probabilistic information when
