@@ -8,11 +8,14 @@ Scallop interpreter is a command line executable.
 You can simply use `scli <FILE>.scl` to execute a Scallop file.
 For other usage, please type `scli --help` for instructions.
 
-| System | Architecture | Version | Download                                            |
-|--------|--------------|---------|-----------------------------------------------------|
-| Mac OS | Apple M1     | v0.1.0  | [`scli`](/artifacts/scli/arm64-apple-darwin/scli)   |
-| Mac OS | Intel x86_64 | v0.1.0  | [`scli`](/artifacts/scli/x86_64-apple-darwin/scli)  |
-| Linux  | Intel x86_64 | v0.1.0  | [`scli`](/artifacts/scli/x86_64-linux-unknown/scli) |
+| System | Architecture | Version | Download                                                   |
+|--------|--------------|---------|------------------------------------------------------------|
+| Mac OS | Apple M1     | v0.1.1  | [`scli`](/artifacts/scli/arm64-apple-darwin/v0.1.1/scli)   |
+| Mac OS | Intel x86_64 | v0.1.1  | [`scli`](/artifacts/scli/x86_64-apple-darwin/v0.1.1/scli)  |
+| Linux  | Intel x86_64 | v0.1.1  | [`scli`](/artifacts/scli/x86_64-linux-unknown/v0.1.1/scli) |
+| Mac OS | Apple M1     | v0.1.0  | [`scli`](/artifacts/scli/arm64-apple-darwin/v0.1.0/scli)   |
+| Mac OS | Intel x86_64 | v0.1.0  | [`scli`](/artifacts/scli/x86_64-apple-darwin/v0.1.0/scli)  |
+| Linux  | Intel x86_64 | v0.1.0  | [`scli`](/artifacts/scli/x86_64-linux-unknown/v0.1.0/scli) |
 
 Here is a screenshot of how `scli` is invoked in a terminal.
 
@@ -26,11 +29,14 @@ Scallop REPL is an interactive command line executable that can
 interpret your input as you type.
 This program is great for testing quick ideas and doing demo.
 
-| System | Architecture | Version | Download                                                     |
-|--------|--------------|---------|--------------------------------------------------------------|
-| Mac OS | Apple M1     | v0.1.0  | [`sclrepl`](/artifacts/sclrepl/arm64-apple-darwin/sclrepl)   |
-| Mac OS | Intel x86_64 | v0.1.0  | [`sclrepl`](/artifacts/sclrepl/x86_64-apple-darwin/sclrepl)  |
-| Linux  | Intel x86_64 | v0.1.0  | [`sclrepl`](/artifacts/sclrepl/x86_64-linux-unknown/sclrepl) |
+| System | Architecture | Version | Download                                                            |
+|--------|--------------|---------|---------------------------------------------------------------------|
+| Mac OS | Apple M1     | v0.1.1  | [`sclrepl`](/artifacts/sclrepl/arm64-apple-darwin/v0.1.1/sclrepl)   |
+| Mac OS | Intel x86_64 | v0.1.1  | [`sclrepl`](/artifacts/sclrepl/x86_64-apple-darwin/v0.1.1/sclrepl)  |
+| Linux  | Intel x86_64 | v0.1.1  | [`sclrepl`](/artifacts/sclrepl/x86_64-linux-unknown/v0.1.1/sclrepl) |
+| Mac OS | Apple M1     | v0.1.0  | [`sclrepl`](/artifacts/sclrepl/arm64-apple-darwin/v0.1.0/sclrepl)   |
+| Mac OS | Intel x86_64 | v0.1.0  | [`sclrepl`](/artifacts/sclrepl/x86_64-apple-darwin/v0.1.0/sclrepl)  |
+| Linux  | Intel x86_64 | v0.1.0  | [`sclrepl`](/artifacts/sclrepl/x86_64-linux-unknown/v0.1.0/sclrepl) |
 
 Here is a screenshot of `sclrepl` in a terminal.
 
@@ -65,6 +71,10 @@ download the `x86_64` version of `scallopy`.
 
 | System | Architecture | Python Version | Version | Download |
 |--------|--------------|----------------|---------|----------|
+| Mac OS | Apple M1     | Python 3.9     | v0.1.1  | [`scallopy-0.1.1-cp39-cp39-macosx_11_0_arm64.whl`](/artifacts/scallopy/scallopy-0.1.1-cp39-cp39-macosx_11_0_arm64.whl)   |
+| Mac OS | Intel x86_64 | Python 3.9     | v0.1.1  | [`scallopy-0.1.1-cp39-cp39-macosx_10_7_x86_64.whl`](/artifacts/scallopy/scallopy-0.1.1-cp39-cp39-macosx_10_7_x86_64.whl)  |
+| Linux  | Intel x86_64 | Python 3.8     | v0.1.1  | [`scallopy-0.1.1-cp38-cp38-manylinux_2_27_x86_64.whl`](/artifacts/scallopy/scallopy-0.1.1-cp38-cp38-manylinux_2_27_x86_64.whl) |
+| Linux  | Intel x86_64 | Python 3.9     | v0.1.1  | [`scallopy-0.1.1-cp39-cp39-manylinux_2_27_x86_64.whl`](/artifacts/scallopy/scallopy-0.1.1-cp39-cp39-manylinux_2_27_x86_64.whl) |
 | Mac OS | Apple M1     | Python 3.9     | v0.1.0  | [`scallopy-0.1.0-cp39-cp39-macosx_11_0_arm64.whl`](/artifacts/scallopy/scallopy-0.1.0-cp39-cp39-macosx_11_0_arm64.whl)   |
 | Mac OS | Intel x86_64 | Python 3.9     | v0.1.0  | [`scallopy-0.1.0-cp39-cp39-macosx_10_7_x86_64.whl`](/artifacts/scallopy/scallopy-0.1.0-cp39-cp39-macosx_10_7_x86_64.whl)  |
 | Linux  | Intel x86_64 | Python 3.8     | v0.1.0  | [`scallopy-0.1.0-cp38-cp38-manylinux_2_27_x86_64.whl`](/artifacts/scallopy/scallopy-0.1.0-cp38-cp38-manylinux_2_27_x86_64.whl) |
