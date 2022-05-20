@@ -1,6 +1,6 @@
 # Lab1 Instructions
 
-Let's get our hands dirty with a simple project! This lab will guide you through a few basic Scallop syntax and concepts, including negation, aggregation, recursion, and fixpoint. We will present the basics in this document, and there are more fun practices in the `/labs/lab1/scl` folder.
+Let's get our hands dirty with a simple project! This lab will guide you through a few basic Scallop syntax and concepts, including negation, aggregation, and recursion.
 
 ## Visual Question Answering (VQA)
 Visual question and answering is an important task in the learning field. Let's learn about how to perform VQA with Scallop with this simple image.
@@ -213,7 +213,7 @@ Write one deterministic and one probabilistic Scallop program to answer this que
 3. How many red objects are there in the scene?
 4. How many objects are there for each shape?
 5. Find whether an object is between two objects.
- - Definition: `between(a, b, c)` means `c` is in-between object `a` and `b`
+   - Definition: `between(a, b, c)` means `c` is in-between object `a` and `b`
 6. Is there a green object between a red and a blue object?
 7. What is the color of the other big object that is made of the same material as the yellow thing?
 
@@ -246,23 +246,25 @@ rel path(a, b) = path(a, x) and edge(x, b)
 
 ### Graph Practice
 1. Find the triangles in this graph.
- - Definition: `triangle(a, b, c)` means the nodes a, b, and c form a triangle.
+    - Definition: `triangle(a, b, c)` means the nodes a, b, and c form a triangle.
 2. Write an `scc` relationship.
- - Definition: `scc(a, b)` means node `a` and `b` are in the same Strongly Connected Component
- - Definition: Strongly Connected Component is a subgraph where any node can reach every node in such a component
- - Note: A node is always in the same Strongly Connected Component as itself
+    - Definition: `scc(a, b)` means node `a` and `b` are in the same Strongly Connected Component
+    - Definition: Strongly Connected Component is a subgraph where any node can reach every node in such a component
+     - Note: A node is always in the same Strongly Connected Component as itself
 3. Find the SCCs that are singleton.
- - Definition: `singleton_scc(a)` means node `a` stays in a Strongly Connected Component that only contains itself
+     - Definition: `singleton_scc(a)` means node `a` stays in a Strongly Connected Component that only contains itself
 4. Does this graph contains at least one cycle?
- - Definition: `contains_cycle(true)` means the graph contains a cycle. false otherwise
+     - Definition: `contains_cycle(true)` means the graph contains a cycle. false otherwise
 5. Count the number of nodes.
- - Definition: `num_nodes(n)` means there are in total `n` nodes in the graph
+     - Definition: `num_nodes(n)` means there are in total `n` nodes in the graph
 6. Write a `in_degree` relationship.
- - Definition: `in_degree(a, x)` means there are `x` edges going into node `a`
+     - Definition: `in_degree(a, x)` means there are `x` edges going into node `a`
 7. Write a `out_degree` relationship.
- - Definition: `out_degree(a, x)` means there are `x` edges going out from node `a`
+    - Definition: `out_degree(a, x)` means there are `x` edges going out from node `a`
 8. Count the number of nodes within 3 steps of node `n`.
- - Definition: `num_nodes_within_3(n, c)` means there are `c` nodes that are reachable from `n`
+     - Definition: `num_nodes_within_3(n, c)` means there are `c` nodes that are reachable from `n`
 9. Shortest Path Length.
- - Definition: shortest_path_length(a, b, n): n is the length of the shortest path between node `a` and `b`
- - Note: Need to use the fact that any path length will be less than or equal to the total number of nodes in the graph
+     - Definition: shortest_path_length(a, b, n): n is the length of the shortest path between node `a` and `b`
+     - Note: Need to use the fact that any path length will be less than or equal to the total number of nodes in the graph
+
+// ## Extra Credits
