@@ -1,5 +1,5 @@
-
 ## MNIST
+
 The second example we will go through is MNIST, a digit recognition task.
 The task provides a set of handwritten digits, and we want to identify what are the numerical form of the digits.
 

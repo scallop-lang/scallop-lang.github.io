@@ -15,7 +15,7 @@
     <title>Scallop - Tutorial</title>
   </head>
   <body>
-    <nav class="template" data-template="navbar" data-callback="nav_loaded_callback"></nav>
+    <nav class="template" data-template="navbar_with_ssft22" data-callback="nav_loaded_callback"></nav>
     <main>
       <div class="wrapper markdown-holder">
         <div class="markdown-sidebar"></div>
@@ -26,6 +26,7 @@
     <script src="/js/hljs_scallop.js"></script>
     <script src="/js/load_markdown.js"></script>
     <script src="/js/load_templates.js"></script>
-    <script>load_markdown_default("lab2")</script>
+    <script>let nav_loaded_callback = () => $("#nav-link-ssft22").addClass("active");</script>
+    <script>load_markdown_default("ssft22/lab2")</script>
   </body>
 </html>
