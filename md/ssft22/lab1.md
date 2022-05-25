@@ -186,18 +186,18 @@ In the `topbottomkclauses` semiring, the tags are DNF or CNF formulas with at mo
 ```
 > scli -p topbottomkclauses labs/lab2_prob_semiring/scl/3_count_green_obj.scl --debug-tag
 Tags of input relation `object_color`:
-(0, "red"): DNF{{Pos(0)}}
-(0, "green"): DNF{{Pos(1)}}
-(1, "red"): DNF{{Pos(2)}}
-(1, "green"): DNF{{Pos(3)}}
-(2, "red"): DNF{{Pos(4)}}
-(2, "green"): DNF{{Pos(5)}}
+(0, "red"): DNF{ {Pos(0)} }
+(0, "green"): DNF{ {Pos(1)} }
+(1, "red"): DNF{ {Pos(2)} }
+(1, "green"): DNF{ {Pos(3)} }
+(2, "red"): DNF{ {Pos(4)} }
+(2, "green"): DNF{ {Pos(5)} }
 ...
 Tags of output relation `how_many_green`:
-(0): DNF{{Neg(1), Neg(3), Neg(5)}}
-(1): DNF{{Neg(1), Neg(3), Pos(5)}, {Neg(1), Pos(3), Neg(5)}, {Pos(1), Neg(3), Neg(5)}}
-(2): DNF{{Neg(1), Pos(3), Pos(5)}, {Pos(1), Neg(3), Pos(5)}, {Pos(1), Pos(3), Neg(5)}}
-(3): DNF{{Pos(1), Pos(3), Pos(5)}}
+(0): DNF{ {Neg(1), Neg(3), Neg(5)} }
+(1): DNF{ {Neg(1), Neg(3), Pos(5)}, {Neg(1), Pos(3), Neg(5)}, {Pos(1), Neg(3), Neg(5)} }
+(2): DNF{ {Neg(1), Pos(3), Pos(5)}, {Pos(1), Neg(3), Pos(5)}, {Pos(1), Pos(3), Neg(5)} }
+(3): DNF{ {Pos(1), Pos(3), Pos(5)} }
 ```
 
 ### VQA Practice
