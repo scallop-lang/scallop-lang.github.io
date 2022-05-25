@@ -1,13 +1,274 @@
-# Lab1 Instructions
+# Lab 1 Instructions
 
-Let's get our hands dirty with a simple project! This lab will guide you through a few basic Scallop syntax and concepts, including negation, aggregation, and recursion.
+In this first lab we will go through the Scallop language and its reasoning backend.
+We are going to start with a simple case studies of Graph Algorithms.
+Then, we are going to study the representation of a Visual Scene Graph and be able to reason about the scene graph.
+Lastly, we are going to imagine that we are dealing with probabilistic scene graphs and understand how to reason with probabilities.
 
-## Visual Question Answering (VQA)
+# Graph Algorithms
+
+In this module we are going to learn to write simple graph algorithms with Scallop language.
+We are going to be relying on the file [`graph_algo.scl`](/ssft22/labs/graph_algo.scl).
+First of all, please make sure that you download the file and can use `scli` to execute it:
+
+```
+$ scli graph_algo.scl
+```
+
+Initially, you should see that all the relations are empty:
+
+```
+> scli ssft22/labs/graph_algo.scl
+source_node: {}
+path: {}
+triangle: {}
+...
+```
+
+As we go through the problems, you will see them being computed one-by-one!
+
+## P1: Sample Graph
+
+<div>
+  <img src="/img/summer_school/lab1/graph_example.png" width="480"/>
+</div>
+
+We are using two relations, `node` and `edge` to define the basic structure of the graph.
+
+``` scl
+rel node(usize)
+rel edge(usize, usize)
+```
+
+The `node` relation is a unary relation which stores the node IDs.
+And the `edge` relation defines whether there exists an edge between the first and second argument.
+
+Please fill in the facts for `node` and `edge` so that the instantiated sample graph resembles the
+graph shown above.
+This graph will serve as the basis for our practice problems.
+
+``` scl
+rel node = {/* Fill in the facts here */}
+rel edge = {/* Fill in the facts here */}
+```
+
+You should be able to test whether the two relations are populated by running the following command:
+
+```
+$ scli graph_algo.scl --query node
+$ scli graph_algo.scl --query edge
+```
+
+> **Remark**:
+> `usize` stands for "Unsigned Size Type", which in most modern computer is a 64-bit unsigned integer type.
+> While we can use other integer types such as `u8` (unsigned 8-bit integer) or
+> `i32` (signed 32-bit integer), let's stick with `usize` for this lab.
+
+## P2: Detect Triangles in the Graph
+
+Let us write a simple query extracting (directed) triangles in the Graph.
+As you can see the three nodes 1, 2, and 4 form a triangle.
+A directed triangle `abc` is defined when there is edge from `a` to `b`, edge from `b` to `c`, and an edge
+from `c` back to `a`.
+By this definition, we will have three directed triangles: `triangle(1, 2, 4)`, `triangle(2, 4, 1)`, and `triangle(4, 1, 2`:
+
+```
+$ scli graph_algo.scl --query triangle
+triangle: {(1, 2, 4), (2, 4, 1), (4, 1, 2)}
+```
+
+## P3: Path (Transitive Closure)
+
+Now we are going to write the most fundamental rule for reasoning about a graph:
+Does there exist a path between node A and node B?
+
+For this problem we define a new relation called `path(usize, usize)`.
+We should be able to derive `path(a, b)` if there is a non-empty chain of edges that connects `a` to `b`.
+Therefore, we should now define a recursive rule for `path`:
+- If there is an edge from `a` to `b`, then there is a path from `a` to `b`;
+- If there is an edge from `a` to `b` connected to a path from `b` to `c`, then there is a path from `a` to `c`.
+
+To put into the context of our example, there should be a path from 1 to 3 (1 --> 2 --> 3), and a path from 1 to 1 (1 --> 2 --> 4 --> 1).
+Note that `path` is directional. There should not be a path from 5 to 3.
+
+Please write the rule for `path` relation.
+Note that you could either write two rules or one rule with an `or` inside of it.
+You should use the following to execute the program
+
+```
+$ scli graph_algo.scl --query path
+```
+
+And this should be the expected output
+
+```
+path: {(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (3, 5), (4, 1), (4, 2), (4, 3), (4, 4), (4, 5)}
+```
+
+## P4: Strongly Connected Component (SCC)
+
+A strongly connected component (SCC) is defined as a subgraph within which every node is reachable from every other node.
+In this problem we are trying to define a relation called `scc(usize, usize)`:
+`scc(a, b)` holds true if node `a` and node `b` are in the same SCC.
+Note that a node is always in the same SCC as itself.
+
+In our sample graph, the nodes `1`, `2` and `4` are in the same SCC. `3` and `5` are in their respective SCC.
+You should execute the following command and see the expected output:
+
+```
+$ scli graph_algo.scl --query scc
+scc: {(1, 1), (1, 2), (1, 4), (2, 1), (2, 2), (2, 4), (3, 3), (4, 1), (4, 2), (4, 4), (5, 5)}
+```
+
+## P5: Singleton SCC
+
+We could have SCCs that contain only one node and we call such SCC a "singleton SCC".
+Please write a rule to define `singleton_scc(usize)`, where the only argument is the only node ID inside that SCC.
+
+> **Hint**:
+> For this relation you might need to create a helper relation `non_singleton_scc`.
+> Meanwhile, negation (with syntax like `~pred(...)`) might be needed.
+
+Inside of our sample graph, only node `3` and `5` belong to their respective singleton SCC.
+
+```
+$ scli graph_algo.scl --query singleton_scc
+singleton_scc: {(3), (5)}
+```
+
+## P6: Source and Sink Node
+
+We give the following definition for source and sink node:
+A node is a *source* if there is only outgoing edge and no incoming edge.
+A node is a *sink* if there is only incoming edge and no outgoing edge.
+Please write two rules for `source_node(usize)` and `sink_node(usize)` so that it can yield the following result
+with our sample graph:
+
+```
+$ scli graph_algo.scl --query source_node
+source_node: {}
+$ scli graph_algo.scl --query sink_node
+sink_node: {(5)}
+```
+
+> **Remark**:
+> There is no source node in our sample graph, but you can slightly tweak the sample graph for this problem to test
+> the correctness.
+
+## P7: Contains Cycle
+
+In this problem we are going to detect whether there is a cycle inside of our graph.
+Formally, a cycle means that starting from a node itself, after a non-empty chain of edges we can go back to the same node.
+The `contains_cycle(bool)` relation is defined to be an arity-1 relation with a boolean value as its only argument:
+The fact `contains_cycle(true)` will be derived if there is a cycle, `contains_cycle(false)` otherwise.
+
+You might find the `exists` aggregation very useful.
+It has a syntax of
+
+``` scl
+RESULT = exists(VARS*: LOGICAL_FORMULA)
+```
+
+`RESULT` is assigned a boolean of whether there exist binding variables `VARS*` such that they satisfy the `LOGICAL_FORMULA`.
+
+> **Note**:
+> `VARS*` means there could be multiple variables. `exists(a: ...)` or `exists(a, b: ...)` are all acceptable.
+> Though for this problem, we probably only need one variable.
+
+After executing the program, you should get the following output:
+
+```
+$ scli graph_algo.scl --query contains_cycle
+contains_cycle: {(true)}
+```
+
+## P8: Number of Nodes
+
+In this problem we are going to continue our journey on aggregations.
+This time, let's count the number of nodes in the graph.
+As the name suggests, you will find the `count` aggregator very useful:
+
+``` scl
+RESULT = count(VARS*: LOGICAL_FORMULA)
+```
+
+This will count the number of unique `VARS*`, and assign the count (of type `usize`) to the `RESULT` variable.
+Again, `VARS*` means that there could be multiple variables.
+But for this problem, we probably only need one.
+
+Here's the expected output after executing the rule:
+
+```
+$ scli graph_algo.scl --query num_nodes
+num_nodes: {(5)}
+```
+
+## P9: Number of Edges
+
+Similar to the previous problem, we are going to use the `count` aggregator for the rule `num_edges(usize)`.
+Different than previous problem, you might need to introduce more than one binding variables.
+Here's the expected output:
+
+```
+$ scli graph_algo.scl --query num_edges
+num_edges: {(5)}
+```
+
+## P10: In- and Out-Degree
+
+For this problem we are going deeper into the `count` aggregation,
+and figure out the in- and out-degree for every node in the graph.
+
+In-degree is defined for each node as the number of incoming edges for that node.
+Out-degree is defined also for each node as the number of outgoing edges for that node.
+For example, the node `2` has in-degree of 1 (coming from node `1`) and out-degree of `2` (going into node `3` and `4`).
+
+The relation `in_degree(usize, usize)` is defined as an arity-2 relation.
+The first argument denotes the node ID, and the second argument represents the number of incoming edges for that node.
+
+You would find the following *explicit group-by* syntax very helpful:
+
+``` scl
+rel in_degree(a, x) = x = count(VARS*: FORMULA where a: node(a))
+```
+
+This will make sure that all the node `a` in our sample graph gets to be involved in the counting.
+Otherwise, the nodes with, say, 0 in-degree might not appear in the final result.
+
+```
+$ scli graph_algo.scl --query in_degree
+in_degree: {(1, 1), (2, 1), (3, 1), (4, 1), (5, 1)}
+$ scli graph_algo.scl --query out_degree
+out_degree: {(1, 1), (2, 2), (3, 1), (4, 1), (5, 0)}
+```
+
+## EC1: Shortest Path Length
+
+Here is an extra credit problem where you want to write rule to compute the shortest path length between two nodes.
+The definition is `shortest_path_length(usize, usize, usize)`
+where `shortest_path_length(a, b, x)` means the shortest path length is `x` between node `a` and `b`.
+For example, the shortest path between node `1` and `5` has length 3 (`1 --> 2 --> 3 --> 5`).
+There could be path between a node and itself, e.g. the shortest path between node `4` and `4` has length 3 (`4 --> 1 --> 2 --> 4`).
+
+You might want to create a helper relation which stores the length of paths.
+For this you would need to assume the shortest path length would be less than or equal to the total number of nodes in the graph,
+to avoid computing for path lengths infinitely.
+Lastly, a `min` aggregation would be needed to find the shortest length.
+
+```
+$ scli graph_algo.scl --query shortest_path_length
+shortest_path_length: {(1, 1, 3), (1, 2, 1), (1, 3, 2), (1, 4, 2), (1, 5, 3), (2, 1, 2), (2, 2, 3), (2, 3, 1), (2, 4, 1), (2, 5, 2), (3, 5, 1), (4, 1, 1), (4, 2, 2), (4, 3, 3), (4, 4, 3), (4, 5, 4)}
+```
+
+# Visual Scene Graph
+
 Visual question and answering is an important task in the learning field. Let's learn about how to perform VQA with Scallop with this simple image.
 
 <div>
  <img src="/img/summer_school/lab1/vqa_example.png" width="300"/>
 </div>
+
+<!--
 
 ### Facts
 To perform the VQA task, we first need to describe the image in a symbolic form, also known as the "scene graph". The scene graph can have multiple object attributes, such as color, shape, and relations. We first construct a scene graph that contains the color information.
@@ -267,4 +528,4 @@ rel path(a, b) = path(a, x) and edge(x, b)
      - Definition: shortest_path_length(a, b, n): n is the length of the shortest path between node `a` and `b`
      - Note: Need to use the fact that any path length will be less than or equal to the total number of nodes in the graph
 
-<!-- // ## Extra Credits -->
+// ## Extra Credits -->

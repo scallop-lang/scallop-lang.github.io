@@ -1,0 +1,52 @@
+// Basic typing setup
+type node(usize)
+type edge(usize, usize)
+
+// Practice *: Setup the basic facts that resembles the sample graph
+rel node = {/* Fill in the facts here */}
+rel edge = {/* Fill in the facts here */}
+
+// Practice *: Write a `path` relationship
+//   Definition: `path(a, b)` is true if a can reach b by following edges
+type path(usize, usize)
+
+// Practice *: Find the triangle in this graph
+//   Definition: `triangle(a, b, c)` means the nodes a, b, and c form a triangle
+type triangle(usize, usize, usize)
+
+// Practice *: Write an `scc` relationship
+//   Definition: `scc(a, b)` means node `a` and `b` are in the same Strongly Connected Component
+//   Definition: Strongly Connected Component is a subgraph where any node can reach every node in such a component
+//   Note: A node is always in the same Strongly Connected Component as itself
+type scc(usize, usize)
+
+// Practice *: Find the SCCs that are singleton
+//   Definition: `singleton_scc(a)` means node `a` stays in a Strongly Connected Component that only contains itself
+type singleton_scc(usize)
+
+// Practice *: Check if a node is a source node or a sink node
+//   Definition: A node is a source if there is only outgoing edge
+//   Definition: A node is a sink if there is only incoming edge
+type source_node(usize)
+type sink_node(usize)
+
+// Practice *: Does this graph contains at least cycle?
+//   Definition: `contains_cycle(true)` means the graph contains a cycle. false otherwise
+type contains_cycle(bool)
+
+// Practice *: Count the number of nodes
+//   Definition: `num_nodes(n)` means there are in total `n` nodes in the graph
+type num_nodes(usize)
+
+// Practice *: Write a `in_degree` relationship
+//   Definition: `in_degree(a, x)` means there are `x` edges going into node `a`
+type in_degree(usize, usize)
+
+// Practice *: Write a `out_degree` relationship
+//   Definition: `out_degree(a, x)` means there are `x` edges going out from node `a`
+type out_degree(usize, usize)
+
+// Practice *: Shortest Path Length
+//   Definition: shortest_path_length(a, b, n): n is the length of the shortest path between node `a` and `b`
+//   Note: Need to use the fact that any path length will be less than or equal to the total number of nodes in the graph
+type shortest_path_length(usize, usize, usize)

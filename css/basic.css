@@ -333,12 +333,12 @@ footer {
 .markdown-content blockquote {
   margin-left: 0;
   padding: 5px 30px;
-  border-left: 4px solid rgba(240, 117, 173, 1);
-  background-color: rgba(240, 117, 173, 0.05);
+  border-left: 4px solid rgb(117, 205, 240);
+  background-color: rgba(117, 205, 240, 0.1);
 }
 
 .markdown-content blockquote p {
-  color: rgba(240, 117, 173, 1);
+  color: rgb(76, 169, 205);
 }
 
 .markdown-content table {
