@@ -302,6 +302,34 @@ footer {
   margin-left: 10px;
 }
 
+.markdown-content .link-button {
+  transition: all 0.1s;
+  margin-right: 15px;
+  display: inline-block;
+  padding: 0 10px;
+  margin-top: 2px;
+  background-color: rgba(240, 117, 173, 0);
+  color: rgba(240, 117, 173, 1);
+  border: 1px solid rgba(240, 117, 173, 1);
+  border-radius: 5px;
+  line-height: 28px;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.markdown-content .link-button:hover {
+  background-color: rgba(240, 117, 173, 0.05);
+}
+
+.markdown-content .link-button:active {
+  background-color: rgba(240, 117, 173, 0.1);
+}
+
+.markdown-content .link-button i {
+  margin-left: 10px;
+}
+
 .markdown-content blockquote {
   margin-left: 0;
   padding: 5px 30px;

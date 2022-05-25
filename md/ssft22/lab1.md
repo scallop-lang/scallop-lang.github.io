@@ -267,4 +267,4 @@ rel path(a, b) = path(a, x) and edge(x, b)
      - Definition: shortest_path_length(a, b, n): n is the length of the shortest path between node `a` and `b`
      - Note: Need to use the fact that any path length will be less than or equal to the total number of nodes in the graph
 
-// ## Extra Credits
+<!-- // ## Extra Credits -->

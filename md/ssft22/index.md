@@ -1,9 +1,17 @@
-# Scallop Tutorial @ SSFT22
+# Scallop @SSFT22
 
-This tutorial, provided for [SSFT22](https://fm.csl.sri.com/SSFT22/), is for general
-audience to learn the Scallop language, understand the fundamentals of the back-end
-provenance module that facilitates differentiable and probabilistic reasoning, and
-lastly, be able to run simple machine learning experiments with PyTorch and Scallop.
+This course, provided for
+[SSFT22, Eleventh Summer School on Formal Techniques](https://fm.csl.sri.com/SSFT22/),
+is for the general audience to
+learn the Scallop language,
+understand the fundamentals of the back-end provenance module,
+and lastly, be able to run simple machine learning experiments with PyTorch and Scallop.
+
+This course contains 4 lectures and 2 labs in total.
+The first lab covers practice problems for the first two lectures and the second lab
+covers the last two.
+Before working on the labs, please make sure to go through [Lab 0](/ssft22/lab0.html)
+to get the Scallop installed and up running.
 
 ## Lecture Slides
 

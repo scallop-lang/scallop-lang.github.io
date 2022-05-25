@@ -19,7 +19,13 @@
     <main>
       <div class="wrapper markdown-holder">
         <div class="markdown-sidebar"></div>
-        <div class="markdown-content main"></div>
+        <div class="markdown-content main">
+          <div class="markdown-content-inner"></div>
+          <p style="text-align: center; margin-top: 100px;">
+            <a class="link-button" href="/ssft22/lab1.html"><i class="fa fa-angle-left"></i> Lab 1</a>
+            <a class="link-button" href="/ssft22/index.html">Go Back to Index <i class="fa fa-level-up"></i></a>
+          </p>
+        </div>
       </div>
     </main>
     <footer class="template" data-template="footer"></footer>
@@ -27,6 +33,6 @@
     <script src="/js/load_markdown.js"></script>
     <script src="/js/load_templates.js"></script>
     <script>let nav_loaded_callback = () => $("#nav-link-ssft22").addClass("active");</script>
-    <script>load_markdown_default("ssft22/lab2")</script>
+    <script>load_markdown("ssft22/lab2", $(".markdown-content-inner"), $(".markdown-sidebar"))</script>
   </body>
 </html>
