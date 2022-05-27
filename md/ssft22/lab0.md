@@ -13,17 +13,18 @@ This is the recommended way to install Scallop on your computer for **MacOS** an
 3. You can install the required scallop packages by executing the [`install_scallop_env.sh`](/ssft22/labs/install_scallop_env.sh) file. It will install a conda environment, `scallop_env`, where scallopy is installed as a dynamic library in this env.
 
 ```
-chmod u+x ./install_scallop_env.sh
-. ./install_scallop_env.sh
+$ chmod u+x ./install_scallop_env.sh
+$ . ./install_scallop_env.sh
 ```
 
 ### Option 2: Docker
 
-Alterantively you can setup the environment through the dockerfile. This method is suitable accross the platforms, including **Windows**, **Linux**, and **MacOS**.
+Alterantively you can setup the environment through the dockerfile.
+This method is suitable accross the platforms, including **Windows**, **Linux**, and **MacOS**.
 
-1. Download and install docker
-2. Install VSCode
-3. Install VSCode extension: docker
+1. Download and install [Docker](https://www.docker.com)
+2. Install [VSCode](https://code.visualstudio.com)
+3. Install VSCode extension: Docker
 4. Install VSCode extension: Remote-Containers
 5. Create a new directory, like `scallop-lab-ssft22`
 6. Download this [Dockerfile](/ssft22/labs/Dockerfile) and paste it into the directory
