@@ -4,13 +4,33 @@ We will go through how to setup the environment for the tutorial in this lab.
 
 ## Environment Setup
 
+### Option 1: Bash script
+
+This is the recommended way to install Scallop on your computer for **MacOS** and **linux** users.
+
+1. Ensure `wget` is installed on your computer
+2. Ensure `conda` is installed on your computer
+3. You can install the required scallop packages by executing the [`install_scallop_env.sh`](/ssft22/labs/install_scallop_env.sh) file. It will install a conda environment, `scallop_env`, where scallopy is installed as a dynamic library in this env.
+
+```
+chmod u+x ./install_scallop_env.sh
+. ./install_scallop_env.sh
+```
+
+### Option 2: Docker
+
+Alterantively you can setup the environment through the dockerfile. This method is suitable accross the platforms, including **Windows**, **Linux**, and **MacOS**.
+
 1. Download and install docker
 2. Install VSCode
 3. Install VSCode extension: docker
 4. Install VSCode extension: Remote-Containers
-5. `cmd` + `shift` + `p` open the VScode Command Palette
-6. Select `Remote containers: Rebuild and Reopen in Container`
-7. It will take about 10 to 20 minutes to finish the building process
+5. Create a new directory, like `scallop-lab-ssft22`
+6. Download this [Dockerfile](/ssft22/labs/Dockerfile) and paste it into the directory
+7. Open VSCode in this directory
+8. `cmd` + `shift` + `p` open the VScode Command Palette
+9. Select `Remote containers: Rebuild and Reopen in Container`
+10. It will take about 10 to 20 minutes to finish the building process
 
 ## Hello World with Scallop
 

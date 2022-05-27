@@ -18,6 +18,10 @@
 
 [Scallop: From Probabilistic Deductive Databases to Scalable Differentiable Reasoning](https://www.cis.upenn.edu/~mhnaik/papers/neurips21.pdf). NeurIPS 2021.
 
+## Tutorials
+
+- [Scallop @SSFT22](/ssft22/index.html)
+
 ## Source Code
 
 We are still in the process of open sourcing Scallop, which will include the

@@ -262,7 +262,8 @@ shortest_path_length: {(1, 1, 3), (1, 2, 1), (1, 3, 2), (1, 4, 2), (1, 5, 3), (2
 
 # Visual Scene Graph
 
-Visual question and answering is an important task in the learning field. Let's learn about how to perform VQA with Scallop with this simple image.
+Visual Question and Answering (VQA) is an important task in the machine learning and computer vision domain.
+Usually people represent an image using a scene graph, where we have
 
 <div>
  <img src="/img/summer_school/lab1/vqa_example.png" width="300"/>
