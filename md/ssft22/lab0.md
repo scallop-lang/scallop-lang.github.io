@@ -42,19 +42,20 @@ available on your computer.
 ## Hello World with Scallop
 
 We have provided two executables in the environment, `scli` and `sclrepl`.
-The `scli` executable is the Scallop interpreter,
+The `scli` executable is a Scallop interpreter,
 and the `sclrepl` is an interactive command line executable that can interpret your input as you type.
 
-To run the first program in the environment, you can type the following commands to your terminal:
+To run our first program in the environment,
+you can download the following sample file [hello.scl](/examples/hello.scl),
+and execute it with `scli`.
 
 ```
-$ cd ~/labs/lab0_hello_world
-$ scli hello_world.scl
+$ scli hello.scl
 ```
 
-Note that the `hello_world.scl` file has the following content:
+Note that the `hello.scl` file has the following content:
 
-```
+``` scl
 rel hello = {("Hello World")}
 ```
 
