@@ -1,42 +1,71 @@
 # Lab0 Instructions
 
-We will go through how to set up the environment for the tutorial in this lab.
+We will go through how to setup the environment for the tutorial in this lab.
 
 ## Environment Setup
 
 ### Option 1: Bash script
-This is the recommended way to install Scallop on your computer for **MacOS** and **Linux** users.
+
+This is the recommended way to install Scallop on your computer for **MacOS** and **linux** users.
 
 1. Ensure `wget` is installed on your computer
-2. Ensure `conda` is installed on your computer
-3. You can install the required scallop packages by executing the `install_scallop_env.sh` file. It will install a conda environment, `scallop-env`, where scallopy is installed as a dynamic library in this env. Note that if you are not using bash, you will need to manually add the `<SCALLOP_DIR_PATH>/bin` to your environment variable.
+2. Ensure [`conda`](https://www.anaconda.com) is installed on your computer
+3. You can install the required scallop packages by executing the [`install_scallop_env.sh`](/ssft22/labs/install_scallop_env.sh) file. It will install a conda environment, `scallop-env`, where scallopy is installed as a dynamic library in this env.
+4. (Optional) If you are not using `bash`, you will need to manually add the `<SCALLOP_DIR_PATH>/bin` to your environment variable.
+
 ```
-chmod u+x ./install_scallop_env.sh
-. ./install_scallop_env.sh
+$ chmod u+x ./install_scallop_env.sh
+$ . ./install_scallop_env.sh
 ```
 
 ### Option 2: Docker
-Alternatively, you can set up the environment through the docker file. This method is suitable across the platforms, including **Windows**, **Linux**, and **MacOS**.
-1. Download and install docker
-2. Install VSCode
-3. Install VSCode extension: docker
+
+Alterantively you can setup the environment through the dockerfile.
+This method is suitable accross the platforms, including **Windows**, **Linux**, and **MacOS**.
+
+1. Download and install [Docker](https://www.docker.com)
+2. Install [VSCode](https://code.visualstudio.com)
+3. Install VSCode extension: Docker
 4. Install VSCode extension: Remote-Containers
-5. `cmd` + `shift` + `p` open the VScode Command Palette
-6. Select `Remote containers: Rebuild and Reopen in Container`
-7. It will take about 10 to 20 minutes to finish the building process
+5. Create a new directory, like `scallop-lab-ssft22`
+6. Download this [Dockerfile](/ssft22/labs/Dockerfile) and paste it into the directory
+7. Open VSCode in this directory
+8. `cmd` + `shift` + `p` open the VScode Command Palette
+9. Select `Remote containers: Rebuild and Reopen in Container`
+10. It will take about 10 to 20 minutes to finish the building process
 
-## Run hello world
+### Option 3: Install Manually
+
+To install Scallop manually, please visit [download page](/download.html).
+We will require you to have at least `scli` (a command line executable) and `scallopy` (a Python library)
+available on your computer.
+
+## Hello World with Scallop
+
 We have provided two executables in the environment, `scli` and `sclrepl`.
-The `scli` executable is the Scallop interpreter,
-and the `sclrepl` is an interactive command-line executable that can interpret your input as you type.
+The `scli` executable is a Scallop interpreter,
+and the `sclrepl` is an interactive command line executable that can interpret your input as you type.
 
-To run the first program in the environment, you can type the following commands to your terminal:
+To run our first program in the environment,
+you can download the following sample file [hello.scl](/examples/hello.scl),
+and execute it with `scli`.
+
 ```
-cd ~/labs/lab0_hello_world
-scli hello_world.scl
+$ scli hello.scl
 ```
+
+Note that the `hello.scl` file has the following content:
+
+``` scl
+rel hello = {("Hello World")}
+```
+
+which basically defines an arity-1 relation called `hello` with only one tuple inside of it: `("Hello World")`.
 
 You should see the output:
+
 ```
 hello: {("Hello World")}
 ```
+
+After this, you are ready to proceed to the next lab to learn more about the Scallop language!
