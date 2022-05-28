@@ -90,3 +90,14 @@ rel clevr_q(c) = yellow_obj(a), big_obj(b), obj_material(a, m), obj_material(b, 
 // (4): DNF{{Pos(0), Pos(4), Pos(8), Pos(12), Neg(16)}, {Neg(0), Pos(4), Pos(8), Pos(12), Pos(16)}, {Pos(0), Neg(4), Pos(8), Pos(12), Pos(16)}}
 // (5): DNF{{Pos(0), Pos(4), Pos(8), Pos(12), Pos(16)}}
 // Explanation skipped
+
+// Practice *:
+// Please rerun and fill in the table below with the query outputs' probability
+// | provenance semiring | minmaxprob | tbk k=1 | tbk k=5 | tbk k=10 |
+// -------------------------------------------------------
+// | `num_red_objects(1)` |  |  |  |  |
+// | `num_red_objects(2)` |  |  |  |  |
+// | `g_between_r_and_b(True)` |  |  |  | |
+// | `g_between_r_and_b(False)` |  |  |  | |
+// | `how_many_object_of_each_shape("cube", 2)` |  |  |  | |
+// | `how_many_object_of_each_shape("cylinder", 3)` | | | | |

@@ -46,3 +46,14 @@ type clevr_q(String)
 // Practice *:
 //   Write down the tags for `num_red_objects` with topbottomkclauses.
 //   Briefly explain how is the probability for the output fact num_red_objects(0) calculated.
+
+// Practice *:
+// Please rerun and fill in the table below with the query outputs' probability
+// | provenance semiring | minmaxprob | tbk k=1 | tbk k=5 | tbk k=10 |
+// -------------------------------------------------------
+// | `num_red_objects(1)` |  |  |  |  |
+// | `num_red_objects(2)` |  |  |  |  |
+// | `g_between_r_and_b(True)` |  |  |  | |
+// | `g_between_r_and_b(False)` |  |  |  | |
+// | `how_many_object_of_each_shape("cube", 2)` |  |  |  | |
+// | `how_many_object_of_each_shape("cylinder", 3)` | | | | |

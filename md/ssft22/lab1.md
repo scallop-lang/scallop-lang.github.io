@@ -423,7 +423,7 @@ num_red_objects: {((0), 0.06000000000000005), ((1), 0.94), ((2), 0.02), ((3), 0.
 ```
 
 In the `topbottomkclauses` semiring, the tags are DNF or CNF formulas with at most k clauses. This semiring will provide the most likely proof of the fact.
-Please fill in the tags for the `num_red_objects` under the `topbottomkclauses` semiring, and briefly explain how is probability of `num_red_objects(0)` calculated.
+Please fill in the tags for the `g_between_r_and_b` under the `topbottomkclauses` semiring, and briefly explain how is probability of `g_between_r_and_b(False)` calculated.
 ```
 > scli scene_graph.scl -p topbottomkclauses -q num_red_objects --debug-tag
 Tags of input relation `obj_color`:
@@ -432,7 +432,20 @@ Tags of input relation `obj_color`:
 (1, "blue"): DNF{{Pos(2)}}
 (1, "yellow"): DNF{{Pos(3)}}
 ...
-Tags of output relation `num_red_objects`:
+Tags of output relation `g_between_r_and_b`:
 // TODO: Fill in the tags here
-num_red_objects: {0.05534208960000005::(0), 0.8692849311999998::(1), 0.05308322879999999::(2), 0.0010833312::(3), 0.0000221088::(4), 0.00000015040000000000002::(5)}
 ```
+
+## P11: Provenance Semiring Comparison
+Please rerun the queries: `num_red_objects`, `g_between_r_and_b`, and `how_many_object_of_each_shape`.
+We will run them with `minmaxprob` semiring and `topbottomkclauses` (short handed as `tbk` below) semiring of different top-k values.
+Please fill in the table below with the query outputs' probability
+
+| provenance semiring | minmaxprob | tbk (k=1) | tbk (k=3) | tbk (k=10) |
+| :--- | :----: | :----: | :----: | ---: |
+| `num_red_objects(1)` |  |  |  |  |
+| `num_red_objects(2)` |  |  |  |  |
+| `g_between_r_and_b(True)` |  |  |  | |
+| `g_between_r_and_b(False)` |  |  |  | |
+| `how_many_object_of_each_shape("cube", 2)` |  |  |  | |
+| `how_many_object_of_each_shape("cylinder", 3)` | | | | |
