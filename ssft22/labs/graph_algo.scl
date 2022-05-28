@@ -6,13 +6,13 @@ type edge(usize, usize)
 rel node = {/* Fill in the facts here */}
 rel edge = {/* Fill in the facts here */}
 
-// Practice *: Write a `path` relationship
-//   Definition: `path(a, b)` is true if a can reach b by following edges
-type path(usize, usize)
-
 // Practice *: Find the triangle in this graph
 //   Definition: `triangle(a, b, c)` means the nodes a, b, and c form a triangle
 type triangle(usize, usize, usize)
+
+// Practice *: Write a `path` relationship
+//   Definition: `path(a, b)` is true if a can reach b by following edges
+type path(usize, usize)
 
 // Practice *: Write an `scc` relationship
 //   Definition: `scc(a, b)` means node `a` and `b` are in the same Strongly Connected Component
@@ -37,6 +37,10 @@ type contains_cycle(bool)
 // Practice *: Count the number of nodes
 //   Definition: `num_nodes(n)` means there are in total `n` nodes in the graph
 type num_nodes(usize)
+
+// Practice *: Count the number of nodes
+//   Definition: `num_nodes(n)` means there are in total `n` nodes in the graph
+type num_edges(usize)
 
 // Practice *: Write a `in_degree` relationship
 //   Definition: `in_degree(a, x)` means there are `x` edges going into node `a`
