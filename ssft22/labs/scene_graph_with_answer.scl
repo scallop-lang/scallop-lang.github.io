@@ -4,13 +4,13 @@ type obj_size(usize, String) // `obj_shape(o, s)` means object `o` has size `s`
 type obj_material(usize, String) // `obj_shape(o, m)` means object `o` has material `m`
 type left(usize, usize)       // `left(a, b)` means object `a` is on the left of object `b`
 
-// Basic setups
+// Practice *: Fill in the facts for the probabilistic scene graph
+// Note: You may construct mulitple sets of disjunctive relations
 rel all_colors = {"red", "green", "blue", "yellow"}
 rel all_shapes = {"cube", "sphere", "cylinder"}
 rel all_sizes = {"big", "small"}
 rel all_material = {"metal", "rubber"}
 
-// Facts for sample scene graph
 rel obj_color = {0.02::(1, "red"); 0.94::(1, "green"); 0.02::(1, "blue"); 0.02::(1, "yellow")}
 rel obj_color = {0.02::(2, "red"); 0.02::(2, "green"); 0.94::(2, "blue"); 0.02::(2, "yellow")}
 rel obj_color = {0.02::(3, "red"); 0.02::(3, "green"); 0.02::(3, "blue"); 0.94::(3, "yellow")}
