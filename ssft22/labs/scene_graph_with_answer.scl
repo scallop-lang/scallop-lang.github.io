@@ -93,11 +93,11 @@ rel clevr_q(c) = yellow_obj(a), big_obj(b), obj_material(a, m), obj_material(b, 
 
 // Practice *:
 // Please rerun and fill in the table below with the query outputs' probability
-// | provenance semiring | minmaxprob | tbk k=1 | tbk k=5 | tbk k=10 |
+// | provenance semiring | minmaxprob | tbk k=1 | tbk k=3 | tbk k=10 |
 // -------------------------------------------------------
-// | `num_red_objects(1)` |  |  |  |  |
-// | `num_red_objects(2)` |  |  |  |  |
-// | `g_between_r_and_b(True)` |  |  |  | |
-// | `g_between_r_and_b(False)` |  |  |  | |
-// | `how_many_object_of_each_shape("cube", 2)` |  |  |  | |
-// | `how_many_object_of_each_shape("cylinder", 3)` | | | | |
+// | `num_red_objects(1)` | 0.94 | 0.8670 | 0.8693 | 0.8715 |
+// | `num_red_objects(2)` | 0.02 | 0.0004 | 0.0531 | 0.0709 |
+// | `g_between_r_and_b(True)` | 0.02 | 0.0177 | 0.0181 | 0.0196 |
+// | `g_between_r_and_b(False)` | 0.98 | 0.9823 | 0.9816 | 0.9804 |
+// | `how_many_object_of_each_shape("cube", 2)` | 0.03 | 0.0257 | 0.0772 | 0.1033 |
+// | `how_many_object_of_each_shape("cylinder", 3)` | 0.94 | 0.7815 | 0.7846 | 0.7908 |
