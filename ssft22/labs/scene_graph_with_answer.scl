@@ -1,7 +1,8 @@
 type obj_color(usize, String) // `obj_color(o, c)` means object `o` has color `c`
 type obj_shape(usize, String) // `obj_shape(o, s)` means object `o` has shape `s`
+type obj_size(usize, String) // `obj_shape(o, s)` means object `o` has size `s`
+type obj_material(usize, String) // `obj_shape(o, m)` means object `o` has material `m`
 type left(usize, usize)       // `left(a, b)` means object `a` is on the left of object `b`
-
 
 // Basic setups
 rel all_colors = {"red", "green", "blue", "yellow"}
