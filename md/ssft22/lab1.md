@@ -1,13 +1,13 @@
-# Lab 1 Instructions
+# Lab 1 Instruction
 
-In this first lab we will go through the Scallop language and its reasoning backend.
-We are going to start with a simple case studies of Graph Algorithms.
+In this first lab, we will go through the Scallop language and its reasoning backend.
+We are going to start with a simple case study of Graph Algorithms.
 Then, we are going to study the representation of a Visual Scene Graph and be able to reason about the scene graph.
 Lastly, we are going to imagine that we are dealing with probabilistic scene graphs and understand how to reason with probabilities.
 
 # Graph Algorithms
 
-In this module we are going to learn to write simple graph algorithms with Scallop language.
+In this module, we are going to learn to write simple graph algorithms with Scallop language.
 We are going to be relying on the file [`graph_algo.scl`](/ssft22/labs/graph_algo.scl).
 First of all, please make sure that you download the file and can use `scli` to execute it:
 
@@ -25,12 +25,12 @@ triangle: {}
 ...
 ```
 
-As we go through the problems, you will see them being computed one-by-one!
+As we go through the problems, you will see them being computed one by one!
 
 ## P1: Sample Graph
 
 <div>
-  <img src="/img/summer_school/lab1/graph_example.png" width="480"/>
+ <img src="/img/summer_school/lab1/graph_example.png" width="480"/>
 </div>
 
 We are using two relations, `node` and `edge` to define the basic structure of the graph.
@@ -40,11 +40,11 @@ rel node(usize)
 rel edge(usize, usize)
 ```
 
-The `node` relation is a unary relation which stores the node IDs.
+The `node` relation is a unary relation that stores the node IDs.
 And the `edge` relation defines whether there exists an edge between the first and second argument.
 
 Please fill in the facts for `node` and `edge` so that the instantiated sample graph resembles the
-graph shown above.
+the graph shown above.
 This graph will serve as the basis for our practice problems.
 
 ``` scl
@@ -60,7 +60,7 @@ $ scli graph_algo.scl --query edge
 ```
 
 > **Remark**:
-> `usize` stands for "Unsigned Size Type", which in most modern computer is a 64-bit unsigned integer type.
+> `usize` stands for "Unsigned Size Type", which in the most modern computer is a 64-bit unsigned integer type.
 > While we can use other integer types such as `u8` (unsigned 8-bit integer) or
 > `i32` (signed 32-bit integer), let's stick with `usize` for this lab.
 
@@ -68,7 +68,7 @@ $ scli graph_algo.scl --query edge
 
 Let us write a simple query extracting (directed) triangles in the Graph.
 As you can see the three nodes 1, 2, and 4 form a triangle.
-A directed triangle `abc` is defined when there is edge from `a` to `b`, edge from `b` to `c`, and an edge
+A directed triangle `abc` is defined when there is an edge from `a` to `b`, an edge from `b` to `c`, and an edge
 from `c` back to `a`.
 By this definition, we will have three directed triangles: `triangle(1, 2, 4)`, `triangle(2, 4, 1)`, and `triangle(4, 1, 2`:
 
@@ -82,7 +82,7 @@ triangle: {(1, 2, 4), (2, 4, 1), (4, 1, 2)}
 Now we are going to write the most fundamental rule for reasoning about a graph:
 Does there exist a path between node A and node B?
 
-For this problem we define a new relation called `path(usize, usize)`.
+For this problem, we define a new relation called `path(usize, usize)`.
 We should be able to derive `path(a, b)` if there is a non-empty chain of edges that connects `a` to `b`.
 Therefore, we should now define a recursive rule for `path`:
 - If there is an edge from `a` to `b`, then there is a path from `a` to `b`;
@@ -91,7 +91,7 @@ Therefore, we should now define a recursive rule for `path`:
 To put into the context of our example, there should be a path from 1 to 3 (1 --> 2 --> 3), and a path from 1 to 1 (1 --> 2 --> 4 --> 1).
 Note that `path` is directional. There should not be a path from 5 to 3.
 
-Please write the rule for `path` relation.
+Please write the rule for the `path` relation.
 Note that you could either write two rules or one rule with an `or` inside of it.
 You should use the following to execute the program
 
@@ -109,10 +109,10 @@ path: {(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (2, 1), (2, 2), (2, 3), (2, 4), (
 
 A strongly connected component (SCC) is defined as a subgraph within which every node is reachable from every other node.
 In this problem we are trying to define a relation called `scc(usize, usize)`:
-`scc(a, b)` holds true if node `a` and node `b` are in the same SCC.
+`scc(a, b)` holds if node `a` and node `b` are in the same SCC.
 Note that a node is always in the same SCC as itself.
 
-In our sample graph, the nodes `1`, `2` and `4` are in the same SCC. `3` and `5` are in their respective SCC.
+In our sample graph, the nodes `1`, `2`, and `4` are in the same SCC. `3` and `5` are in their respective SCC.
 You should execute the following command and see the expected output:
 
 ```
@@ -129,7 +129,7 @@ Please write a rule to define `singleton_scc(usize)`, where the only argument is
 > For this relation you might need to create a helper relation `non_singleton_scc`.
 > Meanwhile, negation (with syntax like `~pred(...)`) might be needed.
 
-Inside of our sample graph, only node `3` and `5` belong to their respective singleton SCC.
+Inside our sample graph, only nodes `3` and `5` belong to their respective singleton SCC.
 
 ```
 $ scli graph_algo.scl --query singleton_scc
@@ -138,9 +138,9 @@ singleton_scc: {(3), (5)}
 
 ## P6: Source and Sink Node
 
-We give the following definition for source and sink node:
-A node is a *source* if there is only outgoing edge and no incoming edge.
-A node is a *sink* if there is only incoming edge and no outgoing edge.
+We give the following definition for source and sink nodes:
+A node is a *source* if there is only an outgoing edge and no incoming edge.
+A node is a *sink* if there is only an incoming edge and no outgoing edge.
 Please write two rules for `source_node(usize)` and `sink_node(usize)` so that it can yield the following result
 with our sample graph:
 
@@ -157,7 +157,7 @@ sink_node: {(5)}
 
 ## P7: Contains Cycle
 
-In this problem we are going to detect whether there is a cycle inside of our graph.
+In this problem, we are going to detect whether there is a cycle inside our graph.
 Formally, a cycle means that starting from a node itself, after a non-empty chain of edges we can go back to the same node.
 The `contains_cycle(bool)` relation is defined to be an arity-1 relation with a boolean value as its only argument:
 The fact `contains_cycle(true)` will be derived if there is a cycle, `contains_cycle(false)` otherwise.
@@ -184,7 +184,7 @@ contains_cycle: {(true)}
 
 ## P8: Number of Nodes
 
-In this problem we are going to continue our journey on aggregations.
+In this problem, we are going to continue our journey on aggregations.
 This time, let's count the number of nodes in the graph.
 As the name suggests, you will find the `count` aggregator very useful:
 
@@ -206,7 +206,7 @@ num_nodes: {(5)}
 ## P9: Number of Edges
 
 Similar to the previous problem, we are going to use the `count` aggregator for the rule `num_edges(usize)`.
-Different than previous problem, you might need to introduce more than one binding variables.
+Different from the previous problem, you might need to introduce more than one binding variable.
 Here's the expected output:
 
 ```
@@ -216,12 +216,12 @@ num_edges: {(5)}
 
 ## P10: In- and Out-Degree
 
-For this problem we are going deeper into the `count` aggregation,
+For this problem, we are going deeper into the `count` aggregation,
 and figure out the in- and out-degree for every node in the graph.
 
 In-degree is defined for each node as the number of incoming edges for that node.
 Out-degree is defined also for each node as the number of outgoing edges for that node.
-For example, the node `2` has in-degree of 1 (coming from node `1`) and out-degree of `2` (going into node `3` and `4`).
+For example, node `2` has an in-degree of 1 (coming from node `1`) and an out-degree of `2` (going into nodes `3` and `4`).
 
 The relation `in_degree(usize, usize)` is defined as an arity-2 relation.
 The first argument denotes the node ID, and the second argument represents the number of incoming edges for that node.
@@ -244,13 +244,13 @@ out_degree: {(1, 1), (2, 2), (3, 1), (4, 1), (5, 0)}
 
 ## EC1: Shortest Path Length
 
-Here is an extra credit problem where you want to write rule to compute the shortest path length between two nodes.
+Here is an extra credit problem where you want to write a rule to compute the shortest path length between two nodes.
 The definition is `shortest_path_length(usize, usize, usize)`
 where `shortest_path_length(a, b, x)` means the shortest path length is `x` between node `a` and `b`.
 For example, the shortest path between node `1` and `5` has length 3 (`1 --> 2 --> 3 --> 5`).
-There could be path between a node and itself, e.g. the shortest path between node `4` and `4` has length 3 (`4 --> 1 --> 2 --> 4`).
+There could be a path between a node and itself, e.g. the shortest path between node `4` and `4` has length 3 (`4 --> 1 --> 2 --> 4`).
 
-You might want to create a helper relation which stores the length of paths.
+You might want to create a helper relation that stores the length of paths.
 For this you would need to assume the shortest path length would be less than or equal to the total number of nodes in the graph,
 to avoid computing for path lengths infinitely.
 Lastly, a `min` aggregation would be needed to find the shortest length.
@@ -260,144 +260,126 @@ $ scli graph_algo.scl --query shortest_path_length
 shortest_path_length: {(1, 1, 3), (1, 2, 1), (1, 3, 2), (1, 4, 2), (1, 5, 3), (2, 1, 2), (2, 2, 3), (2, 3, 1), (2, 4, 1), (2, 5, 2), (3, 5, 1), (4, 1, 1), (4, 2, 2), (4, 3, 3), (4, 4, 3), (4, 5, 4)}
 ```
 
-# Visual Scene Graph
+# Visual Question Answering
 
 Visual Question and Answering (VQA) is an important task in the machine learning and computer vision domain.
-Usually people represent an image using a scene graph, where we have
-
-<div>
- <img src="/img/summer_school/lab1/vqa_example.png" width="300"/>
-</div>
-
-<!--
-
-### Facts
-To perform the VQA task, we first need to describe the image in a symbolic form, also known as the "scene graph". The scene graph can have multiple object attributes, such as color, shape, and relations. We first construct a scene graph that contains the color information.
-
-``` scl
-// declare the type of the relations
-type object_color(usize, String)
-type left(usize, usize)
-
-// declare the input facts
-rel object_color(0, "red")
-rel object_color(1, "green")
-rel object_color(2, "green")
-
-rel left(0, 1)
-rel left(0, 2)
-rel left(1, 2)
-```
-
-We can also construct the relation in a set form. For example, we can write the size information as follows:
-``` scl
-rel object_shape = {
- (0, "cube"),
- (1, "cube"),
- (2, "sphere"),
-}
-
-rel left = {(0, 1), (0, 2), (1, 2)}
-```
-
-### Query
-Let's write the query for our first question!
-
-Question: Which objects are green in the scene graph?
-``` scl
-// declare rules
-type green_obj(usize)
-rel green_obj(x) = object_color(x, "green")
-```
-
-To output the specific relation in Scallop, we can put the query in the Scallop program itself:
-``` scl
-// declare the desired output query relation
-query green_obj
-```
-
-We can also use the command line argument `-q` to instrument the desired output relationship:
-```
-scli <sclfile> -q <query relation>
-```
-
-### Negation
-Question: Which objects are not green in the scene graph?
-
-The syntax for negation is `~` in scallop.
-``` scl
-type not_green_obj(usize)
-rel not_green_obj(x) = object_color(x, _), ~green_obj(x)
-```
-
-### Count
-Question: How many green objects are there in the image?
-
-We will use the `count` syntax in Scallop:
-`r1(<usize>) = <usize> = count(<element>: r2(<element>))`.
-
-``` scl
-type how_many_green(usize)
-rel how_many_green(x) = x = count(o: object_color(o, "green"))
-```
-
-### Exist
-Question: Does there exist any blue object in the image?
-
-We will use the `exists` syntax in Scallop:
-`r1(<bool>) = <bool> = exists(<element>: r2(<element>))`.
-
-``` scl
-type exists_green_obj(bool)
-type exists_blue_obj(bool)
-rel exists_green_obj(b) = b = exists(o: object_color(o, "green"))
-rel exists_blue_obj(b) = b = exists(o: object_color(o, "blue"))
-```
-
-### Group by
-Question: For each possible color, does there exist a cube in that color?
-Suppose there are three possible colors: "green", "red", and "blue".
-``` scl
-rel color = {
- ("red"),
- ("green"),
- ("blue"),
-}
-```
-
-We will use the `where` syntax in Scallop:
-``` scl
-rel exists_cube_among_color(c, x) = x = exists(o: object_shape(o, "cube"), object_color(o, c) where c: color(c))
-```
-
-Note the difference between using group by and without group by:
-```
-rel exists_cube_color(c, x) = x = exists(o: object_shape(o, "cube"), object_color(o, c))
-```
-
-The execution result for `group by` has the fact, that there is no blue object in the scene, while the pure join doesn't.
-```
-exists_cube_color: {("green", true), ("red", true)}
-exists_cube_among_color: {("blue", false), ("green", true), ("red", true)}
-```
-
-### Probabilitistic Facts
 In a learning task, the facts are usually associated with probabilities.
 For example, an object may have a 90% probability of being a red object, and 10% of being a green one.
 Further, an object can only be red or green, but can't be red and green at the same time in this task.
-To express this probabilistic scene graph, we can use probabilistic facts with a disjunction in Scallop.
+To express this probabilistic property, we will guide you through how to use probabilistic facts with disjunctions in Scallop.
+
+
+<div>
+ <img src="/img/summer_school/lab1/CLEVR_example.png" width="300"/>
+</div>
+
+The VQA exercises will be in the [`scene_graph.scl`](/ssft22/labs/scene_graph.scl).
+
+## P1: Probabilistic scene graph
+To perform the VQA task, we first need to describe the image in a symbolic form, also known as the "scene graph".
+The scene graph can have multiple object attributes, such as color, shape, and relations.
+In this task, the colors of objects will be red, green, yellow, and blue; the shapes will be cube, sphere, and cylinder; the materials are metal and rubber; the sizes are big and small.
 
 ``` scl
-rel object_color = {0.9::(0, "red"); 0.1::(0, "green")}
-rel object_color = {0.2::(1, "red"); 0.8::(1, "green")}
-rel object_color = {0.1::(2, "red"); 0.9::(2, "green")}
+rel all_colors = {/* Fill in the facts here */}
+rel all_shapes = {/* Fill in the facts here */}
+rel all_materials = {/* Fill in the facts here */}
+rel all_sizes = {/* Fill in the facts here */}
 ```
 
+The `obj_color`, `obj_shape`, `obj_size`, and `obj_material` relations define the color, shape, size, and material of each object; while the `left` relation defines a spatial relationship between two objects, where `left(a, b)` means `a` is on the left of `b`.
 
-### Tag Space
-When we jump into the probabilistic world, we want to associate each fact with its probabilistic information using the tag system.
+``` scl
+type obj_color(usize, String)
+type obj_shape(usize, String)
+type obj_size(usize, String)
+type obj_material(usize, String)
+type left(usize, usize)
+```
+
+Please fill in the following facts and probabilities.
+For `obj_color`, `obj_shape`, `obj_size`, and `obj_material`, write the probabilistic facts where each fact correctly represents the image above have 0.94 probability, and the rest of the facts are uniformly likely.
+To observe how discrete facts interact with the probabilistic ones, we keep the `left` relation discrete.
+``` scl
+rel obj_color = {/* Fill in the probabilistic facts here */}
+rel obj_shape = {/* Fill in the probabilistic facts here */}
+rel left = {/* Fill in the discrete facts here */}
+```
+
+## P2. Right
+Naturally, we can deduce a `right` relation from the `left` relation.
+The definition of `right(a, b)` means `a` is on the right of `b`.
+Please write the rule for `right(a, b)`, so that it can reflect the image.
+
+## P3. Find blue objects
+Let's write a simple query, extracting all the ids for the blue objects in the scene graph.
+You shall execute the following command and obtain the same outputs.
+```
+$ scli scene_graph.scl -p minmaxprob --query blue_objs
+blue_objs: {((1), 0.02), ((2), 0.94), ((3), 0.02), ((4), 0.02), ((5), 0.94)}
+```
+
+## P4. Color of cubes
+Now we want to query for all the different colors of cubes in the image. Running the following command shall give you the expected result.
+```
+$ scli scene_graph.scl -p minmaxprob --query color_of_cubes
+color_of_cubes: {(("blue"), 0.03), (("green"), 0.94), (("red"), 0.03), (("yellow"), 0.03)}
+```
+
+## P5. Count red objects
+Let's try to perform aggregation, `count` over the probabilistic facts.
+We want to count how many red objects are there in the image:
+```
+scli scene_graph.scl -p minmaxprob --query num_red_objects
+num_red_objects: {((0), 0.06000000000000005), ((1), 0.94), ((2), 0.02), ((3), 0.02), ((4), 0.02), ((5), 0.02)}
+```
+
+## P6. Count objects by shape
+We can also count the objects grouped by their shapes.
+Here is the expected output of `how_many_object_of_each_shape`
+```
+scli scene_graph.scl -p minmaxprob --query how_many_object_of_each_shape
+how_many_object_of_each_shape: {(("cube", 0), 0.06000000000000005), (("cube", 1), 0.94), (("cube", 2), 0.03), (("cube", 3), 0.03), (("cube", 4), 0.03), (("cube", 5), 0.03), (("cylinder", 0), 0.06000000000000005), (("cylinder", 1), 0.06000000000000005), (("cylinder", 2), 0.06000000000000005), (("cylinder", 3), 0.94), (("cylinder", 4), 0.03), (("cylinder", 5), 0.03), (("sphere", 0), 0.06000000000000005), (("sphere", 1), 0.94), (("sphere", 2), 0.03), (("sphere", 3), 0.03), (("sphere", 4), 0.03), (("sphere", 5), 0.03)}
+```
+
+## P7. Between
+We want to find whether an object is between two objects.
+The relation `between(a, b, c)` means `c` is in between object `a` and `b`.
+```
+scli scene_graph.scl -p minmaxprob --query between
+between: {((1, 3, 2), 1), ((1, 4, 2), 1), ((1, 4, 3), 1), ((1, 5, 2), 1), ((1, 5, 3), 1), ((1, 5, 4), 1), ((2, 4, 3), 1), ((2, 5, 3), 1), ((2, 5, 4), 1), ((3, 5, 4), 1)}
+```
+
+## P8. Green between red and blue
+Is there a green object between a red and a blue object?
+The relation `between(a, b, c)` means `c` is in between object `a` and `b`.
+
+> **Hint**:
+> For this relation you might want to use the `between` relation.
+
+```
+scli scene_graph.scl -p minmaxprob --query g_between_r_and_b
+g_between_r_and_b: {((false), 0.98), ((true), 0.02)}
+```
+
+## P9. CLEVR question
+Here is a question from the CLEVR dataset corresponding to the image we give:
+What is the color of the other big object that is made of the same material as the yellow thing?
+```
+scli scene_graph.scl -p minmaxprob --query clevr_q
+clevr_q: {(("blue"), 0.06), (("green"), 0.94), (("red"), 0.06), (("yellow"), 0.06)}
+```
+
+## P10: Tag space
+After the practices from P1 to P9, here are two questions for you.
+Does the probability for the query output match your expectation?
+Can you try to explain why we reach these probabilities?
+
+Exact probabilistic reasoning is not the only way to perform the probabilistic calculation.
+There are many methods to perform approximation and accelerate the speed of probabilistic reasoning.
+We build our theory upon the [provenance semiring](https://repository.upenn.edu/cgi/viewcontent.cgi?article=1022&context=db_research) framework.
 We will first define the tag space *T*, the *0* and *1* in *T*, and the binary operations *⊕*, *⊗*, and *⊖* to instrument how to combine the tags when "or", "and", and "not" take places in the fact space.
-Note that when we are using the word provenance semiring, we are actually referring to an extension of the provenance semiring with negation. //TODO: cite
+Note that when we are using the word provenance semiring, we are referring to an extension of the provenance semiring with negation. //TODO: cite
 
 The default `unit` provenance semiring does not propagate any tag information during the reasoning process.
 - *T = ()*
@@ -431,102 +413,26 @@ scli -p <semiring> <scl_file>
 
 We can observe how the tags are calculated through `--debug-tag` provided by `scli`.
 ```
-> scli -p minmaxprob labs/lab2_prob_semiring/scl/3_count_green_obj.scl --debug-tag
-Tags of input relation `object_color`:
-(0, "red"): 0.9
-(0, "green"): 0.1
-(1, "red"): 0.2
-(1, "green"): 0.8
-(2, "red"): 0.1
-(2, "green"): 0.9
+> scli scene_graph.scl -p minmaxprob -q num_red_objects --debug-tag
+Tags of input relation `all_shapes`:
+("cube"): 1
+("sphere"): 1
+("cylinder"): 1
 ...
-Tags of input relation `how_many_green`:
-how_many_green: {((0), 0.09999999999999998), ((1), 0.19999999999999996), ((2), 0.8), ((3), 0.1)}
+num_red_objects: {((0), 0.06000000000000005), ((1), 0.94), ((2), 0.02), ((3), 0.02), ((4), 0.02), ((5), 0.02)}
 ```
 
-In the `topbottomkclauses` semiring, the tags are DNF or CNF formulas with at most k clauses. This semiring will provide the most likely proof to the fact.
+In the `topbottomkclauses` semiring, the tags are DNF or CNF formulas with at most k clauses. This semiring will provide the most likely proof of the fact.
+Please fill in the tags for the `num_red_objects` under the `topbottomkclauses` semiring, and briefly explain how is probability of `num_red_objects(0)` calculated.
 ```
-> scli -p topbottomkclauses labs/lab2_prob_semiring/scl/3_count_green_obj.scl --debug-tag
-Tags of input relation `object_color`:
-(0, "red"): DNF{ {Pos(0)} }
-(0, "green"): DNF{ {Pos(1)} }
-(1, "red"): DNF{ {Pos(2)} }
-(1, "green"): DNF{ {Pos(3)} }
-(2, "red"): DNF{ {Pos(4)} }
-(2, "green"): DNF{ {Pos(5)} }
+> scli scene_graph.scl -p topbottomkclauses -q num_red_objects --debug-tag
+Tags of input relation `obj_color`:
+(1, "red"): DNF{{Pos(0)}}
+(1, "green"): DNF{{Pos(1)}}
+(1, "blue"): DNF{{Pos(2)}}
+(1, "yellow"): DNF{{Pos(3)}}
 ...
-Tags of output relation `how_many_green`:
-(0): DNF{ {Neg(1), Neg(3), Neg(5)} }
-(1): DNF{ {Neg(1), Neg(3), Pos(5)}, {Neg(1), Pos(3), Neg(5)}, {Pos(1), Neg(3), Neg(5)} }
-(2): DNF{ {Neg(1), Pos(3), Pos(5)}, {Pos(1), Neg(3), Pos(5)}, {Pos(1), Pos(3), Neg(5)} }
-(3): DNF{ {Pos(1), Pos(3), Pos(5)} }
+Tags of output relation `num_red_objects`:
+// TODO: Fill in the tags here
+num_red_objects: {0.05534208960000005::(0), 0.8692849311999998::(1), 0.05308322879999999::(2), 0.0010833312::(3), 0.0000221088::(4), 0.00000015040000000000002::(5)}
 ```
-
-### VQA Practice
-Here is a visual question and answer pair from the CLEVR dataset.
-Write one deterministic and one probabilistic Scallop program to answer this question.
-
-<div>
- <img src="/img/summer_school/lab1/CLEVR_test_000014.png" width="400"/>
-</div>
-
-1. Find the object id of the blue objects.
-2. Find all the possible colors of cubes.
-3. How many red objects are there in the scene?
-4. How many objects are there for each shape?
-5. Find whether an object is between two objects.
-   - Definition: `between(a, b, c)` means `c` is in-between object `a` and `b`
-6. Is there a green object between a red and a blue object?
-7. What is the color of the other big object that is made of the same material as the yellow thing?
-
-## Graph
-The graph is not only crucial in computational theory and algorithms, but also an important aspect in the learning field, such as knowledge graph.
-We will showcase how to work with a simple graph using Scallop.
-
-<div>
- <img src="/img/summer_school/lab1/graph_example.png" width="300"/>
-</div>
-
-### Facts
-
-``` scl
-type edge(usize, usize)
-rel edge :- {(1, 2), (2, 4), (4, 1), (2, 3), (3, 5)}
-```
-
-### Recursion
-Question: Does there exists a path between two nodes?
-
-To answer this question, we need to define a recursive relation, called `path`.
-A recursive relation requires a base case and an inductive case.
-The inductive case will use the relation itself in the body definition.
-
-``` scl
-rel path(a, b) = edge(a, b)
-rel path(a, b) = path(a, x) and edge(x, b)
-```
-
-### Graph Practice
-1. Find the triangles in this graph.
-    - Definition: `triangle(a, b, c)` means the nodes a, b, and c form a triangle.
-2. Write an `scc` relationship.
-    - Definition: `scc(a, b)` means node `a` and `b` are in the same Strongly Connected Component
-    - Definition: Strongly Connected Component is a subgraph where any node can reach every node in such a component
-     - Note: A node is always in the same Strongly Connected Component as itself
-3. Find the SCCs that are singleton.
-     - Definition: `singleton_scc(a)` means node `a` stays in a Strongly Connected Component that only contains itself
-4. Does this graph contains at least one cycle?
-     - Definition: `contains_cycle(true)` means the graph contains a cycle. false otherwise
-5. Count the number of nodes.
-     - Definition: `num_nodes(n)` means there are in total `n` nodes in the graph
-6. Write a `in_degree` relationship.
-     - Definition: `in_degree(a, x)` means there are `x` edges going into node `a`
-7. Write a `out_degree` relationship.
-    - Definition: `out_degree(a, x)` means there are `x` edges going out from node `a`
-8. Count the number of nodes within 3 steps of node `n`.
-     - Definition: `num_nodes_within_3(n, c)` means there are `c` nodes that are reachable from `n`
-9. Shortest Path Length.
-     - Definition: shortest_path_length(a, b, n): n is the length of the shortest path between node `a` and `b`
-     - Note: Need to use the fact that any path length will be less than or equal to the total number of nodes in the graph
-
-// ## Extra Credits -->
