@@ -1,37 +1,46 @@
 type obj_color(usize, String) // `obj_color(o, c)` means object `o` has color `c`
 type obj_shape(usize, String) // `obj_shape(o, s)` means object `o` has shape `s`
+type obj_size(usize, String) // `obj_shape(o, s)` means object `o` has size `s`
+type obj_material(usize, String) // `obj_shape(o, m)` means object `o` has material `m`
 type left(usize, usize)       // `left(a, b)` means object `a` is on the left of object `b`
 
-// Facts for sample scene graph
-rel obj_color = {
-  (0, "yellow"),
-  (1, "red"),
-  (2, "green"),
-  (3, "blue"),
-  (4, "blue"),
-  (5, "red"),
-}
+// Practice *: Fill in the facts for the probabilistic scene graph
+// Note: You may construct mulitple sets of disjunctive relations
+rel all_colors = {"red", "green", "blue", "yellow"}
+rel all_shapes = {"cube", "sphere", "cylinder"}
+rel all_sizes = {"big", "small"}
+rel all_material = {"metal", "rubber"}
 
-rel obj_shape = {
-  (0, "cube"),
-  (1, "sphere"),
-  (2, "cube"),
-  (3, "cylinder"),
-  (4, "cube"),
-  (5, "cylinder"),
-}
+rel obj_color = {0.02::(1, "red"); 0.94::(1, "green"); 0.02::(1, "blue"); 0.02::(1, "yellow")}
+rel obj_color = {0.02::(2, "red"); 0.02::(2, "green"); 0.94::(2, "blue"); 0.02::(2, "yellow")}
+rel obj_color = {0.02::(3, "red"); 0.02::(3, "green"); 0.02::(3, "blue"); 0.94::(3, "yellow")}
+rel obj_color = {0.94::(4, "red"); 0.02::(4, "green"); 0.02::(4, "blue"); 0.02::(4, "yellow")}
+rel obj_color = {0.02::(5, "red"); 0.02::(5, "green"); 0.94::(5, "blue"); 0.02::(5, "yellow")}
+
+rel obj_shape = {0.94::(1, "cube"); 0.03::(1, "cylinder"); 0.03::(1, "sphere")}
+rel obj_shape = {0.03::(2, "cube"); 0.94::(2, "cylinder"); 0.03::(2, "sphere")}
+rel obj_shape = {0.03::(3, "cube"); 0.03::(3, "cylinder"); 0.94::(3, "sphere")}
+rel obj_shape = {0.03::(4, "cube"); 0.94::(4, "cylinder"); 0.03::(4, "sphere")}
+rel obj_shape = {0.03::(5, "cube"); 0.94::(5, "cylinder"); 0.03::(5, "sphere")}
+
+rel obj_size = {0.94::(1, "big"); 0.06::(1, "small")}
+rel obj_size = {0.06::(2, "big"); 0.94::(2, "small")}
+rel obj_size = {0.06::(3, "big"); 0.94::(3, "small")}
+rel obj_size = {0.06::(4, "big"); 0.94::(4, "small")}
+rel obj_size = {0.06::(5, "big"); 0.94::(5, "small")}
+
+rel obj_material = {0.94::(1, "metal"); 0.06::(1, "rubber")}
+rel obj_material = {0.06::(2, "metal"); 0.94::(2, "rubber")}
+rel obj_material = {0.94::(3, "metal"); 0.06::(3, "rubber")}
+rel obj_material = {0.94::(4, "metal"); 0.06::(4, "rubber")}
+rel obj_material = {0.94::(5, "metal"); 0.06::(5, "rubber")}
 
 rel left = {
-  (0, 1), (0, 2), (0, 3), (0, 4), (0, 5),
   (1, 2), (1, 3), (1, 4), (1, 5),
   (2, 3), (2, 4), (2, 5),
   (3, 4), (3, 5),
   (4, 5),
 }
-
-// Basic setups
-rel all_colors = {"red", "green", "blue", "yellow"}
-rel all_shapes = {"cube", "sphere", "cylinder"}
 
 // Practice *: `right` relation that can be derived from left relation
 //   Definition: `right(a, b)` means `a` is on the right of `b`
@@ -64,3 +73,31 @@ type g_between_r_and_b(bool)
 rel r_and_b(p, q) = obj_color(p, "blue"), obj_color(q, "red")
 rel r_and_b(p, q) = obj_color(p, "red"), obj_color(q, "blue")
 rel g_between_r_and_b(v) = v = exists(o: between(p, q, o) and obj_color(o, "green") and r_and_b(p, q))
+
+// Practice *: What is the color of the other big object that is made of the same material as the yellow thing?
+type clevr_q(String)
+rel yellow_obj(o) = obj_color(o, "yellow")
+rel big_obj(o) = obj_size(o, "big")
+rel clevr_q(c) = yellow_obj(a), big_obj(b), obj_material(a, m), obj_material(b, m), obj_color(b, c)
+
+// Practice *:
+//    Write down the tags for `num_red_objects` with topbottomkclauses
+//    Briefly explain how is the probability for the output fact num_red_objects(0) calculated.
+// (0): DNF{{Neg(0), Neg(4), Neg(8), Neg(12), Neg(16)}}
+// (1): DNF{{Neg(0), Neg(4), Neg(8), Pos(12), Neg(16)}, {Neg(0), Neg(4), Pos(8), Neg(12), Neg(16)}, {Neg(0), Pos(4), Neg(8), Neg(12), Neg(16)}}
+// (2): DNF{{Neg(0), Neg(4), Neg(8), Pos(12), Pos(16)}, {Neg(0), Neg(4), Pos(8), Pos(12), Neg(16)}, {Neg(0), Pos(4), Neg(8), Pos(12), Neg(16)}}
+// (3): DNF{{Neg(0), Neg(4), Pos(8), Pos(12), Pos(16)}, {Neg(0), Pos(4), Neg(8), Pos(12), Pos(16)}, {Neg(0), Pos(4), Pos(8), Pos(12), Neg(16)}}
+// (4): DNF{{Pos(0), Pos(4), Pos(8), Pos(12), Neg(16)}, {Neg(0), Pos(4), Pos(8), Pos(12), Pos(16)}, {Pos(0), Neg(4), Pos(8), Pos(12), Pos(16)}}
+// (5): DNF{{Pos(0), Pos(4), Pos(8), Pos(12), Pos(16)}}
+// Explanation skipped
+
+// Practice *:
+// Please rerun and fill in the table below with the query outputs' probability
+// | provenance semiring | minmaxprob | tbk k=1 | tbk k=3 | tbk k=10 |
+// -------------------------------------------------------
+// | `num_red_objects(1)` | 0.94 | 0.8670 | 0.8693 | 0.8715 |
+// | `num_red_objects(2)` | 0.02 | 0.0004 | 0.0531 | 0.0709 |
+// | `g_between_r_and_b(True)` | 0.02 | 0.0177 | 0.0181 | 0.0196 |
+// | `g_between_r_and_b(False)` | 0.98 | 0.9823 | 0.9816 | 0.9804 |
+// | `how_many_object_of_each_shape("cube", 2)` | 0.03 | 0.0257 | 0.0772 | 0.1033 |
+// | `how_many_object_of_each_shape("cylinder", 3)` | 0.94 | 0.7815 | 0.7846 | 0.7908 |
