@@ -1,4 +1,4 @@
-# Lab2 Instructions
+# Lab 2 Instructions
 
 In lab2, we will guide you through the basic Scallop Python API, called scallopy.
 The lab content includes but is not limited to:
