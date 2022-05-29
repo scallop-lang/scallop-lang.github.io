@@ -77,6 +77,9 @@ python -m pip install notebook
 python -m pip install ipywidgets
 python -m pip install tqdm
 python -m pip install matplotlib
+python -m pip install sklearn
+python -m pip install pandas
+python -m pip install seaborn
 jupyter nbextension enable --py widgetsnbextension
 
 cd $ROOT_FOLDER

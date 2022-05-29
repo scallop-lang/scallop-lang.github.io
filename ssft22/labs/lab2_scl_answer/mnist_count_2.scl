@@ -1,0 +1,4 @@
+type digit(usize, usize)
+type num_of_2(usize)
+
+rel num_of_2(n) = n = count(o: digit(o, 2))

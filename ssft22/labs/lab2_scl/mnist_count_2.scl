@@ -1,0 +1,2 @@
+type digit(usize, usize)
+type num_of_2(usize)

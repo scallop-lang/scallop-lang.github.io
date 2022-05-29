@@ -47,7 +47,10 @@ RUN source /home/scallop_user/anaconda3/etc/profile.d/conda.sh && \
     python -m pip install notebook && \
     python -m pip install ipywidgets && \
     python -m pip install tqdm && \
-    python -m pip install matplotlib
+    python -m pip install matplotlib && \
+    python -m pip install sklearn && \
+    python -m pip install pandas && \
+    python -m pip install seaborn
 
 ADD ./labs /home/scallop_user/labs
 WORKDIR /home/scallop_user/labs
