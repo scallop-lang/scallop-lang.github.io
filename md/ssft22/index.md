@@ -15,10 +15,10 @@ to get the Scallop installed and up running.
 
 ## Lecture Slides
 
-- [Lecture 1](/docs/ssft22/lecture-1.pdf) - Neurosymbolic Overview and Scallop Basics
-- [Lecture 2](/docs/ssft22/lecture-2.pdf) - Tags, Instrumentation, and Provenance
-- [Lecture 3](/docs/ssft22/lecture-3.pdf) - Scallop, with Neural Networks
-- [Lecture 4](/docs/ssft22/lecture-4.pdf) - Complex Applications of Scallop
+- [Lecture 1](/ssft22/lectures/lecture-1.pdf) ([Video](https://drive.google.com/file/d/17En24U05P9FG4V9LmJ4tMqrVNzHh6atx/view?usp=sharing)) - Neurosymbolic Overview and Scallop Basics
+- [Lecture 2](/ssft22/lectures/lecture-2.pdf) ([Video](https://drive.google.com/file/d/1rkzv3LtVZUeOOqaqIqWqAzzI3bS0V8bi/view?usp=sharing)) - Tags, Instrumentation, and Provenance
+- [Lecture 3](/ssft22/lectures/lecture-3.pdf) - Scallop, with Neural Networks
+- [Lecture 4](/ssft22/lectures/lecture-4.pdf) - Complex Applications of Scallop
 
 ## Labs
 

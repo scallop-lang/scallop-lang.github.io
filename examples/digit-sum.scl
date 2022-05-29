@@ -1,0 +1,3 @@
+rel digit_1 = {0.01::0, 0.01::1, 0.98::2}
+rel digit_2 = {0.02::0, 0.97::1, 0.01::2}
+rel sum_of_digits(x + y) = digit_1(x) and digit_2(y)
