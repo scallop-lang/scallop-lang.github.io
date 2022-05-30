@@ -10,7 +10,7 @@ We will mainly tackle the digit recognition task, MNIST during this lab:
  <img src="/img/summer_school/lab1/mnist_example.png" width="300"/>
 </div>
 
-Please download and extract [lab2.tar](/ssft22/labs/lab2.tar), and follow the instructions in the Jupyter Notebook.
+Please download and extract [lab2.tar](/ssft22/labs/lab2.tar), and follow the instructions in the Jupyter Notebook `lab2_mnist.ipynb`.
 
 ## Jupyter Notebook with VSCode (Optional)
 The Jupyter Notebook is a web application for interactive python documents.
