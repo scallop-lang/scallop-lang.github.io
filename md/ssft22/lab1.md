@@ -379,23 +379,7 @@ Exact probabilistic reasoning is not the only way to perform the probabilistic c
 There are many methods to perform approximation and accelerate the speed of probabilistic reasoning.
 We build our theory upon the [provenance semiring](https://repository.upenn.edu/cgi/viewcontent.cgi?article=1022&context=db_research) framework.
 We will first define the tag space *T*, the *0* and *1* in *T*, and the binary operations *⊕*, *⊗*, and *⊖* to instrument how to combine the tags when "or", "and", and "not" take places in the fact space.
-Note that when we are using the word provenance semiring, we are referring to an extension of the provenance semiring with negation. //TODO: cite
-
-The default `unit` provenance semiring does not propagate any tag information during the reasoning process.
-- *T = ()*
-- *0 = ()*
-- *1 = ()*
-- *⊕ = λ(x, y)=>()*
-- *⊗ = λ(x, y)=>()*
-- *⊖ = λ(x)=>()*
-
-Another provenance semiring `minmaxprob` propagates the probability of the most influential input fact to the deduced fact.
-- *T = [0, 1]*
-- *0 = 0*
-- *1 = 1*
-- *⊕ = λ(x, y)=> min(1, x + y)*
-- *⊗ = λ(x, y)=> x ✕ y*
-- *⊖ = λ(x)=>1-x*
+Note that when we are using the word provenance semiring, we are referring to an extension of the [provenance semiring with negation](https://www.usenix.org/legacy/event/tapp11/tech/final_files/Amsterdamer.pdf).
 
 There are multiple provenance semirings we provided to choose from, they have different expressiveness, precision, and efficiency.
 
