@@ -10,4 +10,7 @@ We will mainly tackle the digit recognition task, MNIST during this lab:
  <img src="/img/summer_school/lab1/mnist_example.png" width="300"/>
 </div>
 
-Please download [lab2.tar](/ssft22/labs/lab2.tar), and follow the instructions in the Jupyter Notebook.
+Please download and extract [lab2.tar](/ssft22/labs/lab2.tar), and follow the instructions in the Jupyter Notebook.
+
+## Troubleshooting
+1. If you cannot find the `scallop-env` when you select the kernel for you jupyter notebook, you can try to restart your Visual Studio Code.
