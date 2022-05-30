@@ -97,5 +97,7 @@ cd $SCALLOP_LAB1
 wget $LAB1_URL
 cd $SCALLOP_LAB2
 wget $LAB2_URL
+tar -xvf lab2.tar
+rm lab2.tar
 
 cd $ROOT_FOLDER

@@ -60,5 +60,7 @@ RUN source /home/scallop_user/anaconda3/etc/profile.d/conda.sh && \
 WORKDIR /home/scallop_user/labs/lab1
 RUN wget $LAB1_URL
 WORKDIR /home/scallop_user/labs/lab2
-RUN wget $LAB2_URL
+RUN wget $LAB2_URL && \
+    tar -xvf lab2.tar && \
+    rm lab2.tar
 WORKDIR /home/scallop_user/labs
