@@ -2,9 +2,19 @@
 ROOT_FOLDER=$PWD
 SCALLOP_BIN=$ROOT_FOLDER/bin
 SCALLOP_PKG=$ROOT_FOLDER/pkg
+SCALLOP_LAB=$ROOT_FOLDER/labs
+SCALLOP_LAB1=$ROOT_FOLDER/labs/lab1
+SCALLOP_LAB2=$ROOT_FOLDER/labs/lab2
+
+LAB1_URL="https://scallop-lang.github.io/ssft22/labs/graph_algo.scl"
+LAB2_URL="https://scallop-lang.github.io/ssft22/labs/lab2.tar"
+
 ARC_NAME=$(uname -m)
 mkdir $SCALLOP_BIN
 mkdir $SCALLOP_PKG
+mkdir $SCALLOP_LAB
+mkdir $SCALLOP_LAB1
+mkdir $SCALLOP_LAB2
 
 echo $OSTYPE
 
@@ -77,6 +87,15 @@ python -m pip install notebook
 python -m pip install ipywidgets
 python -m pip install tqdm
 python -m pip install matplotlib
+python -m pip install sklearn
+python -m pip install pandas
+python -m pip install seaborn
 jupyter nbextension enable --py widgetsnbextension
+
+# Download the required material into the labs folder
+cd $SCALLOP_LAB1
+wget $LAB1_URL
+cd $SCALLOP_LAB2
+wget $LAB2_URL
 
 cd $ROOT_FOLDER

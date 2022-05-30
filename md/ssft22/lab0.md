@@ -18,6 +18,12 @@ $ chmod u+x ./install_scallop_env.sh
 $ . ./install_scallop_env.sh
 ```
 
+For a better experience, such as syntax highlighting, we recommend you use [Visual Studio Code](https://code.visualstudio.com/download) with
+the following extensions:
+1. [Scallop Language Syntax Highlight](https://marketplace.visualstudio.com/items?itemName=scallop-lang.scallop)
+2. [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+3. [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+
 ### Option 2: Docker
 
 Alterantively you can setup the environment through the dockerfile.
@@ -28,7 +34,7 @@ This method is suitable accross the platforms, including **Windows**, **Linux**,
 3. Install VSCode extension: Docker
 4. Install VSCode extension: Remote-Containers
 5. Create a new directory, like `scallop-lab-ssft22`
-6. Download this [Dockerfile](/ssft22/labs/Dockerfile) and paste it into the directory
+6. Download this [Dockerfile](/ssft22/labs/Dockerfile) and the [devcontainer.json](/ssft22/labs/devcontainer.json) and paste it into the directory
 7. Open VSCode in this directory
 8. `cmd` + `shift` + `p` open the VScode Command Palette
 9. Select `Remote containers: Rebuild and Reopen in Container`

@@ -4,6 +4,8 @@ SHELL ["/bin/bash", "-c"]
 ARG SCLI_URL="https://scallop-lang.github.io/artifacts/scli/x86_64-linux-unknown/v0.1.1/scli"
 ARG SCLREPL_URL="https://scallop-lang.github.io/artifacts/sclrepl/x86_64-linux-unknown/v0.1.1/sclrepl"
 ARG SCALLOPY_URL="https://scallop-lang.github.io/artifacts/scallopy/scallopy-0.1.1-cp39-cp39-manylinux_2_27_x86_64.whl"
+ARG LAB1_URL="https://scallop-lang.github.io/ssft22/labs/graph_algo.scl"
+ARG LAB2_URL="https://scallop-lang.github.io/ssft22/labs/lab2.tar"
 
 # Setup system environment and required packages
 RUN apt-get update && apt-get -y upgrade && apt-get -y install wget
@@ -23,7 +25,9 @@ RUN mkdir /home/scallop_user/packages && \
     mkdir /home/scallop_user/packages/scallop && \
     mkdir /home/scallop_user/packages/scallop/bin && \
     mkdir /home/scallop_user/packages/scallop/lib && \
-    mkdir /home/scallop_user/labs
+    mkdir /home/scallop_user/labs && \
+    mkdir /home/scallop_user/labs/lab1 &&\
+    mkdir /home/scallop_user/labs/lab2
 WORKDIR /home/scallop_user/packages/scallop/bin
 
 RUN wget ${SCLI_URL} && \
@@ -47,7 +51,14 @@ RUN source /home/scallop_user/anaconda3/etc/profile.d/conda.sh && \
     python -m pip install notebook && \
     python -m pip install ipywidgets && \
     python -m pip install tqdm && \
-    python -m pip install matplotlib
+    python -m pip install matplotlib && \
+    python -m pip install sklearn && \
+    python -m pip install pandas && \
+    python -m pip install seaborn && \
+    jupyter nbextension enable --py widgetsnbextension
 
-ADD ./labs /home/scallop_user/labs
+WORKDIR /home/scallop_user/labs/lab1
+RUN wget $LAB1_URL
+WORKDIR /home/scallop_user/labs/lab2
+RUN wget $LAB2_URL
 WORKDIR /home/scallop_user/labs
