@@ -23,6 +23,6 @@ Before embarking on the labs, setup Scallop on your computer by completing [Lab 
 
 ## Labs
 
-- [Lab 0](/ssft22/lab0.html) - installing Scallop and running your first Scallop program
-- [Lab 1](/ssft22/lab1.html) - programming with Scallop and reasoning with provenances
+- [Lab 0](/ssft22/lab0.html) - setting up Scallop and running your first Scallop program
+- [Lab 1](/ssft22/lab1.html) - programming in Scallop and reasoning with provenances
 - [Lab 2](/ssft22/lab2.html) - combining perception and reasoning using PyTorch and Scallop

@@ -1,7 +1,7 @@
-# Lab 1 Instruction
+# Lab 1 Instructions
 
-In this first lab, we will go through the Scallop language and its reasoning backend.
-We are going to start with a simple case study of Graph Algorithms.
+In this lab, we will go through the Scallop language and its reasoning backend.
+We will start with a simple case study of Graph Algorithms.
 Then, we will imagine that we are dealing with probabilistic scene graphs and understand how to reason with probabilities.
 
 # Graph Algorithms
