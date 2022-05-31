@@ -1,14 +1,13 @@
 # Scallop @SSFT22
 
-This is the main webpage for a mini-course on neurosymbolic programming in Scallop, to be presented at
-[SSFT22, Eleventh Summer School on Formal Techniques](https://fm.csl.sri.com/SSFT22/).
-The tutorial is intended for an audience with a strong background in computer science encompassing
+Welcome! You have arrived at the main webpage for a mini-course on neurosymbolic programming in Scallop, to be presented at [SSFT22](https://fm.csl.sri.com/SSFT22/), the 11th Summer School on Formal Techniques.
+
+This course is intended for an audience with a strong background in computer science encompassing:
 1) foundations (mathematical logic and basic probability theory),
 2) programming (Python or other similar language), and
 3) systems (common software tools and frameworks like Docker and PyTorch).
 
-The course introduces the features of the Scallop language, describes the provenance-based framework
-of the Scallop engine, and shows how to build neurosymbolic programs with Scallop and PyTorch.
+The course introduces various features of the Scallop language, describes the powerful provenance-based framework of the Scallop engine, and shows how to build neurosymbolic programs with Scallop and PyTorch.
 
 The course contains 4 lectures and 2 labs (Lab 1 and Lab 2).
 The first lab covers basic exercises corresponding to the first two lectures, and the second lab
