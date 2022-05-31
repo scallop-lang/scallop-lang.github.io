@@ -8,10 +8,10 @@ This lab walks you through the setup of the environment for using Scallop on you
 
 This is the recommended way to install Scallop on your computer for **MacOS** and **linux** users.
 
-1. Ensure `wget` is installed on your computer
-2. Ensure [`conda`](https://www.anaconda.com) is installed on your computer
-3. You can install the required scallop packages by executing the [`install_scallop_env.sh`](/ssft22/labs/install_scallop_env.sh) file. It will install a conda environment, `scallop-env`, where scallopy is installed as a dynamic library in this env.
-4. (Optional) If you are not using `bash`, you will need to manually add the `<SCALLOP_DIR_PATH>/bin` to your environment variable.
+1. Ensure `wget` is installed on your machine.
+2. Ensure [`conda`](https://www.anaconda.com) is installed on your machine.
+3. Install the required Scallop packages by executing the [`install_scallop_env.sh`](/ssft22/labs/install_scallop_env.sh) file. It will install a conda environment, `scallop-env`, in which `scallopy` is installed as a dynamic library.
+4. (Optional) If you are not using `bash`, you will need to manually add `<SCALLOP_DIR_PATH>/bin` to your `PATH` environment variable.
 
 ```
 $ chmod u+x ./install_scallop_env.sh
@@ -34,15 +34,15 @@ This method is suitable across all platforms, including **Windows**, **Linux**, 
 3. Install VSCode extension: Docker
 4. Install VSCode extension: Remote-Containers
 5. Create a new directory, like `scallop-lab-ssft22`
-6. Download this [Dockerfile](/ssft22/labs/Dockerfile) and the [devcontainer.json](/ssft22/labs/devcontainer.json) and paste it into the directory
+6. Download this [Dockerfile](/ssft22/labs/Dockerfile) and [devcontainer.json](/ssft22/labs/devcontainer.json) into the directory
 7. Open VSCode in this directory
-8. `cmd` + `shift` + `p` open the VScode Command Palette
+8. Open the VScode Command Palette using `cmd` + `shift` + `p` 
 9. Select `Remote containers: Rebuild and Reopen in Container`
-10. It will take about 10 to 20 minutes to finish the building process
+10. Wait for 10-20 minutes to finish the building process
 
 ### Option 3: Install Manually
 
-To install Scallop manually, visit [download page](/download.html).
+To install Scallop manually, visit the [download page](/download.html).
 Upon successful installation, you should have at least `scli` (a command line executable) and `scallopy` (a Python library)
 available on your machine.
 
@@ -74,5 +74,5 @@ You should see the output:
 hello: {("Hello World")}
 ```
 
-You are now ready to proceed to learn about neurosymbolic programming in Scallop!
+Congratulations!  You are now ready to proceed to the next lab to learn more exciting features of Scallop!
 
