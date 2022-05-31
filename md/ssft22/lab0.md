@@ -1,6 +1,6 @@
-# Lab0 Instructions
+# Lab 0 Instructions
 
-We will go through how to setup the environment for the tutorial in this lab.
+This lab walks you through the setup of the environment for using Scallop on your machine.
 
 ## Environment Setup
 
@@ -18,7 +18,7 @@ $ chmod u+x ./install_scallop_env.sh
 $ . ./install_scallop_env.sh
 ```
 
-For a better experience, such as syntax highlighting, we recommend you use [Visual Studio Code](https://code.visualstudio.com/download) with
+For a better experience, such as syntax highlighting, we recommend using [Visual Studio Code](https://code.visualstudio.com/download) with
 the following extensions:
 1. [Scallop Language Syntax Highlight](https://marketplace.visualstudio.com/items?itemName=scallop-lang.scallop)
 2. [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
@@ -26,8 +26,8 @@ the following extensions:
 
 ### Option 2: Docker
 
-Alterantively you can setup the environment through the dockerfile.
-This method is suitable accross the platforms, including **Windows**, **Linux**, and **MacOS**.
+Alterantively, you can install Scallop using Docker.
+This method is suitable across all platforms, including **Windows**, **Linux**, and **MacOS**.
 
 1. Download and install [Docker](https://www.docker.com)
 2. Install [VSCode](https://code.visualstudio.com)
@@ -42,25 +42,25 @@ This method is suitable accross the platforms, including **Windows**, **Linux**,
 
 ### Option 3: Install Manually
 
-To install Scallop manually, please visit [download page](/download.html).
-We will require you to have at least `scli` (a command line executable) and `scallopy` (a Python library)
-available on your computer.
+To install Scallop manually, visit [download page](/download.html).
+Upon successful installation, you should have at least `scli` (a command line executable) and `scallopy` (a Python library)
+available on your machine.
 
-## Hello World with Scallop
+## Hello World in Scallop
 
 We have provided two executables in the environment, `scli` and `sclrepl`.
 The `scli` executable is a Scallop interpreter,
-and the `sclrepl` is an interactive command line executable that can interpret your input as you type.
+and `sclrepl` is an interactive command line executable that can interpret your input as you type.
 
-To run our first program in the environment,
-you can download the following sample file [hello.scl](/examples/hello.scl),
+To run your first Scallop program in the environment,
+download the following sample file [hello.scl](/examples/hello.scl),
 and execute it with `scli`.
 
 ```
 $ scli hello.scl
 ```
 
-Note that the `hello.scl` file has the following content:
+The `hello.scl` file has the following content:
 
 ``` scl
 rel hello = {("Hello World")}
@@ -74,4 +74,5 @@ You should see the output:
 hello: {("Hello World")}
 ```
 
-After this, you are ready to proceed to the next lab to learn more about the Scallop language!
+You are now ready to proceed to learn about neurosymbolic programming in Scallop!
+
