@@ -2,8 +2,7 @@
 
 In this first lab, we will go through the Scallop language and its reasoning backend.
 We are going to start with a simple case study of Graph Algorithms.
-Then, we are going to study the representation of a Visual Scene Graph and be able to reason about the scene graph.
-Lastly, we are going to imagine that we are dealing with probabilistic scene graphs and understand how to reason with probabilities.
+Then, we will imagine that we are dealing with probabilistic scene graphs and understand how to reason with probabilities.
 
 # Graph Algorithms
 
@@ -18,7 +17,7 @@ $ scli graph_algo.scl
 Initially, you should see that all the relations are empty:
 
 ```
-> scli ssft22/labs/graph_algo.scl
+> scli graph_algo.scl
 source_node: {}
 path: {}
 triangle: {}
