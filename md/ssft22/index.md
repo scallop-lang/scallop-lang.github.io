@@ -5,7 +5,7 @@ Welcome! You have arrived at the main webpage for a mini-course on neurosymbolic
 This course is intended for an audience with a strong background in computer science encompassing:
 1) foundations (mathematical logic and basic probability theory),
 2) programming (Python or other similar language), and
-3) systems (common software tools and frameworks like Docker and PyTorch).
+3) systems (common software tools and frameworks like Docker).
 
 The course introduces various features of the Scallop language, describes the powerful provenance-based framework of the Scallop engine, and shows how to build neurosymbolic programs with Scallop and PyTorch.
 
@@ -18,6 +18,7 @@ Before embarking on the labs, setup Scallop on your computer by completing [Lab 
 
 - [Lecture 1](/ssft22/lectures/lecture-1.pdf) ([Video](https://drive.google.com/file/d/17En24U05P9FG4V9LmJ4tMqrVNzHh6atx/view?usp=sharing)) - Neurosymbolic Overview and Scallop Basics
 - [Lecture 2](/ssft22/lectures/lecture-2.pdf) ([Video](https://drive.google.com/file/d/1rkzv3LtVZUeOOqaqIqWqAzzI3bS0V8bi/view?usp=sharing)) - Tags, Instrumentation, and Provenance
+- [Lecture 2.5](/ssft22/lectures/lecture-2.5.pdf) - Weighted Model Counting (Supplementary)
 - [Lecture 3](/ssft22/lectures/lecture-3.pdf) - Scallop, with Neural Networks
 - [Lecture 4](/ssft22/lectures/lecture-4.pdf) - Applications of Scallop
 
