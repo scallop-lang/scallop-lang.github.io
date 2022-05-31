@@ -47,7 +47,7 @@ RUN source /home/scallop_user/anaconda3/etc/profile.d/conda.sh && \
     conda activate scallop-env && \
     conda install pytorch torchvision torchaudio cpuonly -c pytorch -y && \
     python -m pip install --upgrade pip && \
-    python -m pip install ./scallopy-0.1.0-cp39-cp39-manylinux_2_27_x86_64.whl && \
+    python -m pip install `basename ${SCALLOPY_URL}` && \
     python -m pip install notebook && \
     python -m pip install ipywidgets && \
     python -m pip install tqdm && \
