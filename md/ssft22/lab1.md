@@ -275,7 +275,7 @@ To express this probabilistic property, we will guide you through how to use pro
 
 The VQA exercises will be in the [`scene_graph.scl`](/ssft22/labs/scene_graph.scl).
 
-## P1: Probabilistic scene graph
+## P11: Probabilistic scene graph
 In this practice, we will simulate a situation where these facts come from a neural network.
 To perform the VQA task, we first need to describe the image in a symbolic form, also known as the "scene graph".
 The scene graph can have multiple object attributes, such as color, shape, and relations.
@@ -307,12 +307,12 @@ rel obj_shape = {/* Fill in the probabilistic facts here */}
 rel left = {/* Fill in the discrete facts here */}
 ```
 
-## P2. Right
+## P12. Right
 Naturally, we can deduce a `right` relation from the `left` relation.
 The definition of `right(a, b)` means `a` is on the right of `b`.
 Please write the rule for `right(a, b)`, so that it can reflect the image.
 
-## P3. Find blue objects
+## P13. Find blue objects
 Let's write a simple query, extracting all the ids for the blue objects in the scene graph.
 You shall execute the following command and obtain the same outputs.
 ```
@@ -320,14 +320,14 @@ $ scli scene_graph.scl -p minmaxprob --query blue_objs
 blue_objs: {((1), 0.02), ((2), 0.94), ((3), 0.02), ((4), 0.02), ((5), 0.94)}
 ```
 
-## P4. Color of cubes
+## P14. Color of cubes
 Now we want to query for all the different colors of cubes in the image. Running the following command shall give you the expected result.
 ```
 $ scli scene_graph.scl -p minmaxprob --query color_of_cubes
 color_of_cubes: {(("blue"), 0.03), (("green"), 0.94), (("red"), 0.03), (("yellow"), 0.03)}
 ```
 
-## P5. Count red objects
+## P15. Count red objects
 Let's try to perform aggregation, `count` over the probabilistic facts.
 We want to count how many red objects are there in the image:
 ```
@@ -335,7 +335,7 @@ scli scene_graph.scl -p minmaxprob --query num_red_objects
 num_red_objects: {((0), 0.06000000000000005), ((1), 0.94), ((2), 0.02), ((3), 0.02), ((4), 0.02), ((5), 0.02)}
 ```
 
-## P6. Count objects by shape
+## P16. Count objects by shape
 We can also count the objects grouped by their shapes.
 Here is the expected output of `how_many_object_of_each_shape`
 ```
@@ -343,7 +343,7 @@ scli scene_graph.scl -p minmaxprob --query how_many_object_of_each_shape
 how_many_object_of_each_shape: {(("cube", 0), 0.06000000000000005), (("cube", 1), 0.94), (("cube", 2), 0.03), (("cube", 3), 0.03), (("cube", 4), 0.03), (("cube", 5), 0.03), (("cylinder", 0), 0.06000000000000005), (("cylinder", 1), 0.06000000000000005), (("cylinder", 2), 0.06000000000000005), (("cylinder", 3), 0.94), (("cylinder", 4), 0.03), (("cylinder", 5), 0.03), (("sphere", 0), 0.06000000000000005), (("sphere", 1), 0.94), (("sphere", 2), 0.03), (("sphere", 3), 0.03), (("sphere", 4), 0.03), (("sphere", 5), 0.03)}
 ```
 
-## P7. Between
+## P17. Between
 We want to find whether an object is between two objects.
 The relation `between(a, b, c)` means `c` is in between object `a` and `b`.
 ```
@@ -351,7 +351,7 @@ scli scene_graph.scl -p minmaxprob --query between
 between: {((1, 3, 2), 1), ((1, 4, 2), 1), ((1, 4, 3), 1), ((1, 5, 2), 1), ((1, 5, 3), 1), ((1, 5, 4), 1), ((2, 4, 3), 1), ((2, 5, 3), 1), ((2, 5, 4), 1), ((3, 5, 4), 1)}
 ```
 
-## P8. Green between red and blue
+## P18. Green between red and blue
 Is there a green object between a red and a blue object?
 The relation `between(a, b, c)` means `c` is in between object `a` and `b`.
 
@@ -363,7 +363,7 @@ scli scene_graph.scl -p minmaxprob --query g_between_r_and_b
 g_between_r_and_b: {((false), 0.98), ((true), 0.02)}
 ```
 
-## P9. CLEVR question
+## P19. CLEVR question
 Here is a question from the CLEVR dataset corresponding to the image we give:
 What is the color of the other big object that is made of the same material as the yellow thing?
 ```
@@ -371,7 +371,7 @@ scli scene_graph.scl -p minmaxprob --query clevr_q
 clevr_q: {(("blue"), 0.06), (("green"), 0.94), (("red"), 0.06), (("yellow"), 0.06)}
 ```
 
-## P10: Working with Different Tags
+## P20: Working with Different Tags
 After the practices from P1 to P9, here are two questions for you.
 Does the probability for the query output match your expectation?
 Can you try to explain why we reach these probabilities?
@@ -421,7 +421,7 @@ Tags of output relation `g_between_r_and_b`:
 // TODO: Fill in the tags here
 ```
 
-## P11: Provenance Comparison
+## P21: Provenance Comparison
 Please rerun the queries: `num_red_objects`, `g_between_r_and_b`, and `how_many_object_of_each_shape`.
 We will run them with `minmaxprob` semiring and `topbottomkclauses` (short handed as `tbk` below) semiring of different top-k values.
 Please fill in the table below with the query outputs' probability
