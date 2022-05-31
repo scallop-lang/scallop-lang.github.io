@@ -1,6 +1,6 @@
 # Lab 2 Instructions
 
-In lab2, we will guide you through the basic Scallop Python API, called scallopy.
+In this lab, we will guide you through the basic Scallop Python API, called scallopy.
 The lab content includes but is not limited to:
 1. How to construct and execute a Scallop program in Python using Scallopy.
 2. How to perform a learning task in Python through Scallopy.
