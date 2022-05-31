@@ -423,9 +423,11 @@ Tags of output relation `g_between_r_and_b`:
 ```
 
 ## P21: Provenance Comparison
+
 Rerun the queries `num_red_objects`, `g_between_r_and_b`, and `how_many_object_of_each_shape`, each
 with the `minmaxprob` semiring and the `topbottomkclauses` (abbreviated as `tbk` below) semiring of different top-k values.
 Fill in the table below with the query outputs' probability.
+
 
 | Extended Provenance Semiring | minmaxprob | tbk (k=1) | tbk (k=3) | tbk (k=10) |
 | :--- | :----: | :----: | :----: | ---: |
