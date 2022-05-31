@@ -5,7 +5,7 @@ The lab content includes but is not limited to:
 1. How to construct and execute a Scallop program in Python using Scallopy.
 2. How to perform a learning task in Python through Scallopy.
 
-We will mainly tackle the digit recognition task, MNIST during this lab:
+We will mainly tackle the MNIST digit recognition task during this lab:
 <div>
  <img src="/img/summer_school/lab1/mnist_example.png" width="300"/>
 </div>
