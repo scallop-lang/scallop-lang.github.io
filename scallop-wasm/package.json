@@ -1,0 +1,15 @@
+{
+  "name": "scallop-wasm",
+  "collaborators": [
+    "Ziyang Li"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "scallop_wasm_bg.wasm",
+    "scallop_wasm.js",
+    "scallop_wasm.d.ts"
+  ],
+  "module": "scallop_wasm.js",
+  "types": "scallop_wasm.d.ts",
+  "sideEffects": false
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/vendor/js/jquery.min.js"></script>
+  </head>
+  <body>
+    <textarea id="source"></textarea>
+    <button id="compile">Compile and Run</button>
+    <pre id="result"></pre>
+    <script type="module">
+      import init, {interpret} from "/scallop-wasm/scallop_wasm.js";
+      init().then(() => {
+        $("#compile").click(() => {
+          let scallop_source = $("#source").val();
+          let interpreted_result = interpret(scallop_source);
+          $("#result").text(interpreted_result);
+        });
+      });
+    </script>
+  </body>
+</html>
