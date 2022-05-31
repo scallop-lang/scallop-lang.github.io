@@ -276,6 +276,7 @@ To express this probabilistic property, we will guide you through how to use pro
 The VQA exercises will be in the [`scene_graph.scl`](/ssft22/labs/scene_graph.scl).
 
 ## P1: Probabilistic scene graph
+In this practice, we will simulate a situation where these facts come from a neural network.
 To perform the VQA task, we first need to describe the image in a symbolic form, also known as the "scene graph".
 The scene graph can have multiple object attributes, such as color, shape, and relations.
 In this task, the colors of objects will be red, green, yellow, and blue; the shapes will be cube, sphere, and cylinder; the materials are metal and rubber; the sizes are big and small.
@@ -370,7 +371,7 @@ scli scene_graph.scl -p minmaxprob --query clevr_q
 clevr_q: {(("blue"), 0.06), (("green"), 0.94), (("red"), 0.06), (("yellow"), 0.06)}
 ```
 
-## P10: Tag space
+## P10: Working with Different Tags
 After the practices from P1 to P9, here are two questions for you.
 Does the probability for the query output match your expectation?
 Can you try to explain why we reach these probabilities?
@@ -379,34 +380,18 @@ Exact probabilistic reasoning is not the only way to perform the probabilistic c
 There are many methods to perform approximation and accelerate the speed of probabilistic reasoning.
 We build our theory upon the [provenance semiring](https://repository.upenn.edu/cgi/viewcontent.cgi?article=1022&context=db_research) framework.
 We will first define the tag space *T*, the *0* and *1* in *T*, and the binary operations *⊕*, *⊗*, and *⊖* to instrument how to combine the tags when "or", "and", and "not" take places in the fact space.
-Note that when we are using the word provenance semiring, we are referring to an extension of the provenance semiring with negation. //TODO: cite
+Note that when we are using the word "extended provenance semiring", we are referring to an extension of the [provenance semiring with negation](https://www.usenix.org/legacy/event/tapp11/tech/final_files/Amsterdamer.pdf).
 
-The default `unit` provenance semiring does not propagate any tag information during the reasoning process.
-- *T = ()*
-- *0 = ()*
-- *1 = ()*
-- *⊕ = λ(x, y)=>()*
-- *⊗ = λ(x, y)=>()*
-- *⊖ = λ(x)=>()*
+There are multiple extended provenance semirings we provided to choose from, they have different expressiveness, precision, and efficiency.
 
-Another provenance semiring `minmaxprob` propagates the probability of the most influential input fact to the deduced fact.
-- *T = [0, 1]*
-- *0 = 0*
-- *1 = 1*
-- *⊕ = λ(x, y)=> min(1, x + y)*
-- *⊗ = λ(x, y)=> x ✕ y*
-- *⊖ = λ(x)=>1-x*
-
-There are multiple provenance semirings we provided to choose from, they have different expressiveness, precision, and efficiency.
-
-| provenance semiring | Negation | Aggregation | Probabilistic | Precision |
+|  Extended Provenance Semiring | Negation | Aggregation | Probabilistic | Precision |
 | :--- | :----: | :----: | :----: | ---: |
 | unit | True | True | False | N/A |
 | minmaxprob | True | True | True | low |
 | topkproofs | False | False | True | tunable |
 | topbottomkclauses | True | True | True | tunable |
 
-To select the provenance semiring, we have the `-p` option for both `scli` and `sclirepl`.
+To select the extended provenance semiring, we have the `-p` option for both `scli` and `sclirepl`.
 ```
 scli -p <semiring> <scl_file>
 ```
@@ -423,7 +408,7 @@ num_red_objects: {((0), 0.06000000000000005), ((1), 0.94), ((2), 0.02), ((3), 0.
 ```
 
 In the `topbottomkclauses` semiring, the tags are DNF or CNF formulas with at most k clauses. This semiring will provide the most likely proof of the fact.
-Please fill in the tags for the `g_between_r_and_b` under the `topbottomkclauses` semiring, and briefly explain how is probability of `g_between_r_and_b(False)` calculated.
+Please fill in the tags for the `g_between_r_and_b` under the `topbottomkclauses` semiring, and briefly explain how the probability of `g_between_r_and_b(False)` is calculated.
 ```
 > scli scene_graph.scl -p topbottomkclauses -q num_red_objects --debug-tag
 Tags of input relation `obj_color`:
@@ -436,12 +421,12 @@ Tags of output relation `g_between_r_and_b`:
 // TODO: Fill in the tags here
 ```
 
-## P11: Provenance Semiring Comparison
+## P11: Provenance Comparison
 Please rerun the queries: `num_red_objects`, `g_between_r_and_b`, and `how_many_object_of_each_shape`.
 We will run them with `minmaxprob` semiring and `topbottomkclauses` (short handed as `tbk` below) semiring of different top-k values.
 Please fill in the table below with the query outputs' probability
 
-| provenance semiring | minmaxprob | tbk (k=1) | tbk (k=3) | tbk (k=10) |
+| Extended Provenance Semiring | minmaxprob | tbk (k=1) | tbk (k=3) | tbk (k=10) |
 | :--- | :----: | :----: | :----: | ---: |
 | `num_red_objects(1)` |  |  |  |  |
 | `num_red_objects(2)` |  |  |  |  |
