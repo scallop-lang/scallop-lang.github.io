@@ -2,6 +2,41 @@
 <html>
   <head>
     <script src="/vendor/js/jquery.min.js"></script>
+    <style>
+      #source {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.5);
+        width: calc(100% - 42px);
+        height: 300px;
+        border-radius: 5px;
+        font-family: 'menlo', 'Courier New', Courier, monospace;
+        font-size: 14px;
+      }
+
+      #result {
+        margin: 10px;
+        padding: 10px;
+        background-color: rgb(234, 241, 244);
+        width: calc(100% - 42px);
+        border-radius: 5px;
+        font-family: 'menlo', 'Courier New', Courier, monospace;
+        font-size: 14px;
+        min-height: 30px;
+      }
+
+      #compile {
+        margin: 10px;
+        line-height: 40px;
+        background-image: linear-gradient(to bottom right, rgba(109, 207, 246, 1), rgba(240, 117, 173, 1));
+        color: white;
+        text-align: center;
+        width: calc(100% - 20px);
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+    </style>
   </head>
   <body>
     <textarea id="source"></textarea>
