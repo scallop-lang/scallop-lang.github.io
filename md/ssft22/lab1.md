@@ -36,8 +36,8 @@ As we go through the exercises, you will see them being computed one by one!
 We use two relations, `node` and `edge` to define the basic structure of the graph.
 
 ``` scl
-rel node(usize)
-rel edge(usize, usize)
+type node(usize)
+type edge(usize, usize)
 ```
 
 The `node` relation is a unary relation that stores the node IDs.
