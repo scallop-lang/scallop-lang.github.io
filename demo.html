@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Scallop - Online Demo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="/vendor/js/jquery.min.js"></script>
+    <script src="vendor/js/jquery.min.js"></script>
     <style>
       #source {
         margin: 10px;
@@ -28,28 +26,68 @@
       }
 
       #compile {
+        transition: 0.2s all;
+        cursor: pointer;
         margin: 10px;
-        line-height: 40px;
-        background-image: linear-gradient(to bottom right, rgba(109, 207, 246, 1), rgba(240, 117, 173, 1));
+        line-height: 35px;
+        padding: 0 20px;
+        background-color: rgba(109, 207, 246, 1);
         color: white;
         text-align: center;
-        width: calc(100% - 20px);
         border: none;
         border-radius: 5px;
         font-size: 16px;
+      }
+
+      #compile:hover {
+        background-color: rgb(90, 201, 245);
+      }
+
+      #compile:active {
+        background-color: rgb(37, 169, 221);
       }
     </style>
   </head>
   <body>
     <textarea id="source"></textarea>
-    <button id="compile">Compile and Run</button>
+    <div>
+      <span>Provenance:</span>
+      <select id="provenance">
+        <option value="unit">Unit</option>
+        <option value="minmaxprob">Min/Max Probability</option>
+        <option value="topkproofs">Top K Proofs</option>
+        <option value="topbottomkclauses">Top Bottom K Clauses</option>
+      </select>
+      <span>K (for <code>topkproofs</code> and <code>topbottomkclauses</code> provenance):</span>
+      <input id="top-k" type="number" value="3" />
+      <button id="compile">Run</button>
+    </div>
     <pre id="result"></pre>
     <script type="module">
-      import init, {interpret} from "/scallop-wasm/scallop_wasm.js";
+      import init, {
+        interpret,
+        interpret_with_minmaxprob,
+        interpret_with_topkproofs,
+        interpret_with_topbottomkclauses,
+      } from "/artifacts/scallop-wasm/scallop_wasm.js";
       init().then(() => {
         $("#compile").click(() => {
           let scallop_source = $("#source").val();
-          let interpreted_result = interpret(scallop_source);
+          let interpreted_result = "";
+          let provenance = $("#provenance").val();
+          if (provenance == "unit") {
+            interpreted_result = interpret(scallop_source);
+          } else if (provenance == "minmaxprob") {
+            interpreted_result = interpret_with_minmaxprob(scallop_source);
+          } else if (provenance == "topkproofs") {
+            let top_k = parseInt($("#top-k"));
+            interpreted_result = interpret_with_topkproofs(scallop_source, top_k);
+          } else if (provenance == "topbottomkclauses") {
+            let top_k = parseInt($("#top-k"));
+            interpreted_result = interpret_with_topbottomkclauses(scallop_source, top_k);
+          } else {
+            alert("Unknown provenance `" + provenance + "`");
+          }
           $("#result").text(interpreted_result);
         });
       });
