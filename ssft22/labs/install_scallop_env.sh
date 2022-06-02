@@ -5,6 +5,7 @@ SCALLOP_PKG=$ROOT_FOLDER/pkg
 SCALLOP_LAB=$ROOT_FOLDER/labs
 SCALLOP_LAB1=$ROOT_FOLDER/labs/lab1
 SCALLOP_LAB2=$ROOT_FOLDER/labs/lab2
+VERSION_ID="0.1.3"
 
 LAB1_URL="https://scallop-lang.github.io/ssft22/labs/graph_algo.scl"
 LAB2_URL="https://scallop-lang.github.io/ssft22/labs/lab2.tar"
@@ -22,9 +23,9 @@ echo $OSTYPE
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     if [[ "$ARC_NAME" == "x86_64" ]]; then
         echo "Detecting System version: Linux"
-        SCLI_URL="https://scallop-lang.github.io/artifacts/scli/x86_64-linux-unknown/v0.1.1/scli"
-        SCLREPL_URL="https://scallop-lang.github.io/artifacts/sclrepl/x86_64-linux-unknown/v0.1.1/sclrepl"
-        SCALLOPY_URL="https://scallop-lang.github.io/artifacts/scallopy/scallopy-0.1.1-cp39-cp39-manylinux_2_27_x86_64.whl"
+        SCLI_URL="https://scallop-lang.github.io/artifacts/scli/x86_64-linux-unknown/v"$VERSION_ID"/scli"
+        SCLREPL_URL="https://scallop-lang.github.io/artifacts/sclrepl/x86_64-linux-unknown/v"$VERSION_ID"/sclrepl"
+        SCALLOPY_URL="https://scallop-lang.github.io/artifacts/scallopy/scallopy-"$VERSION_ID"-cp39-cp39-manylinux_2_27_x86_64.whl"
     else
         echo "Sorry, we only support 64 bit linux operating system"
         exit 1
@@ -33,15 +34,15 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     if [[ "$ARC_NAME" == "x86_64" ]]; then
         # set the urls for intel chips
         echo "Detecting System version: Mac OS with intel chip"
-        SCLI_URL="https://scallop-lang.github.io/artifacts/scli/x86_64-apple-darwin/v0.1.1/scli"
-        SCLREPL_URL="https://scallop-lang.github.io/artifacts/sclrepl/x86_64-apple-darwin/v0.1.1/sclrepl"
-        SCALLOPY_URL="https://scallop-lang.github.io/artifacts/scallopy/scallopy-0.1.1-cp39-cp39-macosx_11_0_arm64.whl"
+        SCLI_URL="https://scallop-lang.github.io/artifacts/scli/x86_64-apple-darwin/v"$VERSION_ID"/scli"
+        SCLREPL_URL="https://scallop-lang.github.io/artifacts/sclrepl/x86_64-apple-darwin/v"$VERSION_ID"/sclrepl"
+        SCALLOPY_URL="https://scallop-lang.github.io/artifacts/scallopy/scallopy-"$VERSION_ID"-cp39-cp39-macosx_11_0_arm64.whl"
     else
         # set the urls for M1 chips
         echo "Detecting System version: Mac OS with M1 chip"
-        SCLI_URL="https://scallop-lang.github.io/artifacts/scli/arm64-apple-darwin/v0.1.1/scli"
-        SCLREPL_URL="https://scallop-lang.github.io/artifacts/sclrepl/arm64-apple-darwin/v0.1.1/sclrepl"
-        SCALLOPY_URL="https://scallop-lang.github.io/artifacts/scallopy/scallopy-0.1.1-cp39-cp39-macosx_10_7_x86_64.whl"
+        SCLI_URL="https://scallop-lang.github.io/artifacts/scli/arm64-apple-darwin/v"$VERSION_ID"/scli"
+        SCLREPL_URL="https://scallop-lang.github.io/artifacts/sclrepl/arm64-apple-darwin/v"$VERSION_ID"/sclrepl"
+        SCALLOPY_URL="https://scallop-lang.github.io/artifacts/scallopy/scallopy-"$VERSION_ID"-cp39-cp39-macosx_10_7_x86_64.whl"
     fi
 else
     echo "Sorry, we haven't support your OS yet. Please try install through docker"

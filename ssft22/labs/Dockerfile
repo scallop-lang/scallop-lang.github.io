@@ -1,9 +1,10 @@
 FROM amd64/ubuntu:18.04
 SHELL ["/bin/bash", "-c"]
 
-ARG SCLI_URL="https://scallop-lang.github.io/artifacts/scli/x86_64-linux-unknown/v0.1.1/scli"
-ARG SCLREPL_URL="https://scallop-lang.github.io/artifacts/sclrepl/x86_64-linux-unknown/v0.1.1/sclrepl"
-ARG SCALLOPY_URL="https://scallop-lang.github.io/artifacts/scallopy/scallopy-0.1.1-cp39-cp39-manylinux_2_27_x86_64.whl"
+ARG VERSION_ID="0.1.3"
+ARG SCLI_URL="https://scallop-lang.github.io/artifacts/scli/x86_64-linux-unknown/v"${VERSION_ID}"/scli"
+ARG SCLREPL_URL="https://scallop-lang.github.io/artifacts/sclrepl/x86_64-linux-unknown/v"${VERSION_ID}"/sclrepl"
+ARG SCALLOPY_URL="https://scallop-lang.github.io/artifacts/scallopy/scallopy-"${VERSION_ID}"-cp39-cp39-manylinux_2_27_x86_64.whl"
 ARG LAB1_URL="https://scallop-lang.github.io/ssft22/labs/graph_algo.scl"
 ARG LAB2_URL="https://scallop-lang.github.io/ssft22/labs/lab2.tar"
 
