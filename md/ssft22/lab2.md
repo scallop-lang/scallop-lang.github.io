@@ -8,7 +8,7 @@ The lab content includes but is not limited to:
 We will mainly tackle the MNIST digit recognition task during this lab:
 ![image](/img/summer_school/lab2/mnist_example.png)
 
-Please download and extract [lab2.ipynb](/ssft22/labs/lab2.ipynb), and follow the instructions in the Jupyter Notebook.
+Please download [lab2.ipynb](/ssft22/labs/lab2.ipynb), and follow the instructions in the Jupyter Notebook.
 
 ## Jupyter Notebook with VSCode (Optional)
 
