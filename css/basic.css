@@ -226,6 +226,10 @@ footer {
   width: calc(100% - 390px);
 }
 
+.markdown-content img {
+  max-width: 100%;
+}
+
 .markdown-content h1 code, .markdown-content h2 code, .markdown-content h3 code, .markdown-content h4 code, .markdown-content h5 code, .markdown-content h6 code {
   font-size: inherit;
 }
