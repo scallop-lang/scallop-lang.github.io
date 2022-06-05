@@ -348,7 +348,7 @@ To advance further, try to achieve the following tasks:
 - Generate your programmatic question and answer pairs using the `scene` we provided in the data
   - Example 1: How many big blue objects are there in the scene?
   - Example 2: Does there exists a green object on the right-hand side of a big object?
-  - There is much more examples in the original (CLEVR)[https://cs.stanford.edu/people/jcjohns/clevr/] dataset.
+  - There is much more examples in the original [CLEVR](https://cs.stanford.edu/people/jcjohns/clevr/)dataset.
 - Write a generic executor to support more forms of CLEVR symbolic program in Datalog!
   - Instead of writing out the datalog rules directly, we can also instrument Datalog to evaluate a CLEVR program for us.
   - You can draw inspiration from the first boot camp problem :)
