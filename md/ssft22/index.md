@@ -27,3 +27,13 @@ Before embarking on the labs, setup Scallop on your computer by completing [Lab 
 - [Lab 0](/ssft22/lab0.html) - setting up Scallop and running your first Scallop program
 - [Lab 1](/ssft22/lab1.html) - programming in Scallop and reasoning with provenances
 - [Lab 2](/ssft22/lab2.html) - combining perception and reasoning using PyTorch and Scallop
+
+## Bootcamp
+
+Our bootcamp contains many larger problems that you can implement using Scallop!
+We will only provide you vague directions and initial sample code.
+But the problem themselves are pretty open-ended, so it really depends on how far you want to push them.
+Hopefully, you will get to know the expressiveness of Datalog and Scallop in general.
+Have fun!
+
+- [Bootcamp](/ssft22/bootcamp.html)

@@ -1,6 +1,10 @@
 # Bootcamp
 
-Here are a few interesting Scallop program that you can tackle:
+Here are a few interesting Scallop program that you can tackle.
+We will only provide you vague directions and initial sample code.
+But the problem themselves are pretty open-ended, so it really depends on how far you want to push them.
+Hopefully, you will get to know the expressiveness of Datalog and Scallop in general.
+Have fun!
 
 ## 1. Type Inference
 
@@ -14,6 +18,8 @@ Try achieve the following:
 - Add more language constructs such as function declaration and function application!
   - And add new `type_of` definition to support that!
   - See if you can allow recursive function and even mutual recursive function to be defined!
+- Can you write an evaluator for this simple language in Scallop?
+  - With functions and recursive functions?
 
 ``` scl
 // EXP ::= let V = EXP in EXP
@@ -36,7 +42,7 @@ rel comparison_op = {"==", "!=", ">=", "<=", ">", "<"}
 rel logical_op = {"&&", "||", "^"}
 rel arith_op = {"+", "-", "*", "/"}
 
-// A program with each number 0-4 denoting their index
+// A program with number 0-4 denoting sub-expression ID
 //   let x = 3 in x >= 4
 //   -------------------0
 //           -1   ------2
@@ -110,7 +116,60 @@ Example output:
 result: {0.063::(0.125), 0.018::(0.5), 0.144::(2), 0.504::(8), 0.0252::(32)}
 ```
 
-## 3. Music Theory
+## 3. Meta Datalog
+
+![datalog_in_datalog](/img/summer_school/datalog_in_datalog.png)
+![datalog_in_datalog_2](/img/summer_school/datalog_in_datalog_2.png)
+
+For those of you who want to do more stuffs with Datalog,
+it turns out you can actually encode Datalog program in Datalog (Scallop)!
+The images above show how you can declare Datalog programs, coming from [this paper](https://creichen.net/papers/metadl.pdf).
+Try to accomplish the following yourself:
+
+- Understand the syntax and semantics for Datalog programs
+- Understand our program encoding and manually encode another Datalog program
+- Write an analysis that checks the consistency of the arity of each predicate
+- Compute dependency graph of your Datalog program
+- Extend the definition and allow for negative atoms in a rule
+  - Check if there is unbound variable: a variable cannot be bounded solely by a negative atom
+  - Compute dependency with their positive/negative property
+  - Check if the program is stratified: no dependency cycle can contain negative edge
+- Add type to the predicates and write a type checker for Datalog program
+  - You can draw some inspiration from our first bootcamp problem!
+- Can you write an interpreter for Datalog in Scallop?
+
+The following is a piece of sample code that you can start from.
+Note that it has a slightly different encoding than the one shown on the picture.
+
+``` scl
+type RuleID <: usize
+type AtomListID <: usize
+type AtomID <: usize
+type VarListID <: usize
+type VarID <: usize
+
+type rule(RuleID, AtomID, AtomListID)
+type atom_list(AtomListID, usize, AtomID)
+type atom(AtomID, String, VarListID)
+type var_list(VarListID, usize, VarID)
+type var(VarID, String)
+
+// Rule 1: path(a, b) :- edge(a, b)
+rel rule = {(0, 0, 0)}
+rel atom_list = {(0, 0, 1)}
+rel atom = {(0, "path", 0), (1, "edge", 1)}
+rel var_list = {(0, 0, 0), (0, 1, 1), (1, 0, 2), (1, 1, 3)}
+rel var = {(0, "a"), (1, "b"), (2, "a"), (3, "b")}
+
+// Rule 2: path(a, b) :- path(a, c), edge(c, b)
+rel rule = {(1, 2, 1)}
+rel atom_list = {(1, 0, 3), (1, 1, 4)}
+rel atom = {(2, "path", 2), (3, "path", 3), (4, "edge", 4)}
+rel var_list = {(2, 0, 4), (2, 1, 5), (3, 0, 6), (3, 1, 7), (4, 0, 8), (4, 1, 9)}
+rel var = {(4, "a"), (5, "b"), (6, "a"), (7, "c"), (8, "c"), (9, "b")}
+```
+
+## 4. Music Theory
 
 ![circle_of_fifths](/img/summer_school/circle_of_fifth.svg)
 
@@ -156,60 +215,14 @@ type major_fourth(String, String)
 type major_fifth(String, String)
 ```
 
-## 4. Meta Datalog
-
-![datalog_in_datalog](/img/summer_school/datalog_in_datalog.png)
-![datalog_in_datalog_2](/img/summer_school/datalog_in_datalog_2.png)
-
-For those of you who want to do more stuffs with Datalog,
-it turns out you can actually encode Datalog program in Datalog (Scallop)!
-The images above shows how you can actually declare Datalog programs.
-And you can actually use Scallop to do a lot with it!
-The idea of this project comes from [this paper](https://creichen.net/papers/metadl.pdf).
-Try to accomplish the following yourself:
-
-- Understand the syntax and semantics for Datalog programs
-- Understand our program encoding and manually encode another Datalog program
-- Write an analysis that checks the consistency of the arity of each predicate
-- Compute dependency graph of your Datalog program
-- Extend the definition and allow for negative atoms in a rule
-  - Check if there is unbound variable: a variable cannot be bounded solely by a negative atom
-  - Compute dependency with their positive/negative property
-  - Check if the program is stratified: no dependency cycle can contain negative edge
-- Add type to the predicates and write a type checker for Datalog program
-- Can you write an interpreter for Datalog in Scallop?
-
-``` scl
-type RuleID <: usize
-type AtomListID <: usize
-type AtomID <: usize
-type VarListID <: usize
-type VarID <: usize
-
-type rule(RuleID, AtomID, AtomListID)
-type atom_list(AtomListID, usize, AtomID)
-type atom(AtomID, String, VarListID)
-type var_list(VarListID, usize, VarID)
-type var(VarID, String)
-
-// Rule 1: path(a, b) :- edge(a, b)
-rel rule = {(0, 0, 0)}
-rel atom_list = {(0, 0, 1)}
-rel atom = {(0, "path", 0), (1, "edge", 1)}
-rel var_list = {(0, 0, 0), (0, 1, 1), (1, 0, 2), (1, 1, 3)}
-rel var = {(0, "a"), (1, "b"), (2, "a"), (3, "b")}
-
-// Rule 2: path(a, b) :- path(a, c), edge(c, b)
-rel rule = {(1, 2, 1)}
-rel atom_list = {(1, 0, 3), (1, 1, 4)}
-rel atom = {(2, "path", 2), (3, "path", 3), (4, "edge", 4)}
-rel var_list = {(2, 0, 4), (2, 1, 5), (3, 0, 6), (3, 1, 7), (4, 0, 8), (4, 1, 9)}
-rel var = {(4, "a"), (5, "b"), (6, "a"), (7, "c"), (8, "c"), (9, "b")}
-```
-
 ## 5. CLEVR
 
 In this task you are going to let neural networks to learn to recognize yellow objects,
 just by telling them how many yellow objects are there in the scene.
 We will provide you with [the data](#) and a `Dataset` class so that you can load the data.
-Then, please try
+Then, please try to setup and train neural network with Scallop within the training loop
+to do the logical counting.
+
+``` scl
+number_of_yellow_objs(n) :- n = count(o: obj_color(o, "yellow"))
+```
