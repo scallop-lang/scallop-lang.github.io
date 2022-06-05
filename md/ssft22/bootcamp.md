@@ -215,7 +215,7 @@ type major_fourth(String, String)
 type major_fifth(String, String)
 ```
 
-## 5. CLEVR
+## 5. How Many Yellow Objects?
 
 In this task you are going to let neural networks to learn to recognize yellow objects,
 just by telling them how many yellow objects are there in the scene.
