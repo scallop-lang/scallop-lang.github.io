@@ -6,7 +6,7 @@ But the problem themselves are pretty open-ended, so it really depends on how fa
 Hopefully, you will get to know the expressiveness of Datalog and Scallop in general.
 Have fun!
 
-## 1. Type Inference
+# 1. Type Inference
 
 Here is a piece of starter code in Scallop for a simply typed language.
 Associated with it there is a small program `let x = 3 in x + 4` encoded as Scallop facts.
@@ -68,7 +68,7 @@ Example output:
 type_of: {(0, "bool"), (1, "int"), (2, "bool"), (3, "int"), (4, "int")}
 ```
 
-## 2. Formula Parser
+# 2. Formula Parser
 
 ![hwf](/img/hwf/banner.png)
 
@@ -118,7 +118,7 @@ Example output:
 result: {0.063::(0.125), 0.018::(0.5), 0.144::(2), 0.504::(8), 0.0252::(32)}
 ```
 
-## 3. Meta Datalog
+# 3. Meta Datalog
 
 ![datalog_in_datalog](/img/summer_school/datalog_in_datalog.png)
 ![datalog_in_datalog_2](/img/summer_school/datalog_in_datalog_2.png)
@@ -171,7 +171,7 @@ rel var_list = {(2, 0, 4), (2, 1, 5), (3, 0, 6), (3, 1, 7), (4, 0, 8), (4, 1, 9)
 rel var = {(4, "a"), (5, "b"), (6, "a"), (7, "c"), (8, "c"), (9, "b")}
 ```
 
-## 4. Music Theory
+# 4. Music Theory
 
 ![circle_of_fifths](/img/summer_school/circle_of_fifth.svg)
 
@@ -217,7 +217,7 @@ type major_fourth(String, String)
 type major_fifth(String, String)
 ```
 
-## 5. How Many Yellow Objects?
+# 5. How Many Yellow Objects?
 
 ![clevr](/img/clevr/CLEVR_train_000013.png)
 
