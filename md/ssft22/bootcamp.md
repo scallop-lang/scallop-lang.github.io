@@ -139,9 +139,11 @@ Try to accomplish the following yourself:
 - Write an analysis that checks the consistency of the arity of each predicate
 - Compute dependency graph of your Datalog program
 - Extend the definition and allow for negative atoms in a rule
-  - Check if there is unbound variable: a variable cannot be bounded solely by a negative atom
   - Compute dependency with their positive/negative property
   - Check if the program is stratified: no dependency cycle can contain negative edge
+- Check if there is unbound variable
+  - a variable appeared in the head must appear somewhere in a positive atom in the body
+  - a variable cannot be bounded solely by a negative atom
 - Add type to the predicates and write a type checker for Datalog program
   - You can draw some inspiration from our first bootcamp problem!
 - Can you write an interpreter for Datalog in Scallop?
