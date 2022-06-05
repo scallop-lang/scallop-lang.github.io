@@ -70,6 +70,8 @@ type_of: {(0, "bool"), (1, "int"), (2, "bool"), (3, "int"), (4, "int")}
 
 ## 2. Formula Parser
 
+![hwf](/img/hwf/banner.png)
+
 In this example, we encode a probabilistic formula using the following two relations `symbol` and `length`.
 The `symbol` relation maps the index of the symbol to its actual `String` symbol (from one of `0`-`9`, `+`, `-`, `*`, `/`).
 The `length` relation stores the length of this formula.
@@ -217,11 +219,14 @@ type major_fifth(String, String)
 
 ## 5. How Many Yellow Objects?
 
+![clevr](/img/clevr/CLEVR_train_000013.png)
+
 In this task you are going to let neural networks to learn to recognize yellow objects,
 just by telling them how many yellow objects are there in the scene.
 We will provide you with [the data](#) and a `Dataset` class so that you can load the data.
 Then, please try to setup and train neural network with Scallop within the training loop
 to do the logical counting.
+For example, the image above should have only 1 yellow object.
 
 ``` scl
 number_of_yellow_objs(n) :- n = count(o: obj_color(o, "yellow"))
