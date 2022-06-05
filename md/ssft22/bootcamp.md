@@ -225,16 +225,25 @@ type major_fifth(String, String)
 
 ![clevr](/img/clevr/CLEVR_train_000013.png)
 
-In this task you are going to let neural networks to learn to recognize yellow objects,
+In this task, you are going to let neural networks learn to recognize yellow objects,
 just by telling them how many yellow objects are there in the scene.
 We will provide you with [the data](https://drive.google.com/file/d/13bcj7Dhv5OD_GcQtnUYerPTBWaRmktJL/view?usp=sharing) and a `Dataset` class so that you can load the data.
-Then, please try to setup and train neural network with Scallop within the training loop
+Then, please try to set up and train the neural network with Scallop within the training loop
 to do the logical counting.
 For example, the image above should have only 1 yellow object.
+This question can simply be expressed in the form of one scl rule as follows:
 
 ``` scl
 number_of_yellow_objs(n) :- n = count(o: obj_color(o, "yellow"))
 ```
+
+> Hint:
+> Here are a few model design suggestions that are probably useful
+> 1) Use a 4 layer convolutional network to process the regions into feature vectors
+> 2) A global representation of the whole graph is useful
+> 3) Use 2-layer MLP classifiers for object attributes
+> 4) Use 3-layer MLP classifiers for object spatial relations
+> 5) You can set the learning rate to 0.0001
 
 Here is a sample `Dataset` class for you to start with, feel free to modify the class according
 to your need.
@@ -331,3 +340,15 @@ def clevr_vision_only_loader(root: str, train_question_path: str, test_question_
   test_loader = torch.utils.data.DataLoader(CLEVRVisionOnlyDataset(root, test_question_path, False, device), collate_fn=CLEVRVisionOnlyDataset.collate_fn, batch_size=batch_size, shuffle=True)
   return (train_loader, test_loader)
 ```
+
+To advance further, try to achieve the following tasks:
+- Try a new evaluation metric
+  - Instead of comparing the final output against the ground truth answer, compare it against the scene graph.
+  - What is the advantage of this metric?
+- Generate your programmatic question and answer pairs using the `scene` we provided in the data
+  - Example 1: How many big blue objects are there in the scene?
+  - Example 2: Does there exists a green object on the right-hand side of a big object?
+  - There is much more examples in the original (CLEVR)[https://cs.stanford.edu/people/jcjohns/clevr/] dataset.
+- Write a generic executor to support more forms of CLEVR symbolic program in Datalog!
+  - Instead of writing out the datalog rules directly, we can also instrument Datalog to evaluate a CLEVR program for us.
+  - You can draw inspiration from the first boot camp problem :)
