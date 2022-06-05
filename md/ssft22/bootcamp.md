@@ -236,7 +236,11 @@ This question can simply be expressed in the form of one scl rule as follows:
 You can try and incrementally accomplish the following
 - Read in the dataset, and make sure you understand the format
   - An image will be segmented into small bounding boxes containing the objects.
+- Try a new evaluation metric
+  - Instead of comparing the final output against the ground truth answer, compare it against the scene graph.
+  - What is the advantage of this metric?
 - Write simple convolutional neural network to classify each object into different colors
+  - There is hint below!
 - Connect Scallop with this neural network and count the number of objects
 - Complete the training loop and start training!
   - Without much tuning, we can already achieve 97% validation accuracy in the second epoch. So it should not take long
@@ -351,14 +355,11 @@ def clevr_vision_only_loader(root: str, train_question_path: str, test_question_
   return (train_loader, test_loader)
 ```
 
-To advance further, try to achieve the following tasks:
-- Try a new evaluation metric
-  - Instead of comparing the final output against the ground truth answer, compare it against the scene graph.
-  - What is the advantage of this metric?
+<!-- To advance further, try to achieve the following tasks:
 - Generate your programmatic question and answer pairs using the `scene` we provided in the data
   - Example 1: How many big blue objects are there in the scene?
   - Example 2: Does there exists a green object on the right-hand side of a big object?
   - There is much more examples in the original [CLEVR](https://cs.stanford.edu/people/jcjohns/clevr/)dataset.
 - Write a generic executor to support more forms of CLEVR symbolic program in Datalog!
   - Instead of writing out the datalog rules directly, we can also instrument Datalog to evaluate a CLEVR program for us.
-  - You can draw inspiration from the first boot camp problem :)
+  - You can draw inspiration from the first boot camp problem :) -->
