@@ -70,7 +70,9 @@ type_of: {(0, "bool"), (1, "int"), (2, "bool"), (3, "int"), (4, "int")}
 
 # 2. Formula Parser
 
-![hwf](/img/hwf/banner.png)
+<div>
+  <img src="/img/hwf/banner.png" style="width: 50%" />
+</div>
 
 In this example, we encode a probabilistic formula using the following two relations `symbol` and `length`.
 The `symbol` relation maps the index of the symbol to its actual `String` symbol (from one of `0`-`9`, `+`, `-`, `*`, `/`).
@@ -121,7 +123,9 @@ result: {0.063::(0.125), 0.018::(0.5), 0.144::(2), 0.504::(8), 0.0252::(32)}
 # 3. Meta Datalog
 
 ![datalog_in_datalog](/img/summer_school/datalog_in_datalog.png)
-![datalog_in_datalog_2](/img/summer_school/datalog_in_datalog_2.png)
+<div>
+  <img src="/img/summer_school/datalog_in_datalog_2.png" style="width: 50%" />
+</div>
 
 For those of you who want to do more stuffs with Datalog,
 it turns out you can actually encode Datalog program in Datalog (Scallop)!
