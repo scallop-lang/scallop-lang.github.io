@@ -27,6 +27,8 @@ Try achieve the following:
 //       | X + Y | X - Y
 //       | X and Y | X or Y | not X
 //       | X == Y | X != Y | X < Y | X <= Y | X > Y | X >= Y
+//       | <NUMBER>
+//       | true | false
 
 // Basic syntax constructs
 type number(usize, i32)
