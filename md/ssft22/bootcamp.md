@@ -1,15 +1,16 @@
 # Bootcamp
 
-Here are a few interesting Scallop program that you can tackle.
-We will only provide you vague directions and initial sample code.
-But the problem themselves are pretty open-ended, so it really depends on how far you want to push them.
-Hopefully, you will get to know the expressiveness of Datalog and Scallop in general.
+Here are a few interesting Scallop programs that you can code up.
+We will only provide high-level directions and initial sample code.
+But the problems themselves are pretty open-ended.
+Through these exercises, you will experience the advanced
+capabilities of Datalog and Scallop in general.
 Have fun!
 
 # 1. Type Inference
 
 Here is a piece of starter code in Scallop for a simply typed language.
-Associated with it there is a small program `let x = 3 in x + 4` encoded as Scallop facts.
+Associated with it is a small program `let x = 3 in x + 4` encoded as Scallop facts.
 Try achieve the following:
 
 - Make sense of the relations and be able to encode a few other program using facts

@@ -30,10 +30,5 @@ Before embarking on the labs, setup Scallop on your computer by completing [Lab 
 
 ## Bootcamp
 
-Our bootcamp contains many larger problems that you can implement using Scallop!
-We will only provide you vague directions and initial sample code.
-But the problem themselves are pretty open-ended, so it really depends on how far you want to push them.
-Hopefully, you will get to know the expressiveness of Datalog and Scallop in general.
-Have fun!
+- [Bootcamp](/ssft22/bootcamp.html) - larger problems to implement using Scallop
 
-- [Bootcamp](/ssft22/bootcamp.html)
