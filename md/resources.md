@@ -1,11 +1,22 @@
 # Resources
 
+## Mailing List
+
+- For questions or discussion about Scallop, subscribe to our mailing list <scallop-lang@seas.upenn.edu> by emailing <scallop-lang+subscribe@seas.upenn.edu>. You will need a Google account since the mailing list is hosted using Google Groups.
+
+- All discussions are archived and <a href="https://groups.google.com/a/seas.upenn.edu/g/scallop-lang">publicly available</a>.
+
+- To contact the core team privately, email <scallop-lang+owners@seas.upenn.edu>.
+
 ## Team
 
 - Core Members
   - [Ziyang Li](https://liby99.github.io/)
   - [Jiani Huang](http://cis.upenn.edu/~jianih)
   - [Mayur Naik](https://www.cis.upenn.edu/~mhnaik/)
+- Contributors
+  - Harsh Parekh
+  - Neelay Velingker
 - Collaborators
   - [Hanjun Dai](https://hanjun-dai.github.io/)
   - [Binghong Chen](http://binghongchen.net/)
