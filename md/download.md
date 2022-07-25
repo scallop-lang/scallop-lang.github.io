@@ -10,9 +10,9 @@ For other usage, please type `scli --help` for instructions.
 
 | System | Architecture | Version | Download                                                   |
 |--------|--------------|---------|------------------------------------------------------------|
-| Mac OS | Apple M1     | v0.1.3  | [`scli`](/artifacts/scli/arm64-apple-darwin/v0.1.3/scli)   |
-| Mac OS | Intel x86_64 | v0.1.3  | [`scli`](/artifacts/scli/x86_64-apple-darwin/v0.1.3/scli)  |
-| Linux  | Intel x86_64 | v0.1.3  | [`scli`](/artifacts/scli/x86_64-linux-unknown/v0.1.3/scli) |
+| Mac OS | Apple M1     | v0.1.4  | [`scli`](https://github.com/scallop-lang/scallop/releases/download/0.1.4/scli-arm64-apple-darwin) |
+| Mac OS | Intel x86_64 | v0.1.4  | [`scli`](https://github.com/scallop-lang/scallop/releases/download/0.1.4/scli-x86_64-apple-darwin) |
+| Linux  | Intel x86_64 | v0.1.4  | [`scli`](https://github.com/scallop-lang/scallop/releases/download/0.1.4/scli-x86_64-unknown-linux-gnu) |
 
 Here is a screenshot of how `scli` is invoked in a terminal.
 
@@ -28,9 +28,9 @@ This program is great for testing quick ideas and doing demo.
 
 | System | Architecture | Version | Download                                                            |
 |--------|--------------|---------|---------------------------------------------------------------------|
-| Mac OS | Apple M1     | v0.1.3  | [`sclrepl`](/artifacts/sclrepl/arm64-apple-darwin/v0.1.3/sclrepl)   |
-| Mac OS | Intel x86_64 | v0.1.3  | [`sclrepl`](/artifacts/sclrepl/x86_64-apple-darwin/v0.1.3/sclrepl)  |
-| Linux  | Intel x86_64 | v0.1.3  | [`sclrepl`](/artifacts/sclrepl/x86_64-linux-unknown/v0.1.3/sclrepl) |
+| Mac OS | Apple M1     | v0.1.4  | [`sclrepl`](https://github.com/scallop-lang/scallop/releases/download/0.1.4/sclrepl-arm64-apple-darwin)  |
+| Mac OS | Intel x86_64 | v0.1.4  | [`sclrepl`](https://github.com/scallop-lang/scallop/releases/download/0.1.4/sclrepl-x86_64-apple-darwin)  |
+| Linux  | Intel x86_64 | v0.1.4  | [`sclrepl`](https://github.com/scallop-lang/scallop/releases/download/0.1.4/sclrepl-x86_64-unknown-linux-gnu) |
 
 Here is a screenshot of `sclrepl` in a terminal.
 
@@ -57,7 +57,7 @@ commands:
 ``` bash
 $ conda create --name scallop-env python=3.9
 $ conda activate scallop-env
-$ pip install PATH/TO/YOUR/scallopy-0.1.2-cp39-cp39-[YOUR_VERSION].whl
+$ pip install PATH/TO/YOUR/scallopy-0.1.4-cp39-cp39-[YOUR_VERSION].whl
 ```
 
 Note that if you want to use `scallopy` inside a Conda environment using an M1 Mac, you should
@@ -65,10 +65,10 @@ download the `x86_64` version of `scallopy`.
 
 | System | Architecture | Python Version | Version | Download |
 |--------|--------------|----------------|---------|----------|
-| Mac OS | Apple M1     | Python 3.9     | v0.1.3  | [`scallopy-0.1.3-cp39-cp39-macosx_11_0_arm64.whl`](/artifacts/scallopy/scallopy-0.1.3-cp39-cp39-macosx_11_0_arm64.whl)   |
-| Mac OS | Intel x86_64 | Python 3.9     | v0.1.3  | [`scallopy-0.1.3-cp39-cp39-macosx_10_7_x86_64.whl`](/artifacts/scallopy/scallopy-0.1.3-cp39-cp39-macosx_10_7_x86_64.whl)  |
-| Linux  | Intel x86_64 | Python 3.8     | v0.1.3  | [`scallopy-0.1.3-cp38-cp38-manylinux_2_27_x86_64.whl`](/artifacts/scallopy/scallopy-0.1.3-cp38-cp38-manylinux_2_27_x86_64.whl) |
-| Linux  | Intel x86_64 | Python 3.9     | v0.1.3  | [`scallopy-0.1.3-cp39-cp39-manylinux_2_27_x86_64.whl`](/artifacts/scallopy/scallopy-0.1.3-cp39-cp39-manylinux_2_27_x86_64.whl) |
+| Mac OS | Apple M1     | Python 3.9     | v0.1.4  | [`scallopy-0.1.4-cp39-cp39-macosx_11_0_arm64.whl`](https://github.com/scallop-lang/scallop/releases/download/0.1.4/scallopy-0.1.4-cp39-cp39-macosx_11_0_arm64.whl) |
+| Mac OS | Intel x86_64 | Python 3.9     | v0.1.4  | [`scallopy-0.1.4-cp39-cp39-macosx_10_7_x86_64.whl`](https://github.com/scallop-lang/scallop/releases/download/0.1.4/scallopy-0.1.4-cp39-cp39-macosx_10_7_x86_64.whl) |
+| Linux  | Intel x86_64 | Python 3.8     | v0.1.4  | [`scallopy-0.1.4-cp38-cp38-manylinux_2_27_x86_64.whl`](https://github.com/scallop-lang/scallop/releases/download/0.1.4/scallopy-0.1.4-cp38-cp38-manylinux_2_27_x86_64.whl) |
+| Linux  | Intel x86_64 | Python 3.9     | v0.1.4  | [`scallopy-0.1.4-cp39-cp39-manylinux_2_27_x86_64.whl`](https://github.com/scallop-lang/scallop/releases/download/0.1.4/scallopy-0.1.4-cp39-cp39-manylinux_2_27_x86_64.whl) |
 
 Here is a screenshot of how the Scallopy library is imported and executed within a Python REPL.
 
