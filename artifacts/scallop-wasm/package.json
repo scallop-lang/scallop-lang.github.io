@@ -3,7 +3,7 @@
   "collaborators": [
     "Ziyang Li"
   ],
-  "version": "0.1.0",
+  "version": "0.1.5",
   "files": [
     "scallop_wasm_bg.wasm",
     "scallop_wasm.js",
