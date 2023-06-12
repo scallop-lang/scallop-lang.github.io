@@ -75,10 +75,12 @@ body {
 }
 
 nav {
+  position: relative;
   height: 60px;
   line-height: 60px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   background-color: white;
+  z-index: 1024;
 }
 
 nav a {
@@ -154,6 +156,56 @@ footer {
 }
 
 .nav-tab.active {
+  color: rgba(240, 117, 173, 1);
+}
+
+.nav-tab.drop-down {
+  display: inline-block;
+}
+
+.nav-tab.drop-down > a {
+  display: block;
+  transition: all 0.1s;
+  line-height: 60px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 4px solid rgba(0, 0, 0, 0);
+}
+
+.nav-tab.drop-down:hover > a {
+  background-color: rgba(0, 0, 0, 0.05);
+  line-height: 56px;
+  height: 56px;
+  border-bottom: 4px solid rgba(240, 117, 173, 1);
+  color: rgba(240, 117, 173, 1);
+}
+
+.nav-tab.drop-down.active > a {
+  color: rgba(240, 117, 173, 1);
+}
+
+.nav-tab.drop-down .drop-down-menu {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  z-index: 1024;
+}
+
+.nav-tab.drop-down:hover .drop-down-menu {
+  display: block;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-tab.drop-down .drop-down-menu > li > a {
+  display: block;
+  transition: all 0.1s;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.nav-tab.drop-down .drop-down-menu > li > a:hover {
+  background-color: rgba(250, 250, 250, 1);
   color: rgba(240, 117, 173, 1);
 }
 
