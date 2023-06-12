@@ -1,0 +1,332 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Scallop Context - Scallop Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Use Scallop for Logic Programming and Neuro-symbolic Programming">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="../installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../crash_course.html"><strong aria-hidden="true">2.</strong> Crash Course</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../language/index.html"><strong aria-hidden="true">3.</strong> Scallop and Logic Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language/relation.html"><strong aria-hidden="true">3.1.</strong> Relations and Facts</a></li><li class="chapter-item expanded "><a href="../language/rules.html"><strong aria-hidden="true">3.2.</strong> Writing Rules</a></li><li class="chapter-item expanded "><a href="../language/value_type.html"><strong aria-hidden="true">3.3.</strong> Values and Types</a></li><li class="chapter-item expanded "><a href="../language/query.html"><strong aria-hidden="true">3.4.</strong> Writing a Query</a></li><li class="chapter-item expanded "><a href="../language/recursion.html"><strong aria-hidden="true">3.5.</strong> Recursive Rules</a></li><li class="chapter-item expanded "><a href="../language/negation.html"><strong aria-hidden="true">3.6.</strong> Negations</a></li><li class="chapter-item expanded "><a href="../language/aggregation.html"><strong aria-hidden="true">3.7.</strong> Aggregations</a></li><li class="chapter-item expanded "><a href="../language/constants.html"><strong aria-hidden="true">3.8.</strong> Declaring Constants</a></li><li class="chapter-item expanded "><a href="../language/adt_and_entity.html"><strong aria-hidden="true">3.9.</strong> Algebraic Data Type and Entities</a></li><li class="chapter-item expanded "><a href="../language/loading_csv.html"><strong aria-hidden="true">3.10.</strong> Loading from CSV</a></li><li class="chapter-item expanded "><a href="../language/foreign_functions.html"><strong aria-hidden="true">3.11.</strong> Foreign Functions</a></li><li class="chapter-item expanded "><a href="../language/foreign_predicates.html"><strong aria-hidden="true">3.12.</strong> Foreign Predicates</a></li><li class="chapter-item expanded "><a href="../language/magic_set.html"><strong aria-hidden="true">3.13.</strong> Magic-Set Transformation</a></li><li class="chapter-item expanded "><a href="../language/reference_guide.html"><strong aria-hidden="true">3.14.</strong> Reference Guide</a></li></ol></li><li class="chapter-item expanded "><a href="../probabilistic/index.html"><strong aria-hidden="true">4.</strong> Provenance and Probabilistic Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../probabalistic/provenance.html"><strong aria-hidden="true">4.1.</strong> Provenance</a></li><li class="chapter-item expanded "><a href="../probabilistic/facts.html"><strong aria-hidden="true">4.2.</strong> Fact with Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/logic.html"><strong aria-hidden="true">4.3.</strong> Logic and Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/reasoning.html"><strong aria-hidden="true">4.4.</strong> Aggregation and Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/sampling.html"><strong aria-hidden="true">4.5.</strong> Sampling with Probability</a></li><li class="chapter-item expanded "><a href="../language/provenance.html"><strong aria-hidden="true">4.6.</strong> Tags and Provenance</a></li></ol></li><li class="chapter-item expanded "><a href="../scallopy/index.html"><strong aria-hidden="true">5.</strong> scallopy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scallopy/getting_started.html"><strong aria-hidden="true">5.1.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../scallopy/context.html" class="active"><strong aria-hidden="true">5.2.</strong> Scallop Context</a></li><li class="chapter-item expanded "><a href="../scallopy/branching.html"><strong aria-hidden="true">5.3.</strong> Branching Executions</a></li><li class="chapter-item expanded "><a href="../scallopy/provenance.html"><strong aria-hidden="true">5.4.</strong> Configuring Provenance</a></li><li class="chapter-item expanded "><a href="../scallopy/module.html"><strong aria-hidden="true">5.5.</strong> Creating Module</a></li><li class="chapter-item expanded "><a href="../scallopy/module_input.html"><strong aria-hidden="true">5.6.</strong> Configuring Input Relations</a></li><li class="chapter-item expanded "><a href="../scallopy/module_output.html"><strong aria-hidden="true">5.7.</strong> Configuring Output Relations</a></li><li class="chapter-item expanded "><a href="../scallopy/foreign_function.html"><strong aria-hidden="true">5.8.</strong> Foreign Functions</a></li><li class="chapter-item expanded "><a href="../scallopy/foreign_predicate.html"><strong aria-hidden="true">5.9.</strong> Foreign Predicate</a></li><li class="chapter-item expanded "><a href="../scallopy/save_and_load.html"><strong aria-hidden="true">5.10.</strong> Saving and Loading</a></li></ol></li><li class="chapter-item expanded "><a href="../developer/index.html"><strong aria-hidden="true">6.</strong> For Developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../developer/language_construct.html"><strong aria-hidden="true">6.1.</strong> New Language Construct</a></li><li class="chapter-item expanded "><a href="../developer/binding.html"><strong aria-hidden="true">6.2.</strong> New Binding</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Resources</li><li class="chapter-item expanded "><a href="../grammar.html"><strong aria-hidden="true">7.</strong> Full Scallop Grammar</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../misc/contributors.html">Contributors</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Scallop Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="scallop-context"><a class="header" href="#scallop-context">Scallop Context</a></h1>
+<p>The most fundamental point of interaction of <code>scallopy</code> is <code>ScallopContext</code>.
+The following is a very simple example setting up a <code>ScallopContext</code> to compute the <code>edge-path</code> program:</p>
+<pre><code class="language-py">import scallopy
+
+# Creating a new context
+ctx = scallopy.ScallopContext()
+
+# Add relation of `edge`
+ctx.add_relation(&quot;edge&quot;, (int, int))
+ctx.add_facts(&quot;edge&quot;, [(0, 1), (1, 2)])
+
+# Add rule of `path`
+ctx.add_rule(&quot;path(a, c) = edge(a, c) or path(a, b) and edge(b, c)&quot;)
+
+# Run!
+ctx.run()
+
+# Check the result!
+print(list(ctx.relation(&quot;path&quot;))) # [(0, 1), (0, 2), (1, 2)]
+</code></pre>
+<p>Roughly, the program above can be divided into three phases:</p>
+<ol>
+<li>Setup the context: this involves defining relations, adding facts to relations, and adding rules that do the computation</li>
+<li>Running the program inside of context</li>
+<li>Fetch the results</li>
+</ol>
+<p>While the 2nd and 3rd steps are the place where the computation really happens, it's more important for the programmers to correctly setup the full context for computation.
+We now elaborate on what are the high-level things to do when setting up the context</p>
+<h2 id="configurations"><a class="header" href="#configurations">Configurations</a></h2>
+<p>When creating a new <code>ScallopContext</code>, one should configure it with intended provenance.
+If no argument is supplied, as shown in the above example, the context will be initialized with the default provenance, <code>unit</code>, which resembles untagged semantics (a.k.a. discrete Datalog).
+To explicitly specify this, you can do</p>
+<pre><code class="language-py">ctx = scallopy.ScallopContext(provenance=&quot;unit&quot;)
+</code></pre>
+<p>Of course, Scallop can be used to perform reasoning on probabilistic and differentiable inputs.
+For instance, you can write the following</p>
+<pre><code class="language-py">ctx = scallopy.ScallopContext(provenance=&quot;minmaxprob&quot;) # Probabilistic
+# or
+ctx = scallopy.ScallopContext(provenance=&quot;diffminmaxprob&quot;) # Differentiable
+</code></pre>
+<p>For more information on possible provenance information, please refer to the <a href="scallopy/provenance.html">provenance</a> section.
+It it worth noting that some provenance, such as <code>topkproofs</code>, accept additional parameters such as <code>k</code>.
+In this case, you can supply this as additional arguments when creating the context:</p>
+<pre><code class="language-py">ctx = scallopy.ScallopContext(provenance=&quot;topkproofs&quot;, k=5) # top-k-proofs provenance with k = 5
+</code></pre>
+<h2 id="adding-program"><a class="header" href="#adding-program">Adding Program</a></h2>
+<p>Given that a context has been configured and initialized, we can set it up the quickest by loading a program into the context.
+One can either load an external <code>.scl</code> file, or directly inserting a program written as Python string.
+To directly add a full program string to the context, one can do</p>
+<pre><code class="language-py">ctx.add_program(&quot;&quot;&quot;
+  rel edge = {(0, 1), (1, 2)}
+  rel path(a, c) = edge(a, c) or path(a, b) and edge(b, c)
+&quot;&quot;&quot;)
+</code></pre>
+<p>On the other hand, assuming that there is a file <code>edge_path.scl</code> that contains the same content as the above string, one can do</p>
+<pre><code class="language-py">ctx.import_file(&quot;edge_path.scl&quot;)
+</code></pre>
+<h2 id="adding-relations"><a class="header" href="#adding-relations">Adding Relations</a></h2>
+<p>Instead of adding program as a whole, one can also add relations one-at-a-time.
+When adding new relations, one would need to supply the name as well as the type of the relation.
+For example, the <code>edge</code> relation can be defined as follows</p>
+<pre><code class="language-py">ctx.add_relation(&quot;edge&quot;, (int, int))
+</code></pre>
+<p>Here, we are saying that <code>edge</code> is an arity-2 relation storing pairs of integers.
+Note that we are specifying the type using Python's <code>int</code> type.
+This is equivalent to the <code>i32</code> type inside Scallop.
+Therefore, the above instruction tranlates to the following Scallop code:</p>
+<pre><code class="language-scl">rel edge(i32, i32)
+</code></pre>
+<p>Many existing Python types can directly translate to Scallop type.
+In particular, we have the mapping listed as follows:</p>
+<div class="table-wrapper"><table><thead><tr><th>Python Type</th><th>Scallop Type</th></tr></thead><tbody>
+<tr><td><code>int</code></td><td><code>i32</code></td></tr>
+<tr><td><code>bool</code></td><td><code>bool</code></td></tr>
+<tr><td><code>float</code></td><td><code>f32</code></td></tr>
+<tr><td><code>str</code></td><td><code>String</code></td></tr>
+</tbody></table>
+</div>
+<p>In case one want to use types other than the listed ones (e.g., <code>usize</code>), they can be accessed directly using the string <code>&quot;usize&quot;</code>, or they can be accessed through predefined types such as <code>scallopy.usize</code>.
+The example below defines a relation of type <code>(usize, f64, i32)</code>:</p>
+<pre><code class="language-py">ctx.add_relation(&quot;my_relation&quot;, (scallopy.usize, &quot;f64&quot;, int))
+</code></pre>
+<p>Specifically for arity-1 relations, users don't need to use a tuple to specify the type.
+For instance,</p>
+<pre><code class="language-py">ctx.add_relation(&quot;digit&quot;, int)
+</code></pre>
+<h3 id="configuring-relations"><a class="header" href="#configuring-relations">Configuring Relations</a></h3>
+<h4 id="non_probabilistic"><a class="header" href="#non_probabilistic"><code>non_probabilistic</code></a></h4>
+<h2 id="adding-facts"><a class="header" href="#adding-facts">Adding Facts</a></h2>
+<p>The most basic version of adding facts into an existing relation inside of an existing context.
+We are assuming that the context has a provenance of <code>&quot;unit&quot;</code>.</p>
+<pre><code class="language-py">ctx.add_facts(&quot;edge&quot;, [(1, 2), (2, 3)])
+</code></pre>
+<h2 id="adding-rules"><a class="header" href="#adding-rules">Adding Rules</a></h2>
+<h3 id="tagged-rules"><a class="header" href="#tagged-rules">Tagged Rules</a></h3>
+<h2 id="running"><a class="header" href="#running">Running</a></h2>
+<h2 id="additional-features"><a class="header" href="#additional-features">Additional Features</a></h2>
+<p>There are more features provided by the <code>ScallopContext</code> interface.
+We hereby list them for reference.</p>
+<h3 id="cloning"><a class="header" href="#cloning">Cloning</a></h3>
+<p>One can copy a context to create a new context.
+The resulting context will contain all the program, configurations, and provenance information.</p>
+<pre><code class="language-py">new_ctx = ctx.clone()
+</code></pre>
+<p>The cloning feature relates to pseudo-incremental computation and branching computation.
+We elaborate on this in the <a href="scallopy/branching.html">Branching Computation</a> section.</p>
+<h3 id="compiling"><a class="header" href="#compiling">Compiling</a></h3>
+<h3 id="iteration-count-limit"><a class="header" href="#iteration-count-limit">Iteration Count Limit</a></h3>
+<p>One can configure the</p>
+<h3 id="early-discarding"><a class="header" href="#early-discarding">Early Discarding</a></h3>
+<h3 id="obtaining-context-information"><a class="header" href="#obtaining-context-information">Obtaining Context Information</a></h3>
+<h3 id="foreign-functions-and-predicates"><a class="header" href="#foreign-functions-and-predicates">Foreign Functions and Predicates</a></h3>
+<h3 id="saving-and-loading"><a class="header" href="#saving-and-loading">Saving and Loading</a></h3>
+<p>Please refer to the <a href="scallopy/save_and_load.html">Saving and Loading</a> section for more information.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../scallopy/getting_started.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../scallopy/branching.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../scallopy/getting_started.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../scallopy/branching.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../js/hljs_scallop.js"></script>
+
+
+    </div>
+    </body>
+</html>

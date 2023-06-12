@@ -1,0 +1,528 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Algebraic Data Type and Entities - Scallop Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Use Scallop for Logic Programming and Neuro-symbolic Programming">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="../installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../crash_course.html"><strong aria-hidden="true">2.</strong> Crash Course</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../language/index.html"><strong aria-hidden="true">3.</strong> Scallop and Logic Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language/relation.html"><strong aria-hidden="true">3.1.</strong> Relations and Facts</a></li><li class="chapter-item expanded "><a href="../language/rules.html"><strong aria-hidden="true">3.2.</strong> Writing Rules</a></li><li class="chapter-item expanded "><a href="../language/value_type.html"><strong aria-hidden="true">3.3.</strong> Values and Types</a></li><li class="chapter-item expanded "><a href="../language/query.html"><strong aria-hidden="true">3.4.</strong> Writing a Query</a></li><li class="chapter-item expanded "><a href="../language/recursion.html"><strong aria-hidden="true">3.5.</strong> Recursive Rules</a></li><li class="chapter-item expanded "><a href="../language/negation.html"><strong aria-hidden="true">3.6.</strong> Negations</a></li><li class="chapter-item expanded "><a href="../language/aggregation.html"><strong aria-hidden="true">3.7.</strong> Aggregations</a></li><li class="chapter-item expanded "><a href="../language/constants.html"><strong aria-hidden="true">3.8.</strong> Declaring Constants</a></li><li class="chapter-item expanded "><a href="../language/adt_and_entity.html" class="active"><strong aria-hidden="true">3.9.</strong> Algebraic Data Type and Entities</a></li><li class="chapter-item expanded "><a href="../language/loading_csv.html"><strong aria-hidden="true">3.10.</strong> Loading from CSV</a></li><li class="chapter-item expanded "><a href="../language/foreign_functions.html"><strong aria-hidden="true">3.11.</strong> Foreign Functions</a></li><li class="chapter-item expanded "><a href="../language/foreign_predicates.html"><strong aria-hidden="true">3.12.</strong> Foreign Predicates</a></li><li class="chapter-item expanded "><a href="../language/magic_set.html"><strong aria-hidden="true">3.13.</strong> Magic-Set Transformation</a></li><li class="chapter-item expanded "><a href="../language/reference_guide.html"><strong aria-hidden="true">3.14.</strong> Reference Guide</a></li></ol></li><li class="chapter-item expanded "><a href="../probabilistic/index.html"><strong aria-hidden="true">4.</strong> Provenance and Probabilistic Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../probabalistic/provenance.html"><strong aria-hidden="true">4.1.</strong> Provenance</a></li><li class="chapter-item expanded "><a href="../probabilistic/facts.html"><strong aria-hidden="true">4.2.</strong> Fact with Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/logic.html"><strong aria-hidden="true">4.3.</strong> Logic and Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/reasoning.html"><strong aria-hidden="true">4.4.</strong> Aggregation and Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/sampling.html"><strong aria-hidden="true">4.5.</strong> Sampling with Probability</a></li><li class="chapter-item expanded "><a href="../language/provenance.html"><strong aria-hidden="true">4.6.</strong> Tags and Provenance</a></li></ol></li><li class="chapter-item expanded "><a href="../scallopy/index.html"><strong aria-hidden="true">5.</strong> scallopy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scallopy/getting_started.html"><strong aria-hidden="true">5.1.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../scallopy/context.html"><strong aria-hidden="true">5.2.</strong> Scallop Context</a></li><li class="chapter-item expanded "><a href="../scallopy/branching.html"><strong aria-hidden="true">5.3.</strong> Branching Executions</a></li><li class="chapter-item expanded "><a href="../scallopy/provenance.html"><strong aria-hidden="true">5.4.</strong> Configuring Provenance</a></li><li class="chapter-item expanded "><a href="../scallopy/module.html"><strong aria-hidden="true">5.5.</strong> Creating Module</a></li><li class="chapter-item expanded "><a href="../scallopy/module_input.html"><strong aria-hidden="true">5.6.</strong> Configuring Input Relations</a></li><li class="chapter-item expanded "><a href="../scallopy/module_output.html"><strong aria-hidden="true">5.7.</strong> Configuring Output Relations</a></li><li class="chapter-item expanded "><a href="../scallopy/foreign_function.html"><strong aria-hidden="true">5.8.</strong> Foreign Functions</a></li><li class="chapter-item expanded "><a href="../scallopy/foreign_predicate.html"><strong aria-hidden="true">5.9.</strong> Foreign Predicate</a></li><li class="chapter-item expanded "><a href="../scallopy/save_and_load.html"><strong aria-hidden="true">5.10.</strong> Saving and Loading</a></li></ol></li><li class="chapter-item expanded "><a href="../developer/index.html"><strong aria-hidden="true">6.</strong> For Developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../developer/language_construct.html"><strong aria-hidden="true">6.1.</strong> New Language Construct</a></li><li class="chapter-item expanded "><a href="../developer/binding.html"><strong aria-hidden="true">6.2.</strong> New Binding</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Resources</li><li class="chapter-item expanded "><a href="../grammar.html"><strong aria-hidden="true">7.</strong> Full Scallop Grammar</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../misc/contributors.html">Contributors</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Scallop Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="algebraic-data-type-and-entities"><a class="header" href="#algebraic-data-type-and-entities">Algebraic Data Type and Entities</a></h1>
+<p>Algebraic data types are powerful programming constructs that allows user to define custom data structures and variants.
+Consider a traditional functional definition of a <code>List</code>:</p>
+<pre><code class="language-scl">type IntList = Nil()
+             | Cons(i32, List)
+</code></pre>
+<p>We are saying that a <code>IntList</code> can be one of two variants, <code>Nil</code> and <code>Cons</code>:</p>
+<ul>
+<li><code>Nil</code> denotes the end of a list;</li>
+<li><code>Cons</code> contains the current <code>i32</code> integer and a continuation of the list.</li>
+</ul>
+<p>In this representation, we can represent a list like <code>[1, 2, 3]</code> with <code>Cons(1, Cons(2, Cons(3, Nil())))</code>.
+This is indeed what we can write in Scallop.
+We can declare such a list as a constant:</p>
+<pre><code class="language-scl">const MY_LIST = Cons(1, Cons(2, Cons(3, Nil())))
+</code></pre>
+<p>In general, we call the type definition of such data structure <em>Algebraic Data Type</em> definitions, or <em>ADT</em> definitions.
+The name <em>Entity</em> is used to refer to objects of such data types.
+In the example above, the constant <code>MY_LIST</code> is an <em>entity</em> of the <em>ADT</em> named <code>IntList</code>.</p>
+<p>In this section, we describe in detail the definition and use of ADT and Entities.
+We also touch on the internals.</p>
+<h2 id="defining-algebraic-data-types-adt"><a class="header" href="#defining-algebraic-data-types-adt">Defining Algebraic Data Types (ADT)</a></h2>
+<p>We use the following syntax to define ADTs:</p>
+<pre><code class="language-scl">type TYPE_NAME = VARIANT_NAME(ARG_TYPE_1, ARG_TYPE_2, ...) | ...
+</code></pre>
+<p>An ADT named <code>TYPE_NAME</code> is defined to have multiple (at least 2) named variants with <code>VARIANT_NAME</code>.
+Each variant holds a tuple of values typed by <code>ARG_TYPE_1</code>, <code>ARG_TYPE_2</code>, etc.
+We call variants that have no argument <em>terminal variant</em>s.
+Parenthesis are still needed for those variants.</p>
+<p>Please note that there cannot be duplicated variant names, either within the same ADT or different ADTs.
+For example, the following code would result in compilation failure:</p>
+<pre><code class="language-scl">type IntList  = Cons(i32, IntList)   | Nil()
+type BoolList = Cons(bool, BoolList) | Nil() // Failure: Cons and Nil are already defined
+</code></pre>
+<p>Currently, ADTs do not support generics.
+In the above case, the <code>IntList</code> and <code>BoolList</code> needs to be defined separately with differently named variants.</p>
+<h3 id="using-adt-to-represent-arithmetic-expressions"><a class="header" href="#using-adt-to-represent-arithmetic-expressions">Using ADT to represent arithmetic expressions</a></h3>
+<p>Common data that can be expressed through ADT could be structured expressions.
+The following definition describes the abstract syntax tree (AST) of simple arithmetic expressions:</p>
+<pre><code class="language-scl">type Expr = Int(i32)        // An expression could be a simple integer,
+          | Add(Expr, Expr) // a summation of two expressions
+          | Sub(Expr, Expr) // a substraction of two expressions
+</code></pre>
+<p>The following code encodes a simple expression</p>
+<pre><code class="language-scl">// The expression (1 + 3) - 5
+const MY_EXPR = Sub(Add(Int(1), Int(3)), Int(5))
+</code></pre>
+<h3 id="using-adt-to-represent-data-structures"><a class="header" href="#using-adt-to-represent-data-structures">Using ADT to represent data structures</a></h3>
+<p>Data structures such as binary trees can also be represented:</p>
+<pre><code class="language-scl">type Tree = Node(i32, Tree, Tree) | Nil()
+</code></pre>
+<p>Here, <code>Node(i32, Tree, Tree)</code> represents a node in a tree holding three things:
+an integer (<code>i32</code>), a left sub-tree <code>Tree</code>, and a right sub-tree <code>Tree</code>.
+The other variant <code>Nil</code> represents an empty sub-tree.
+In this encoding, <code>Node(5, Nil(), Nil())</code> would be representing a leaf-node holding a number 5.</p>
+<p>The following code encodes a balanced binary search tree:</p>
+<pre><code class="language-scl">//         3
+//      /     \
+//    1         5
+//  /   \     /   \
+// 0     2   4     6
+const MY_TREE =
+  Node(3,
+    Node(1,
+      Node(0, Nil(), Nil()),
+      Node(2, Nil(), Nil()),
+    ),
+    Node(5,
+      Node(4, Nil(), Nil()),
+      Node(6, Nil(), Nil()),
+    )
+  )
+</code></pre>
+<h2 id="working-with-entities"><a class="header" href="#working-with-entities">Working with Entities</a></h2>
+<p>Entities are most commonly created as constants using the <code>const</code> keyword.
+Let us revisit the <code>List</code> example and see how we can use the defined constant in our analysis.</p>
+<pre><code class="language-scl">type List = Cons(i32, List) | Nil()
+
+const MY_LIST = Cons(1, Cons(2, Cons(3, Nil()))) // [1, 2, 3]
+</code></pre>
+<h3 id="using-entities-in-relations"><a class="header" href="#using-entities-in-relations">Using Entities in Relations</a></h3>
+<p>We can include the constant entities as part of a fact:</p>
+<pre><code class="language-scl">rel target(MY_LIST)
+query target
+</code></pre>
+<p>As a result of the above program, we are going to get the value of the entity <code>MY_LIST</code>:</p>
+<pre><code>target: {(entity(0xff08d5d60a201f17))}
+</code></pre>
+<p>The value is going to be a 64-bit integer encoded in hex.
+It is a unique identifier for the created entity.</p>
+<p>Note that, identical entities are going to have the same identifier.
+In the following example, <code>MY_LIST_1</code> and <code>MY_LIST_2</code> are identical, and therefore their hex identifier are the same.</p>
+<pre><code class="language-scl">const MY_LIST_1 = Cons(1, Nil()),
+      MY_LIST_2 = Cons(1, Nil()),
+      MY_LIST_3 = Cons(2, Nil())
+
+rel lists = {
+  (1, MY_LIST_1),
+  (2, MY_LIST_2),
+  (3, MY_LIST_3),
+}
+
+query lists
+// lists: {
+//   (1, entity(0x678defa0a65c83ab)), // Notice that the entity 1 and 2 are the same
+//   (2, entity(0x678defa0a65c83ab)),
+//   (3, entity(0x3734567c3d9f8d3f)), // This one is different than above
+// }
+</code></pre>
+<h3 id="decomposing-entities-in-rules"><a class="header" href="#decomposing-entities-in-rules">Decomposing Entities in Rules</a></h3>
+<p>To peek into the content of an Entity, we can <em>destruct</em> it using the <code>case</code>-<code>is</code> operator.
+We look at an example of computing the length of a list:</p>
+<pre><code class="language-scl">type length(list: List, len: i32)
+rel length(list, 0)     = case list is Nil()
+rel length(list, l + 1) = case list is Cons(_, tl) and length(tl, l)
+</code></pre>
+<p>We define a recursive relation <code>length</code> to compute the length of a list.
+There are two cases.
+When the list is <code>Nil()</code>, this means the list has already ended.
+Therefore the list has a length of <code>0</code>
+For the second case, the list is <code>Cons(_, tl)</code>.
+Here, the length of list is the length of <code>tl</code> plus 1.</p>
+<p>We can then compute the length of a list by <code>query</code>ing the <code>length</code> relationship on a constant list.</p>
+<pre><code class="language-scl">query length(MY_LIST, l) // l = 3
+</code></pre>
+<h3 id="case-study-decomposing-entities-for-pretty-printing"><a class="header" href="#case-study-decomposing-entities-for-pretty-printing">Case Study: Decomposing Entities for Pretty-Printing</a></h3>
+<p>We can look at more examples of using the <code>case</code>-<code>is</code> operators.
+The following set of rules pretty-prints expressions:</p>
+<pre><code class="language-scl">type Expr = Int(i32) | Add(Expr, Expr) | Sub(Expr, Expr)
+
+type to_string(expr: Expr, str: String)
+rel to_string(e, $format(&quot;{}&quot;, i))           = case e is Int(i)
+rel to_string(e, $format(&quot;({} + {})&quot;, a, b)) = case e is Add(e1, e2) and to_string(e1, a) and to_string(e2, b)
+rel to_string(e, $format(&quot;({} - {})&quot;, a, b)) = case e is Sub(e1, e2) and to_string(e1, a) and to_string(e2, b)
+</code></pre>
+<p>Shown in the example, we have written three <code>to_string</code> rules for pretty-printing the <code>Expr</code> data structure.
+Each rule correspond to handling exactly one of the variants.
+For the inductive cases <code>Add</code> and <code>Sub</code>, we have the <code>to_string</code> rule defined recursively so that the sub-expressions are also converted to strings.
+For pretty-printing, we have used the <code>$format</code> foreign function.</p>
+<p>At the end, running the following snippet</p>
+<pre><code class="language-scl">const MY_EXPR = Sub(Add(Int(3), Int(5)), Int(1))
+query to_string(MY_EXPR, s)
+</code></pre>
+<p>would give the following result, suggesting that the pretty-printed expression is <code>((3 + 5) - 1)</code></p>
+<pre><code>to_string(MY_EXPR, s): {(entity(0xa97605c2703c6249), &quot;((3 + 5) - 1)&quot;)}
+</code></pre>
+<h3 id="case-study-checking-regular-expressions"><a class="header" href="#case-study-checking-regular-expressions">Case Study: Checking Regular Expressions</a></h3>
+<p>With ADT, we can specify the language of regular expressions (regex) with ease.
+Let's consider a very simple regex with union (<code>|</code>) and star (<code>*</code>), while phrases can be grouped together.
+For example, the regex <code>&quot;a*b&quot;</code> expresses that character <code>a</code> can be repeated arbitrary amount of time (including 0-times), followed by a single <code>b</code>.
+This regex can be used to match strings like <code>&quot;aaaab&quot;</code> and <code>&quot;b&quot;</code>, but not <code>&quot;ba&quot;</code>.</p>
+<p>Let's try to define this regex language in Scallop!</p>
+<pre><code class="language-scl">type Regex = Char(char)           // a single character
+           | Star(Regex)          // the star of a regex
+           | Union(Regex, Regex)  // a union of two regexes
+           | Concat(Regex, Regex) // concatenation of two regexes
+</code></pre>
+<p>As can be seen, we have defined 4 variants of this regex language.
+With this, our regex <code>&quot;a*b&quot;</code> can be expressed as follows:</p>
+<pre><code class="language-scl">// a*b
+const A_STAR_B = Concat(Star(Char('a')), Char('b'))
+</code></pre>
+<p>Now, let's define the actual semantics of this regex language and write a relation <code>matches</code> to check if the regex matches with a given sub-string.
+We first setup the types of such relations.</p>
+<ul>
+<li><code>input_regex</code> is a unary-relation for holding the regex to be checked against;</li>
+<li><code>input_string</code> is a unary-relation for holding the string to be checked against;</li>
+<li><code>matches_substr</code> is for checking if a sub-regex <code>r</code> can be matched with the input string between <code>begin</code> and <code>end</code> indices, where <code>end</code> is exclusive;</li>
+<li><code>matches</code> is a boolean relation telling whether the <code>A_STAR_B</code> regex matches with the input string or not.</li>
+</ul>
+<pre><code class="language-scl">type input_regex(r: Regex)
+type input_string(s: String)
+type matches_substr(r: Regex, begin: usize, end: usize)
+type matches()
+</code></pre>
+<p>The main bulk of the code will then be dedicated to define the <code>matches_substr</code> relation.
+At a high level, we decompose on each type of regex, and match on sub-strings.
+The first rule that we are going to write would be for the <code>Char</code> variant.</p>
+<pre><code class="language-scl">rel matches_substr(r, i, i + 1) = case r is Char(c) and input_string(s) and string_chars(s, i, c)
+</code></pre>
+<p>The rule suggests that if the regex <code>r</code> is a single character <code>c</code>, then we go into the input string <code>s</code> and find all the index <code>i</code> such that its corresponding character is <code>c</code>.
+The matched sub-string would start at index <code>i</code> and end at index <code>i + 1</code>.
+Note that the <code>string_chars</code> relation is a foreign predicate that decomposes the string into characters.</p>
+<p>Similarly, we can write the rules for other variants:</p>
+<pre><code class="language-scl">// For star; it matches empty sub-strings [i, i) and recursively on sub-regex
+rel matches_substr(r, i, i) = case r is Star(_) and input_string(s) and string_chars(s, i, _)
+rel matches_substr(r, b, e) = case r is Star(r1) and matches_substr(r, b, c) and matches_substr(r1, c, e)
+
+// For union; any string that matches left or right sub-regex would match the union
+rel matches_substr(r, b, e) = case r is Union(r1, r2) and matches_substr(r1, b, e)
+rel matches_substr(r, b, e) = case r is Union(r1, r2) and matches_substr(r2, b, e)
+
+// For concat; we need strings to match in a consecutive matter
+rel matches_substr(r, b, e) = case r is Concat(r1, r2) and matches_substr(r1, b, c) and matches_substr(r2, c, e)
+</code></pre>
+<p>Lastly, we add the rule to derive the final <code>matches</code> relation.
+Basically, it checks if the regex matches the start-to-end of the input string</p>
+<pre><code class="language-scl">rel matches() = input_regex(r) and input_string(s) and matches_substr(r, 0, $string_length(s))
+</code></pre>
+<p>Let us test the result!</p>
+<pre><code class="language-scl">rel input_regex(A_STAR_B)
+rel input_string(&quot;aaaab&quot;)
+query matches // {()}
+</code></pre>
+<h2 id="dynamically-creating-entities"><a class="header" href="#dynamically-creating-entities">Dynamically Creating Entities</a></h2>
+<p>There are cases where we want to create new entities during the deductive process.
+This is done through the <code>new</code> keyword followed by the entity to create.
+Suppose we have the definition of <code>List</code> and some pretty-printing code for it:</p>
+<pre><code class="language-scl">type List = Cons(i32, List) | Nil()
+
+rel to_string_2(l, &quot;]&quot;)                      = case l is Nil()
+rel to_string_2(l, $format(&quot;{}]&quot;, i))        = case l is Cons(i, Nil())
+rel to_string_2(l, $format(&quot;{}, {}&quot;, i, ts)) = case l is Cons(i, tl) and case tl is Cons(_, _) and to_string_2(tl, ts)
+rel to_string(l, $format(&quot;[{}&quot;, tl))         = to_string_2(l, tl)
+</code></pre>
+<p>The following example shows that, given an input list <code>l</code>, we generate a result list <code>Cons(1, l)</code>.</p>
+<pre><code class="language-scl">type input_list(List)
+rel result_list(new Cons(1, l)) = input_list(l)
+</code></pre>
+<p>Given an actual list defined as a constant, we will be able to specify that the constant is the input list:</p>
+<pre><code class="language-scl">const MY_INPUT_LIST = Cons(2, Cons(3, Nil()))
+rel input_list(MY_INPUT_LIST)
+</code></pre>
+<p>Now, let's visualize the results!</p>
+<pre><code class="language-scl">rel input_list_str(s) = to_string(MY_INPUT_LIST, s)
+rel result_list_str(s) = result_list(l) and to_string(l, s)
+
+query input_list_str  // [2, 3]
+query result_list_str // [1, 2, 3]
+</code></pre>
+<p>As can be seen, through the <code>new</code> operator, we have essentially created a new list containing the element <code>1</code>.
+We note that the rule for <code>result_list</code> is <em>not</em> recursive.
+In general, extra care needs to be taken to ensure that the program does not go into infinite loop.`</p>
+<h3 id="case-study-creating-entities-for-equality-saturation"><a class="header" href="#case-study-creating-entities-for-equality-saturation">Case Study: Creating Entities for Equality Saturation</a></h3>
+<p>In this case study we look at the problem of equality saturation.
+Given an symbolic expression, there might be ways to simplify it, which are defined through <em>rewrite rules</em>.
+Notice that after simplification, the program should be equivalent to the input.
+The problem is challenging as there might be multiple ways to apply the rewrite rules.
+How do we then systematically derive the simplest equivalent program?</p>
+<p>A simple example here is the symbolic arithmetic expression language, with constant, variables, and summation rule:</p>
+<pre><code class="language-scl">type Expr = Const(i32) | Var(String) | Add(Expr, Expr)
+</code></pre>
+<p>One example expression that we can express in this language would be</p>
+<pre><code class="language-scl">const MY_EXPR = Add(Add(Const(-3), Var(&quot;a&quot;)), Const(3)) // (-3 + a) + 3
+</code></pre>
+<p>For visualization, we write a <code>to_string</code> function</p>
+<pre><code class="language-scl">rel to_string(p, i as String) = case p is Const(i)
+rel to_string(p, v)           = case p is Var(v)
+rel to_string(p, $format(&quot;({} + {})&quot;, s1, s2)) =
+  case p is Add(p1, p2) and to_string(p1, s1) and to_string(p2, s2)
+</code></pre>
+<p>If we query on <code>to_string</code> for <code>MY_EXPR</code>, we would get</p>
+<pre><code class="language-scl">query to_string(MY_EXPR, s) // s = &quot;((-3 + a) + 3)&quot;
+</code></pre>
+<p>Now let us deal with the actual simplification.
+The expression <code>(-3 + a) + 3</code> could be simplified to just <code>a</code>, as the <code>-3</code> and <code>3</code> cancels out.
+The way to do the simplification is to write two things:</p>
+<ol>
+<li>rewrite rules in the form of equivalence relation;</li>
+<li>the weight function giving each expression a weight to tell which expression is <em>simpler</em>.</li>
+</ol>
+<p>For this, the following set of relations needs to be defined.</p>
+<pre><code class="language-scl">type input_expr(expr: Expr)
+type equivalent(expr_1: Expr, expr_2: Expr)
+type weight(expr: Expr, w: i32)
+type simplest(expr: Expr)
+</code></pre>
+<p>Note that we need set a prior knowledge on <code>equivalent</code>: the <code>expr_1</code> is always <em>more complex</em> than the <code>expr_2</code>.
+This is to prevent the simplification to go to arbitrary direction and result in infinite-loop.
+In such case, <code>equivalent</code> would not be commutative.
+Let us start with <code>equivalent</code> and define its basic property of identity and transitivity:</p>
+<pre><code class="language-scl">// Identity
+rel equivalent(e, e) = case e is Const(_) or case e is Var(_) or case e is Add(_, _)
+
+// Transitivity
+rel equivalent(e1, e3) = equivalent(e1, e2) and equivalent(e2, e3)
+</code></pre>
+<p>Now, we can write the rewrite rules.
+The first one we are going to write states that, if <code>e1</code> and <code>e1p</code> are equivalent and <code>e2</code> and <code>e2p</code> are equivalent,
+their additions (<code>Add(e1, e2)</code> and <code>Add(e1p, e2p)</code>) are equivalent too.</p>
+<pre><code class="language-scl">// e1 == e1p, e2 == e2p ==&gt; (e1 + e2) == (e1p + e2p)
+rel equivalent(e, new Add(e1p, e2p)) = case e is Add(e1, e2) and equivalent(e1, e1p) and equivalent(e2, e2p)
+</code></pre>
+<p>The next rule states that Addition is commutative, such that <code>Add(a, b)</code> is equivalent to <code>Add(b, a)</code>:</p>
+<pre><code class="language-scl">// (a + b) == (b + a)
+rel equivalent(e, new Add(b, a)) = case e is Add(a, b)
+</code></pre>
+<p>We also have a rule for associativity:</p>
+<pre><code class="language-scl">// (a + (b + c)) == ((a + b) + c)
+rel equivalent(e, new Add(new Add(a, b), c)) = case e is Add(a, Add(b, c))
+</code></pre>
+<p>A rule for simplifying adding summation identity 0:</p>
+<pre><code class="language-scl">// a + 0 = a
+rel equivalent(e, a) = case e is Add(a, Const(0))
+</code></pre>
+<p>A rule for reducing two constants addition:</p>
+<pre><code class="language-scl">rel equivalent(e, Const(a + b)) = case e is Add(Const(a), Const(b))
+</code></pre>
+<p>Now we have 5 rewrite-rules in place, let us define how to compute the weight of each expression.
+The leaf nodes (<code>Var</code> and <code>Const</code>) have weight of <code>1</code>, and the addition have the weight from left and right sub-expr added together plus 1.</p>
+<pre><code class="language-scl">rel weight(e, 1) = case e is Var(_) or case e is Const(_)
+rel weight(e, l + r + 1) = case e is Add(a, b) and weight(a, l) and weight(b, r)
+</code></pre>
+<p>Lastly, we use the aggregation to find the equivalent programs with the minimum weight, which is our definition of the &quot;simplest&quot; program.
+Note that we have used an <code>argmax</code> aggregation denoted by <code>min[p]</code> here:</p>
+<pre><code class="language-scl">rel best_program(p) = _ := min[p](w: input_expr(e) and equivalent(e, p) and weight(p, w))
+</code></pre>
+<p>If we query for the best program and turn it into string, we will get our expected output, a single variable <code>&quot;a&quot;</code>!</p>
+<pre><code class="language-scl">rel best_program_str(s) = best_program(p) and to_string(p, s)
+query best_program_str // {(&quot;a&quot;)}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../language/constants.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../language/loading_csv.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../language/constants.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../language/loading_csv.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../js/hljs_scallop.js"></script>
+
+
+    </div>
+    </body>
+</html>

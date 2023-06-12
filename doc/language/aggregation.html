@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Aggregations - Scallop Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Use Scallop for Logic Programming and Neuro-symbolic Programming">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="../installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../crash_course.html"><strong aria-hidden="true">2.</strong> Crash Course</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference Guide</li><li class="chapter-item expanded "><a href="../language/index.html"><strong aria-hidden="true">3.</strong> Scallop and Logic Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language/relation.html"><strong aria-hidden="true">3.1.</strong> Relations and Facts</a></li><li class="chapter-item expanded "><a href="../language/rules.html"><strong aria-hidden="true">3.2.</strong> Writing Rules</a></li><li class="chapter-item expanded "><a href="../language/value_type.html"><strong aria-hidden="true">3.3.</strong> Values and Types</a></li><li class="chapter-item expanded "><a href="../language/query.html"><strong aria-hidden="true">3.4.</strong> Writing a Query</a></li><li class="chapter-item expanded "><a href="../language/recursion.html"><strong aria-hidden="true">3.5.</strong> Recursive Rules</a></li><li class="chapter-item expanded "><a href="../language/negation.html"><strong aria-hidden="true">3.6.</strong> Negations</a></li><li class="chapter-item expanded "><a href="../language/aggregation.html" class="active"><strong aria-hidden="true">3.7.</strong> Aggregations</a></li><li class="chapter-item expanded "><a href="../language/constants.html"><strong aria-hidden="true">3.8.</strong> Declaring Constants</a></li><li class="chapter-item expanded "><a href="../language/adt_and_entity.html"><strong aria-hidden="true">3.9.</strong> Algebraic Data Type and Entities</a></li><li class="chapter-item expanded "><a href="../language/loading_csv.html"><strong aria-hidden="true">3.10.</strong> Loading from CSV</a></li><li class="chapter-item expanded "><a href="../language/foreign_functions.html"><strong aria-hidden="true">3.11.</strong> Foreign Functions</a></li><li class="chapter-item expanded "><a href="../language/foreign_predicates.html"><strong aria-hidden="true">3.12.</strong> Foreign Predicates</a></li><li class="chapter-item expanded "><a href="../language/magic_set.html"><strong aria-hidden="true">3.13.</strong> Magic-Set Transformation</a></li><li class="chapter-item expanded "><a href="../language/reference_guide.html"><strong aria-hidden="true">3.14.</strong> Reference Guide</a></li></ol></li><li class="chapter-item expanded "><a href="../probabilistic/index.html"><strong aria-hidden="true">4.</strong> Provenance and Probabilistic Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../probabalistic/provenance.html"><strong aria-hidden="true">4.1.</strong> Provenance</a></li><li class="chapter-item expanded "><a href="../probabilistic/facts.html"><strong aria-hidden="true">4.2.</strong> Fact with Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/logic.html"><strong aria-hidden="true">4.3.</strong> Logic and Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/reasoning.html"><strong aria-hidden="true">4.4.</strong> Aggregation and Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/sampling.html"><strong aria-hidden="true">4.5.</strong> Sampling with Probability</a></li><li class="chapter-item expanded "><a href="../language/provenance.html"><strong aria-hidden="true">4.6.</strong> Tags and Provenance</a></li></ol></li><li class="chapter-item expanded "><a href="../scallopy/index.html"><strong aria-hidden="true">5.</strong> scallopy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scallopy/getting_started.html"><strong aria-hidden="true">5.1.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../scallopy/context.html"><strong aria-hidden="true">5.2.</strong> Scallop Context</a></li><li class="chapter-item expanded "><a href="../scallopy/branching.html"><strong aria-hidden="true">5.3.</strong> Branching Executions</a></li><li class="chapter-item expanded "><a href="../scallopy/provenance.html"><strong aria-hidden="true">5.4.</strong> Configuring Provenance</a></li><li class="chapter-item expanded "><a href="../scallopy/module.html"><strong aria-hidden="true">5.5.</strong> Creating Module</a></li><li class="chapter-item expanded "><a href="../scallopy/module_input.html"><strong aria-hidden="true">5.6.</strong> Configuring Input Relations</a></li><li class="chapter-item expanded "><a href="../scallopy/module_output.html"><strong aria-hidden="true">5.7.</strong> Configuring Output Relations</a></li><li class="chapter-item expanded "><a href="../scallopy/foreign_function.html"><strong aria-hidden="true">5.8.</strong> Foreign Functions</a></li><li class="chapter-item expanded "><a href="../scallopy/foreign_predicate.html"><strong aria-hidden="true">5.9.</strong> Foreign Predicate</a></li><li class="chapter-item expanded "><a href="../scallopy/save_and_load.html"><strong aria-hidden="true">5.10.</strong> Saving and Loading</a></li></ol></li><li class="chapter-item expanded "><a href="../developer/index.html"><strong aria-hidden="true">6.</strong> For Developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../developer/language_construct.html"><strong aria-hidden="true">6.1.</strong> New Language Construct</a></li><li class="chapter-item expanded "><a href="../developer/binding.html"><strong aria-hidden="true">6.2.</strong> New Binding</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Resources</li><li class="chapter-item expanded "><a href="../grammar.html"><strong aria-hidden="true">7.</strong> Full Scallop Grammar</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../misc/contributors.html">Contributors</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Scallop Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="aggregations"><a class="header" href="#aggregations">Aggregations</a></h1>
+<p>Aggregations in Scallop can be viewed as operations that aggregates over multiple facts.
+Such operations include counting, summation and product, finding min and max, and logical quantifiers such as exists and forall.
+Aggregations appear in the body of a rule, and can be nested for abbrevity.</p>
+<p>As a concrete example, we look at a program which counts over a set of people:</p>
+<pre><code class="language-scl">rel person = {&quot;alice&quot;, &quot;bob&quot;, &quot;christine&quot;}
+rel num_people(n) = n := count(p: person(p)) // n = 3
+</code></pre>
+<!-- While further down the road we are going to discuss their probabilistic (multi-world) semantics, let's first view them as discrete logical operations. -->
+<p>In general, we use the following syntax for aggregation formulas.</p>
+<pre><code class="language-scl">R1, R2, ... := AGGREGATOR(V1, V2, ...: FORMULA (where U1, U2, ...: FORMULA)?)
+</code></pre>
+<p>We name <code>R1, ...</code> to be the aggregation <em>result</em> variable, <code>V1, ...</code> to be the <em>binding</em> variable, and the formula inside of the aggregation the <em>body</em>.
+When the <code>where</code> keyword is used, we have the aggregation associated with <em>explicit group-by</em> clause.
+Here, we call the set of variables <code>U1, ...</code> as <em>group-by variables</em>.
+The formula under the <code>where</code> clause is named the <em>group-by body</em>.
+The binding variables need to be fully grounded by the body formula, and the group-by variables (if presented) need to also be fully grounded by the group-by body.
+For different types of aggregation, the <code>AGGREGATOR</code> might also change and annotated with different information.
+The number of result variables, the number of binding variables, and their types differ for each aggregation.</p>
+<p>Here is a high-level overview of each supported aggregator and their configurations.
+In the table, <code>...</code> is used to denote an arbitrary amount of variables.</p>
+<div class="table-wrapper"><table><thead><tr><th>Aggregator</th><th>Binding Variables</th><th>Result Variables</th></tr></thead><tbody>
+<tr><td><code>count</code></td><td><code>Any...</code></td><td><code>usize</code></td></tr>
+<tr><td><code>sum</code></td><td><code>Number</code></td><td>the same as the binding variable</td></tr>
+<tr><td><code>prod</code></td><td><code>Number</code></td><td>the same as the binding variable</td></tr>
+<tr><td><code>min</code></td><td><code>Any</code></td><td>the same as the binding variables</td></tr>
+<tr><td><code>max</code></td><td><code>Any</code></td><td>the same as the binding variables</td></tr>
+<tr><td><code>exists</code></td><td><code>Any...</code></td><td><code>bool</code></td></tr>
+<tr><td><code>forall</code></td><td><code>Any...</code></td><td><code>bool</code></td></tr>
+</tbody></table>
+</div>
+<p>Below, we elaborate on each aggregators and describe their usages.</p>
+<h2 id="count"><a class="header" href="#count">Count</a></h2>
+<p>To count the number of facts, we can use the <code>count</code> aggregator.
+Just repeating the examples shown in the beginning:</p>
+<pre><code class="language-scl">rel person = {&quot;alice&quot;, &quot;bob&quot;, &quot;christine&quot;}
+rel num_people(n) = n := count(p: person(p)) // n = 3
+</code></pre>
+<p>We are counting the number of persons appear in the <code>person</code> relation.
+To be more concrete, let's read out the aggregation formula:</p>
+<blockquote>
+<p>We count the number of <code>p</code> such that <code>p</code> is a <code>person</code>, and assign the result to the variable <code>n</code>.</p>
+</blockquote>
+<p>For <code>count</code>, there could be arbitrary (&gt; 0) number of binding variables which can be typed arbitrarily.
+It will only have a single result variable which is typed <code>usize</code>.
+For example, you may count the number of <code>edge</code>s:</p>
+<pre><code class="language-scl">rel num_edges(n) = n := count(a, b: edge(a, b))
+</code></pre>
+<p>Here, we have two binding variables <code>a</code> and <code>b</code>, meaning that we are counting the number of <em>distinct</em> pairs of <code>a</code> and <code>b</code>.</p>
+<h3 id="implicit-group-by"><a class="header" href="#implicit-group-by">Implicit Group-By</a></h3>
+<p>With <code>group-by</code>, we may count the number of facts under a pre-defined group.
+Consider the example where there is a scene with differet colored objects,</p>
+<pre><code class="language-scl">rel obj_color = {(0, &quot;red&quot;), (1, &quot;red&quot;), (2, &quot;blue&quot;), (3, &quot;red&quot;)}
+rel num_obj_per_color(col, num) = num := count(obj: obj_color(obj, col))
+</code></pre>
+<p>As suggested by the facts inside of <code>obj_color</code>, there are <code>4</code> objects indexed using <code>0, 1, 2, 3</code>, each associated with a different color.
+The object #0, #1, and #3 are <code>red</code> and the object #2 is <code>blue</code>.
+Therefore, we will get 3 red objects and 1 blue object, as computed in the result of <code>num_obj_per_color</code>:</p>
+<pre><code>num_obj_per_color: {(&quot;blue&quot;, 1), (&quot;red&quot;, 3)}
+</code></pre>
+<p>Let's analyze the rule in detail.
+We find that we are counting over <code>obj</code> such that the object <code>obj</code> has a certain color <code>col</code>.
+But <code>col</code> is also a variable occurring in the head of the rule.
+This is an <em>implicit group-by</em>, in that the variable <code>col</code> is being used as an implicit group-by variable.
+That is, we are conditioning the counting procedure under each <em>group</em> that is defined by the <code>col</code> variable.
+Since there are two colors appearing in the <code>obj_color</code> relation, we are performing count for each of the two groups.</p>
+<p>In general, if a variable is positively grounded in the body and appear in the head of a parent rule, we call the variable an <em>implicit group-by variable</em>.</p>
+<h3 id="explicit-group-by"><a class="header" href="#explicit-group-by">Explicit Group-By</a></h3>
+<p>In the above example, there is no green colored object.
+However, how do we know that the number of green object is 0?
+The result does not seem to address this problem.</p>
+<p>The missing piece is a <em>domain</em> of the possible groups.
+Without explicitly setting the domain, Scallop could only search inside of the database on possible groups.
+However, we can explicitly tell Scallop about what are the groups.
+Consider the following rewrite of the above program:</p>
+<pre><code class="language-scl">rel colors = {&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;}
+rel obj_color = {(0, &quot;red&quot;), (1, &quot;red&quot;), (2, &quot;blue&quot;), (3, &quot;red&quot;)}
+rel num_obj_per_color(col, num) = num := count(obj: obj_color(obj, col) where col: colors(col))
+</code></pre>
+<p>With the <code>where</code> clause, we have explicitly declared that <code>col</code> is a <em>group-by variable</em> which is grounded by the <code>colors</code> relation.
+If we look into the <code>colors</code> relation, we find that there are three possible colors that we care about, red, green, and blue.
+In this case, we will consider <code>&quot;green&quot;</code> as the third group and try to count the number of green objects -- which there are 0:</p>
+<pre><code>num_obj_per_color: {(&quot;blue&quot;, 1), (&quot;green&quot;, 0), (&quot;red&quot;, 3)}
+</code></pre>
+<h2 id="sum-and-product"><a class="header" href="#sum-and-product">Sum and Product</a></h2>
+<p>We can use the aggregator of sum and product to aggregate multiple numerical values.
+Consider the following example of sales:</p>
+<pre><code class="language-scl">rel sales = {(&quot;alice&quot;, 1000.0), (&quot;bob&quot;, 1200.0), (&quot;christine&quot;, 1000.0)}
+</code></pre>
+<p>We can compute the sum of all the sales:</p>
+<pre><code class="language-scl">rel total_sales(s) = s := sum(sp: sales_1(p, sp)) // 3700.0
+</code></pre>
+<p>Notice that the result type of <code>s</code> is the same as the type of the binding variable <code>sp</code>, which is <code>f32</code> as indicated by the decimals in the definition of <code>sales</code>.</p>
+<p>The product aggregator <code>prod</code> can be used in a similar manner as <code>sum</code>.</p>
+<h2 id="min-max-argmin-and-argmax"><a class="header" href="#min-max-argmin-and-argmax">Min, Max, Argmin, and Argmax</a></h2>
+<p>Scallop can compute the minimum or maximum among a set of values.
+In the following example, we find the maximum grade of an exam:</p>
+<pre><code class="language-scl">rel exam_grades = {(&quot;a&quot;, 95.2), (&quot;b&quot;, 87.3), (&quot;c&quot;, 99.9)}
+rel min_score(m) = m := max(s: exam_grades(_, s)) // 99.9
+</code></pre>
+<p>The number (and types) of binding variables can be arbitrary, but the result variables must match the binding variables.
+In the above case, since <code>s</code> is of type <code>f32</code>, <code>m</code> will be of type <code>f32</code> as well.</p>
+<p>It is also possible to get argmax/argmin.
+Suppose we want to get the person (along with their grade) who scored the best, we write:</p>
+<pre><code class="language-scl">rel best_student(n, s) = s := max[n](s: exam_grades(n, s))
+</code></pre>
+<p>Here, we are still finding the maximum score <code>s</code>, but along with <code>max</code> we have specified the &quot;arg&quot; (<code>[n]</code>) which associates with the maximum score.
+We call <code>n</code> an arg variable for <code>min</code>/<code>max</code> aggregator.
+The arg variable is grounded by the aggregation body, and can be directly used in the head of the rule.</p>
+<p>If we do not care about the grade and just want to know who has the best grade, we can use wildcard <code>_</code> to ignore the result variable, like</p>
+<pre><code>rel best_student(n) = _ := max[n](s: exam_grades(n, s))
+</code></pre>
+<h2 id="exists-and-forall"><a class="header" href="#exists-and-forall">Exists and Forall</a></h2>
+<p>Logical quantifier such as exists and forall can also be encoded as aggregations.
+They will return value of boolean as the aggregation result.</p>
+<h3 id="existential-quantifier"><a class="header" href="#existential-quantifier">Existential Quantifier</a></h3>
+<p>Let us start with discussing the easier of the two, <code>exists</code>.
+Technically, all variables in the body of Scallop rule are existentially quantified.
+We can use <code>exists</code> aggregation to make it explicit.
+For example, we can check if there exists an object that is blue:</p>
+<pre><code class="language-scl">rel obj_color = {(0, &quot;red&quot;), (1, &quot;green&quot;)}
+rel has_blue(b) = b := exists(o: obj_color(o, &quot;blue&quot;))
+</code></pre>
+<p>Specifically, we are checking &quot;if there exists an object <code>o</code> such that its color is <code>blue</code>&quot;.
+The result is being assigned to a variable <code>b</code>.
+Since there is no blue object, we will get a result of <code>has_blue(false)</code>.</p>
+<p>In case when we just want the result boolean to be <code>true</code> or <code>false</code>, we can omit the result variables.
+For example, we can rewrite the recursive case of edge-path transitive closure as</p>
+<pre><code class="language-scl">rel path(a, c) = exists(b: path(a, b) and edge(b, c))
+</code></pre>
+<p>We note that this is just a syntax sugar equivalent to the following:</p>
+<pre><code class="language-scl">rel path(a, c) = r := exists(b: path(a, b) and edge(b, c)) and r == true
+</code></pre>
+<p>When we want to know the inexistence of something, we can do</p>
+<pre><code class="language-scl">rel no_red() = not exists(o: obj_color(o, &quot;red&quot;))
+</code></pre>
+<p>Note that there can be arbitrary amount of binding variables.</p>
+<h3 id="universal-quantifier"><a class="header" href="#universal-quantifier">Universal Quantifier</a></h3>
+<p>We can also have universal quantifier <code>forall</code>.
+For this, there is a special requirement for universal quantification, that the body formula has to be an <code>implies</code> formula.
+In the following example, we check if all the objects are spherical:</p>
+<pre><code class="language-scl">type Shape = CUBE | SPHERE | CONE | CYLINDER
+rel object = {0, 1, 2}
+rel obj_shape = {(0, CUBE), (1, SPHERE), (2, SPHERE)}
+rel target(b) = b := forall(o: object(o) implies obj_shape(o, SPHERE))
+</code></pre>
+<p>Notice that we have a relation which defines the domain of <code>object</code>, suggesting that there are just 3 objects for us to work with.
+In the aggregation, we are checking &quot;for all <code>o</code> such that <code>o</code> is an object, is the object a sphere?&quot;
+The result is stored in the variable <code>b</code> and propagated to the <code>target</code> relation.</p>
+<p>The reason we need to have an <em>implies</em> formula is that we need to use the left-hand-side of <code>implies</code> to give bounds to the universally quantified variables.
+Scallop cannot reason about open domain variables.</p>
+<p>Note that similar to <code>exists</code>, we can also remove the result variable.
+The following program derives a boolean (arity-0) relation <code>target</code> denoting whether all the red objects are cubes:</p>
+<pre><code class="language-scl">type Shape = CUBE | SPHERE | CONE | CYLINDER
+type Color = RED | GREEN | BLUE
+rel obj_shape = {(0, CUBE), (1, SPHERE), (2, SPHERE)}
+rel obj_color = {(0, RED),  (1, GREEN),  (2, GREEN)}
+rel target() = forall(o: obj_color(o, RED) implies obj_shape(o, CUBE)) // {()}
+</code></pre>
+<p>Here, we directly use <code>obj_color</code> to serve as the left-hand-side of the <code>implies</code>.
+There will be one empty tuple being derived, suggesting that the statement is true.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../language/negation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../language/constants.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../language/negation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../language/constants.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../js/hljs_scallop.js"></script>
+
+
+    </div>
+    </body>
+</html>
