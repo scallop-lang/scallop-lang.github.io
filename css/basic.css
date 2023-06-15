@@ -292,6 +292,10 @@ footer {
   width: calc(100% - 390px);
 }
 
+.markdown-content.main.centered {
+  margin: 0 auto;
+}
+
 .markdown-content img {
   max-width: 100%;
 }
@@ -386,6 +390,12 @@ footer {
   font-size: 14px;
   text-decoration: none;
   font-weight: normal;
+}
+
+.markdown-content .link-button.big {
+  padding: 0 20px;
+  line-height: 40px;
+  font-size: 18px;
 }
 
 .markdown-content .link-button:hover {
