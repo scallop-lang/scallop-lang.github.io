@@ -264,14 +264,17 @@ footer {
   padding-right: 30px;
 }
 
+.markdown-sidebar > ul {
+  overflow: scroll;
+  max-height: calc(100vh - 80px);
+}
+
 .markdown-sidebar ul {
   list-style: none;
   padding-left: 30px;
   position: -webkit-sticky;
   position: sticky;
   top: 50px;
-  overflow: scroll;
-  max-height: calc(100vh - 80px);
 }
 
 .markdown-sidebar ul li a {
