@@ -15,21 +15,18 @@ Once trained, the resulting program will automatically find the most likely
 formula and return the evaluated result.
 
 ``` scl
-// Node ID Hashing
-@demand("bbbbf")
-rel node_id_hash(x, s, l, r, x + sid * n + l * 4 * n + r * 4 * n * n) = symbol_id(s, sid), length(n)
+type symbol(index: usize, symbol: String)
+type length(n: usize)
 
-// Parsing
-rel value_node(x, v) = symbol(x, d), digit(d, v), length(n), x < n
-rel mult_div_node(x, "", x, x, x, x, x) = value_node(x, _)
-rel mult_div_node(h, s, x, l, end, begin, end) = symbol(x, s), mult_div(s), node_id_hash(x, s, l, end, h), mult_div_node(l, _, _, _, _, begin, x - 1), value_node(end, _), end == x + 1
-rel plus_minus_node(x, t, i, l, r, begin, end) = mult_div_node(x, t, i, l, r, begin, end)
-rel plus_minus_node(h, s, x, l, r, begin, end) = symbol(x, s), plus_minus(s), node_id_hash(x, s, l, r, h), plus_minus_node(l, _, _, _, _, begin, x - 1), mult_div_node(r, _, _, _, _, x + 1, end)
+rel digit = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
-// Evaluate AST
-rel eval(x, y, x, x) = value_node(x, y)
-rel eval(x, y1 + y2, b, e) = plus_minus_node(x, "+", i, l, r, b, e), eval(l, y1, b, i - 1), eval(r, y2, i + 1, e)
-rel eval(x, y1 - y2, b, e) = plus_minus_node(x, "-", i, l, r, b, e), eval(l, y1, b, i - 1), eval(r, y2, i + 1, e)
-rel eval(x, y1 * y2, b, e) = mult_div_node(x, "*", i, l, r, b, e), eval(l, y1, b, i - 1), eval(r, y2, i + 1, e)
-rel eval(x, y1 / y2, b, e) = mult_div_node(x, "/", i, l, r, b, e), eval(l, y1, b, i - 1), eval(r, y2, i + 1, e), y2 != 0.0
+rel factor(x as f32, b, b + 1) = symbol(b, x) and digit(x)
+rel mult_div(x, b, r) = factor(x, b, r)
+rel mult_div(x * y, b, e) = mult_div(x, b, m) and symbol(m, "*") and factor(y, m + 1, e)
+rel mult_div(x / y, b, e) = mult_div(x, b, m) and symbol(m, "/") and factor(y, m + 1, e)
+rel add_minus(x, b, r) = mult_div(x, b, r)
+rel add_minus(x + y, b, e) = add_minus(x, b, m) and symbol(m, "+") and mult_div(y, m + 1, e)
+rel add_minus(x - y, b, e) = add_minus(x, b, m) and symbol(m, "-") and mult_div(y, m + 1, e)
+
+rel result(y) = add_minus(y, 0, l) and length(l)
 ```

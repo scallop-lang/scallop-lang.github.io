@@ -11,26 +11,23 @@ Scallop enables to integrate all of these components in a common framework
 and perform training in an end-to-end fashion.
 
 ``` scl
-// 3 objects in the scene; the first and the third are blue, and the second is red
-rel obj = {0, 1, 2}
-rel color = {(0, "blue"), (1, "red"), (2, "blue")}
+type Color = RED | GREEN | BLUE
+type Size = LARGE | SMALL
+type Expr = Scene() | Color(Color, Expr) | Size(Size, Expr) | Count(Expr)
 
-// representation of the programmatic query 'count(filter_color(scene(), "blue"))'
-// which seeks the number of blue objects in the scene
-rel scene_expr = {0}
-rel filter_color_expr = {(1, 0, "blue")}
-rel count_expr = {(2, 1)}
-rel root_expr = {2}
+// Programmatic query evaluator
+rel eval(e, output_obj) = case e is Scene(), input_obj_ids(output_obj)
+rel eval(e, output_obj) = case e is Color(c, e1), eval(e1, output_obj), input_obj_color(output_obj, c)
+rel eval(e, output_obj) = case e is Size(s, e1), eval(e1, output_obj), input_obj_size(output_obj, s)
+rel eval_num(e, n) = n := count(o: eval(e1, o) where e1: case e is Count(e1))
+rel result(n) = root(e) and eval_num(e, n)
 
-// filter objects by color
-rel eval_objs(e, o) = scene_expr(e), obj(o)
-rel eval_objs(e, o) = filter_color_expr(e, f, c), eval_objs(f, o), color(o, c)
+// Scene Graph
+rel input_obj_ids = {0, 1}
+rel input_obj_color = {(0, RED), (1, GREEN)}
+rel input_obj_size = {(0, LARGE), (1, SMALL)}
 
-// count objects
-rel eval_num(e, n) = n = count(o: eval_objs(f, o) where e: count_expr(e, f))
-
-// final result
-rel num_result(y) = root_expr(e), eval_num(e, y)
-
-query num_result // query should return `(2)`
+// Count how many large red objects
+const MY_QUERY = Count(Color(RED, Size(LARGE, Scene())))
+rel root(MY_QUERY)
 ```

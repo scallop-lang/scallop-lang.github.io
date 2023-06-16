@@ -7,7 +7,8 @@ Part 1 teaches you how to do logical and probabilistic reasoning with Scallop, i
 Part 2 shows Scallop combined with neural components on two neurosymbolic applications: evaluating hand-written formula (Part 2A) and playing our PacMan-Maze game (Part 2B).
 
 For each sub-part, we have divided the work into multiple sub-problems (e.g., P1, P2, etc.)
-
+They are designed to be completed in sequence, but you are free to jump to the next part (or sub-part) if you want.
+The solution to our problems are hosted [TODO here](#).
 
 # Part 0: Getting Started
 
@@ -24,23 +25,30 @@ Please also find our slides which contain the overview and concepts of our talk.
 
 ## Installation Instructions
 
-We provide the docker files [here](#)
+We provide the docker files [TODO here](#).
+Please download the `scallop-pldi23-docker.zip` file onto your local computer, and uncompress it.
+There will be two possible dockers that you can choose from, one is under the `x86_64` folder and should be the default choice for most of the people who has `x86_64` machine.
+We have additionally provided an `apple_silicon` version of the `Dockerfile` for those who have an Apple machine with M1/M2 chip.
+In either case, go to the command line, stay in the root folder of the uncompressed artifact, and build the docker image:
 
 ``` bash
-docker build -t scallop-pldi23-tutorial .
-docker run -it --name my-scallop-container scallop-pldi23-tutorial
+# If you are using regular x86_64 machine
+docker build -t scallop-pldi23-tutorial -f x86_64/Dockerfile .
+
+# If you are using Apple machine with M1/M2 chip
+docker build -t scallop-pldi23-tutorial -f apple_silicon/Dockerfile .
 ```
 
-**Note**: For users with Mac with Apple Silicon (M1/M2), if you have encountered problem when running the docker container, please replace the second command above with the following:
+Once this is done, we can run the docker image and turn that into a container:
 
 ``` bash
-docker run -it --name my-scallop-container --platform linux/amd64 scallop-pldi23-tutorial
+docker run -it --name my-scallop-container scallop-pldi23-tutorial
 ```
 
 After this, you should see the following prompt:
 
 ``` bash
-(base) scallopie@c36cbd85bb7b:~/labs$
+(base) root@c36cbd85bb7b:~/labs$
 ```
 
 meaning that you have successfully launched our docker container.
@@ -242,7 +250,7 @@ This time, let us count the number of nodes in the graph.
 As the name suggests, you will find the `count` aggregator helpful:
 
 ``` scl
-RESULT = count(VARS*: FORMULA)
+RESULT := count(VARS*: FORMULA)
 ```
 
 This will count the number of unique `VARS*` and assign the count (of type `usize`) to the `RESULT` variable.
@@ -313,10 +321,10 @@ $ scli part-1a/graph_algo.scl --query shortest_path_length
 shortest_path_length: {(1, 1, 3), (1, 2, 1), (1, 3, 2), (1, 4, 2), (1, 5, 3), (2, 1, 2), (2, 2, 3), (2, 3, 1), (2, 4, 1), (2, 5, 2), (3, 5, 1), (4, 1, 1), (4, 2, 2), (4, 3, 3), (4, 4, 3), (4, 5, 4)}
 ```
 
-# Part 1B: Scene Graph Reasoning
+# Part 1B: Visual Question Answering
 
 In this part, we are going to study Scallop with it's probabilistic programming capability.
-We are going to do it through an example of scene graph reasoning.
+We are going to do it through an example of *Visual Question Answering*.
 Let's look at the following picture:
 
 <center>
@@ -333,6 +341,8 @@ The scene graph is used to represent the objects, their attributes, and relation
 Note that for real life computer vision applications, scene graphs are usually generated from images by *Scene Graph Generators* (SGG), while queries are generated from natural language text by *Semantic Parsers*.
 In addition, the real life scene graphs and scene graph query languages are way more complicated than what we will be demonstrating.
 Here, we provide a demonstration of how Scallop can be integrated to solve such kind of problems.
+
+In this part, we are going to be only modifying the file `part-1b/scene_graph.scl`.
 
 ## P1: Probabilistic Scene Graph
 
@@ -487,13 +497,144 @@ result(MY_QUERY, r): {
 
 # Part 2A: Hand-written Formula
 
-In this
+In this part, we are going to combine a Scallop program with simple vision neural networks to *evaluate hand-written formula* (HWF).
+The input given to this task is a list of images, where each image contains a hand-written digit or symbol.
+For example, the following figure shows 5 symbols representing the formula `1 + 3 / 5`:
+
+<center>
+  <img src="/img/hwf/banner.png" width="360px" />
+</center>
+
+This would be evaluated to `1.6667`, which is a floating point number.
+Here, the digits could be `0`-`9`, while the symbol could be among `+`, `-`, `*`, and `/`.
+
+Our solution to this task is divided into two parts:
+1. a neural component that classifies each image into one of the 14 possible symbols
+2. a reasoning component that takes the probabilistic distributions and compute the most likely evaluated outcome.
+
+To combine the two, there is a Python file that handles the full training end-to-end.
+The project is thus structured with two files:
+
+- `part-2a/run.py` the driver code for training and evaluating our HWF solution. It includes the neural component (`SymbolCNN`) and also the combined model (`HWFNet`). Inside of `HWFNet`, we also initialize the Scallop module, which is loaded from the following file:
+- `part-2a/hwf.scl` the Scallop file for logically parse and evaluate a sequence of predicted symbol distributions.
+
+We have provided the full `run.py` file which includes all the dataset, model architecture, and training pipeline.
+You job is simply to implement the `hwf.scl` file.
+In P1, you can implement the evaluator and test it against manually crafted instances.
+In P2, we battle test it by training an end-to-end model!
 
 ## P1: Formula Parser and Evaluator
 
+In order to write a formula parser and evaluator, we first understand the input and output format.
+
+**Input Relations:**
+
+The type definition of the input is organized as follows:
+
+``` scl
+type length(len: usize)
+type symbol(id: usize, sym: String)
+```
+
+There are two input relations, `symbol` and `length`.
+
+- The `length` relation is a unary relation storing a single fact containing the number of symbols in a formula.
+For the motivating example `1 + 3 / 5`, the length will be `5`.
+
+- The `symbol` relation is a binary relation denoting a mapping between the index of the symbol and the actual symbol itself.
+The index of the symbol goes from `0` to `length - 1`, and the actual `sym` is a `String` which could possibly be `"0"`-`"9"`, `"+"`, `"-"`, `"*"`, and `"/"`.
+
+**Output Relations:**
+
+The type definition of the output is defined as
+
+``` scl
+type result(f32)
+```
+
+The `result` is a unary relation containing the derived output.
+Considering the motivating example, `1.6666667` would be inside of the `result` relation.
+
+**Intermediate Relations:**
+
+In order to go from the input relations `symbol` and `length` to the output relation `result`, we also help you outline some intermediate relations.
+We recommend following such skeleton relation type definitions and define concrete rules to these relations.
+You can certainly try other ways if you want.
+
+- `rel digit = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}`, this is a helper unary-relation which functions as a set of all digit symbols. You can use this relation to match individual symbol that is a digit.
+
+In order to parse the formula with the correct symbol precedence, we follow the following context free grammar (CFG):
+
+```
+FACTOR    := 0 | ... | 9
+MULT_DIV  := FACTOR
+           | MULT_DIV * FACTOR
+           | MULT_DIV / FACTOR
+ADD_MINUS := MULT_DIV
+           | ADD_MINUS + MULT_DIV
+           | ADD_MINUS - MULT_DIV
+```
+
+According to this CFG, we thus create three intermediate relations, each representing a parsed node of `factor`, `mult_div`, or `add_minus` types.
+
+- `type factor(value: f32, begin: usize, end: usize)`
+- `type mult_div(value: f32, begin: usize, end: usize)`
+- `type add_minus(value: f32, begin: usize, end: usize)`
+
+Each of them have three arguments, `value`, `begin`, and `end`.
+The `value` argument is a `f32` (floating point 32-bit), representing the evaluated result given the current node.
+The `begin` and `end` arguments are `usize`, which are the beginning index (inclusive) and the ending index (exclusive) of the current parsed node.
+
+> REMARK: You might find the `[string] as f32` expression helpful, which parses a string into a floating point number.
+
+**Your Task:**
+
+In short, please implement rules for `factor`, `mult_div`, `add_minus`, and finally the `result` relations.
+In order to test your implementation, you can run the two test files, one for discrete inputs and another for probabilistic inputs.
+
+Discrete inputs:
+
+```
+$ scli part-2a/test_discrete.scl
+result: {(8)}
+```
+
+Probabilistic inputs:
+
+```
+$ scli part-2a/test_probabilistic.scl --provenance topkproofs
+result: {0.063::(0.125), 0.020870000000000003::(0.5), 0.14428000000000002::(2), 0.50696::(8), 0.027999999999999997::(32)}
+```
+
 ## P2: Training End-to-End
 
+There is not much to do other than just training our neurosymbolic model for evaluating hand-written formulae!
+Assuming that you have tested the behavior of your evaluator, and that the `conda` environment is correctly set to `scallop-env` simply run the following command and see the learning happen!
+
+``` bash
+$ python part-2a/run.py
+```
+
+Information about the training should be logged properly to the command-line, which will look like
+
+```
+[Train Epoch 1] Avg loss: 1.1658, Accuracy: 475/3000 (15.83%): 100%|██████| 188/188 [01:18<00:00,  2.38it/s]
+[Test Epoch 1] Avg loss: 0.8975, Accuracy: 362/1000 (36.20%): 100%|█████████| 63/63 [00:07<00:00,  8.22it/s]
+[Train Epoch 2] Avg loss: 0.8761, Accuracy: 1336/3000 (44.53%): 100%|█████| 188/188 [01:17<00:00,  2.44it/s]
+[Test Epoch 2] Avg loss: 0.6267, Accuracy: 668/1000 (66.80%): 100%|█████████| 63/63 [00:07<00:00,  8.01it/s]
+[Train Epoch 3] Avg loss: 0.8279, Accuracy: 1929/3000 (64.30%): 100%|█████| 188/188 [01:18<00:00,  2.40it/s]
+[Test Epoch 3] Avg loss: 0.4156, Accuracy: 818/1000 (81.80%): 100%|█████████| 63/63 [00:07<00:00,  7.97it/s]
+[Train Epoch 4] Avg loss: 0.5198, Accuracy: 2257/3000 (75.23%): 100%|█████| 188/188 [01:18<00:00,  2.40it/s]
+[Test Epoch 4] Avg loss: 0.2866, Accuracy: 866/1000 (86.60%): 100%|█████████| 63/63 [00:08<00:00,  7.79it/s]
+[Train Epoch 5] Avg loss: 0.4405, Accuracy: 2424/3000 (80.80%): 100%|█████| 188/188 [01:17<00:00,  2.43it/s]
+[Test Epoch 5] Avg loss: 0.2708, Accuracy: 901/1000 (90.10%): 100%|█████████| 63/63 [00:08<00:00,  7.82it/s]
+```
+
+Once you can get a >80% test accuracy at around 3rd epoch, congratulations, your neurosymbolic program is working and helping to train the underlying perceptual neural networks!
+
 # Part 2B: PacMan Agent
+
+In this part,
 
 ## P1: Controlling Agent
 
