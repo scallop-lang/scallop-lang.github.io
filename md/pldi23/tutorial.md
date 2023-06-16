@@ -181,7 +181,7 @@ The expected output should be as follows:
 path: {(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (3, 5), (4, 1), (4, 2), (4, 3), (4, 4), (4, 5)}
 ```
 
-## P4: Strongly Connected Component (SCC)
+## P4: Strongly Connected Component
 
 A strongly connected component (SCC) is defined as a subgraph within which every node is reachable from every other node.
 In this exercise, we will define a relation called `scc(usize, usize)`:
@@ -515,8 +515,8 @@ Our solution to this task is divided into two parts:
 To combine the two, there is a Python file that handles the full training end-to-end.
 The project is thus structured with two files:
 
-- `part-2a/run.py` the driver code for training and evaluating our HWF solution. It includes the neural component (`SymbolCNN`) and also the combined model (`HWFNet`). Inside of `HWFNet`, we also initialize the Scallop module, which is loaded from the following file:
-- `part-2a/hwf.scl` the Scallop file for logically parse and evaluate a sequence of predicted symbol distributions.
+- `part-2a/src/run.py` the driver code for training and evaluating our HWF solution. It includes the neural component (`SymbolCNN`) and also the combined model (`HWFNet`). Inside of `HWFNet`, we also initialize the Scallop module, which is loaded from the following file:
+- `part-2a/src/hwf.scl` the Scallop file for logically parse and evaluate a sequence of predicted symbol distributions.
 
 We have provided the full `run.py` file which includes all the dataset, model architecture, and training pipeline.
 You job is simply to implement the `hwf.scl` file.
@@ -544,6 +544,8 @@ For the motivating example `1 + 3 / 5`, the length will be `5`.
 - The `symbol` relation is a binary relation denoting a mapping between the index of the symbol and the actual symbol itself.
 The index of the symbol goes from `0` to `length - 1`, and the actual `sym` is a `String` which could possibly be `"0"`-`"9"`, `"+"`, `"-"`, `"*"`, and `"/"`.
 
+For a concrete example of how the input facts look like, you can take a look at `part-2a/src/test_discrete.scl` and `part-2a/src/test_probabilistic.scl`.
+
 **Output Relations:**
 
 The type definition of the output is defined as
@@ -566,18 +568,19 @@ You can certainly try other ways if you want.
 In order to parse the formula with the correct symbol precedence, we follow the following context free grammar (CFG):
 
 ```
-FACTOR    := 0 | ... | 9
-MULT_DIV  := FACTOR
-           | MULT_DIV * FACTOR
-           | MULT_DIV / FACTOR
+TERM      := 0 | ... | 9
+MULT_DIV  := TERM
+           | MULT_DIV * TERM
+           | MULT_DIV / TERM
 ADD_MINUS := MULT_DIV
            | ADD_MINUS + MULT_DIV
            | ADD_MINUS - MULT_DIV
 ```
 
-According to this CFG, we thus create three intermediate relations, each representing a parsed node of `factor`, `mult_div`, or `add_minus` types.
+Note that we are only dealing with single digit expressions (i.e., we don't have constant numbers of more than 1 digit, like the `15` in `1 5 + 3`).
+According to this CFG, we create three intermediate relations, each representing a parsed node of `term`, `mult_div`, or `add_minus` types.
 
-- `type factor(value: f32, begin: usize, end: usize)`
+- `type term(value: f32, begin: usize, end: usize)`
 - `type mult_div(value: f32, begin: usize, end: usize)`
 - `type add_minus(value: f32, begin: usize, end: usize)`
 
@@ -589,8 +592,9 @@ The `begin` and `end` arguments are `usize`, which are the beginning index (incl
 
 **Your Task:**
 
-In short, please implement rules for `factor`, `mult_div`, `add_minus`, and finally the `result` relations.
+In short, please implement rules for `term`, `mult_div`, `add_minus`, and finally the `result` relations.
 In order to test your implementation, you can run the two test files, one for discrete inputs and another for probabilistic inputs.
+Feel free to modify the test cases just to test your implementation more thoroughly.
 
 Discrete inputs:
 
@@ -632,10 +636,157 @@ Information about the training should be logged properly to the command-line, wh
 
 Once you can get a >80% test accuracy at around 3rd epoch, congratulations, your neurosymbolic program is working and helping to train the underlying perceptual neural networks!
 
+> Note: While watching the model train could be fun, you can also jump to the next part!
+
 # Part 2B: PacMan Agent
 
-In this part,
+In this part, we are going to use Scallop to help control a PacMan in a game called PacMan-Maze.
+In the PacMan-Maze, we are dealing with simple 5x5 grids.
+On each grid cell, there could be an enemy (ghost), a goal (flag), an actor (PacMan), or simply empty.
+The goal of the game is to control the PacMan to go from its current location to the goal without hitting any enemy.
 
-## P1: Controlling Agent
+<center>
+  <img src="/img/pacman/pacman-game.png" width="480px" />
+</center>
 
-## P2: Let Agent Play!
+While the game seem easy, the catch is that our controller could only see the game as image.
+Therefore, we propose to use Scallop as a neurosymbolic solution here.
+As shown by the model architecture below, we decompose the problem into separated perception and reasoning parts.
+The perception module, `EntityExtractor`, processes the image to extract entities and their position distributions.
+These probabilistic distributions are then passed to the `PathPlanner`, which is a reasoning module written in Scallop.
+It is the `PathPlanner`'s job to predict the next action to take, with the hope that the PacMan reach the goal eventually.
+
+<center>
+  <img src="/img/pacman/pacman-arch.png" width="480px" />
+</center>
+
+Notice that there is no supervision given on what the entities are despite indirect ones such as the rewards to the actions.
+Initially, the perception model has no idea about how does each entity look like.
+The joint neurosymbolic model need to learn from scratch on what things are and decide logically on where to go (what action to take).
+
+We have provided three files:
+
+- `part-2b/arena.py`: this file contains the game environment; you do not need to touch it
+- `part-2b/run.py`: this is the main driver file written in Python for training the agent under an reinforcement learning (RL) environment.
+  It contains the `EntityExtractor` model and also loads the Scallop module `PathPlanner` that we have as a separate file.
+- `part-2b/path_planner.scl`: this is the file that you are going to be working with. It should encode the logic that chooses the optimal action in order for the PacMan to reach the goal.
+
+## P1: Implement the Agent
+
+Let us again study the input and output relations inside `part2b/path_planner.scl`.
+
+**Input Relations:**
+
+The listed relations here are the input relations to the `PathPlanner`.
+They store coordinates with `x` and `y` ranging from `0` to `4` (since the grids are 5 by 5).
+
+The `grid_node` one is an auxiliary relation containing all the nodes `(0, 0)`, `(0, 1)`, ..., `(4, 4)`, each tagged by 0.99.
+This can be used for penalizing long paths.
+
+``` scl
+// Static input facts
+type grid_node(x: usize, y: usize)
+```
+
+In terms of `actor`, `goal`, and `enemy`, they are, as their name suggests, the coordinates of corresponding type of entity.
+
+``` scl
+// Input from neural networks
+type actor(x: usize, y: usize)
+type goal(x: usize, y: usize)
+type enemy(x: usize, y: usize)
+```
+
+**Output Relation:**
+
+The output relation of the path planner is a relation named `next_action`.
+It is a unary relation with `Action` as the only argument.
+Note that `Action` is a enum type with four constants, `UP`, `RIGHT`, `DOWN`, and `LEFT`.
+
+``` scl
+type Action = UP | RIGHT | DOWN | LEFT
+type next_action(Action)
+```
+
+**Your Task:**
+
+We give skeleton code to guide you on implementing the path planner from the input relation to output relation.
+
+``` scl
+// (x, y) is a safe node if it is a grid node and does not contain an enemy
+type safe_node(x: usize, y: usize)
+
+// There is an (safe) edge between safe nodes (x1, y1) and (x2, y2) if
+// taking the action `a` can move the actor from (x1, y1) to (x2, y2)
+type edge(x1: usize, y1: usize, x2: usize, y2: usize, a: Action)
+
+// There is a (safe) path between safe nodes (x1, y1) and (x2, y2) if
+// there is a series of safe edges connecting the two nodes.
+// Note that self-path is also a safe path.
+type path(x1: usize, y1: usize, x2: usize, y2: usize)
+
+// Given the current actor position, taking the action `a` would move the
+// actor to the position (x, y)
+type next_position(a: Action, x: usize, y: usize)
+
+// We pick the action `a` as the next action if, after moving to the next
+// position with `a`, we have a safe path from the next position to the goal
+type next_action(a: Action)
+```
+
+Please implement a few rules for the 5 relations, `safe_node`, `edge`, `path`, `next_position`, and `next_action`.
+For `edge` and `path`, they should look fairly similar to what we have done in Part-1A.
+
+If you want, you can also ignore the provided skeleton and implement your own path planner!
+
+## P2: Let the Agent Play!
+
+In order to shorten the time required to train the model, we provide a pre-trained model for the `EntityExtractor`.
+This means that you can directly run the whole model with your own `PathPlanner` and see the PacMan controlled by your program!
+
+Note that working with VSCode and Docker can allow the game environment to be displayed:
+
+<center>
+  <img src="/img/pacman/pacman-display.png" width="200px" />
+</center>
+
+In order to look at your path planner at work, we can use the following command.
+
+```
+$ python part-2b/run.py --load-model part-2b/model/entity_extractor.pkl --phase test --show-run --show-run-interval 0.1
+```
+
+If everything goes correctly, you should see the PacMan moving straight to the goal for every single session of the game.
+Here, we have loaded a pre-trained model of entity extractor.
+We have also set the phase to be `test`, since we don't want training to happen.
+Lastly, we specify that we want to `--show-run`, which will open a separate small window.
+The `--show-run-interval` is a number in seconds to specify the delay in time of each action.
+If not specified, the PacMan would move so fast that you can't catch what is happening.
+
+In case the display is not supported due to unknown reasons, we can still run the testing by removing the `--show-run` and `--show-run-interval` flags.
+
+```
+$ python part-2b/run.py --load-model part-2b/model/entity_extractor.pkl --phase test
+```
+
+## EC2: Train the Agent!
+
+If there is still time left and if you are interested, feel free to train the model from scratch!
+You can run the script
+
+```
+$ python part-2b/run.py --phase train
+```
+
+This is one example training log produced
+
+```
+[Train Epoch 1] Avg Loss: 0.010963364504277706, Success: 17/50 (34.00%): 100%|█| 50/50 [01:48<00:00,  2.
+[Test Epoch 1] Success 200/200 (100.00%): 100%|███████████████████████| 200/200 [00:18<00:00, 10.76it/s]
+[Train Epoch 2] Avg Loss: 0.014583811163902283, Success: 24/50 (48.00%): 100%|█| 50/50 [01:57<00:00,  2.
+[Test Epoch 2] Success 198/200 (99.00%): 100%|████████████████████████| 200/200 [00:18<00:00, 10.98it/s]
+```
+
+As can be seen, after only 50 episodes of training, our model can obtain an almost perfect accuracy.
+
+> Note: It is normal that we have low success rate during training due to forced random exploration.
