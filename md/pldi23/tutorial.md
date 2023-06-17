@@ -11,7 +11,7 @@ They are designed to be completed in sequence, but you are free to jump to the n
 We also provide the solution and the documentation in case they are needed:
 
 <center>
-  <a class="link-button big" href="https://github.com/moqingyan/scallop-pldi23-tutorial-solution" target="_blank">Solution</a>
+  <a class="link-button big" href="https://github.com/moqingyan/scallop-pldi23-tutorial-solutions" target="_blank">Solution</a>
   <a class="link-button big" href="https://scallop-lang.github.io/doc" target="_blank">Documentation</a>
 </center>
 
