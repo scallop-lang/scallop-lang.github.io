@@ -2,13 +2,18 @@
 
 Our tutorial is for you to get familiar with the Scallop language in different scenarios.
 At a high level, the tutorial is divided into three parts.
-Part 0 gives instructions on installing the environment.
+Part 0 gives instructions on installing the docker environment.
 Part 1 teaches you how to do logical and probabilistic reasoning with Scallop, in the context of graph algorithms (Part 1A) and visual question answering (Part 1B).
 Part 2 shows Scallop combined with neural components on two neurosymbolic applications: evaluating hand-written formula (Part 2A) and playing our PacMan-Maze game (Part 2B).
 
 For each sub-part, we have divided the work into multiple sub-problems (e.g., P1, P2, etc.)
 They are designed to be completed in sequence, but you are free to jump to the next part (or sub-part) if you want.
-The solution to our problems are hosted [TODO here](#).
+We also provide the solution and the documentation in case they are needed:
+
+<center>
+  <a class="link-button big" href="https://github.com/moqingyan/scallop-pldi23-tutorial-solution" target="_blank">Solution</a>
+  <a class="link-button big" href="https://scallop-lang.github.io/doc" target="_blank">Documentation</a>
+</center>
 
 # Part 0: Getting Started
 
@@ -25,18 +30,24 @@ Please also find our slides which contain the overview and concepts of our talk.
 
 ## Installation Instructions
 
-We provide the docker files [TODO here](#).
+The docker file for this tutorial is provided right here:
+
+<center>
+  <a class="link-button big" href="https://drive.google.com/drive/folders/1PzxSlR4EJ-APaTvsgi8A-eC7ffSlA7E9?usp=share_link" target="_blank">Download Tutorial Docker File</a>
+</center>
+
 Please download the `scallop-pldi23-docker.zip` file onto your local computer, and uncompress it.
-There will be two possible dockers that you can choose from, one is under the `x86_64` folder and should be the default choice for most of the people who has `x86_64` machine.
-We have additionally provided an `apple_silicon` version of the `Dockerfile` for those who have an Apple machine with M1/M2 chip.
-In either case, go to the command line, stay in the root folder of the uncompressed artifact, and build the docker image:
+There will be two possible docker images that you can choose from, one for `x86_64` machine and another for `aarch64` machine.
+For people who use an x86_64 machines, please use the `Dockerfile` under `x86_64`.
+For people who use Arm 64-bit systems, including Apple's M1/M2 Mac, please use the `Dockerfile` under `aarch64`.
+In either case, go to the command line, stay in the root of the uncompressed folder, and build the docker image:
 
 ``` bash
-# If you are using regular x86_64 machine
+# If you are using x86_64 machine
 docker build -t scallop-pldi23-tutorial -f x86_64/Dockerfile .
 
-# If you are using Apple machine with M1/M2 chip
-docker build -t scallop-pldi23-tutorial -f apple_silicon/Dockerfile .
+# If you are using arm machine (including Mac with M1/M2 chip)
+docker build -t scallop-pldi23-tutorial -f aarch64/Dockerfile .
 ```
 
 Once this is done, we can run the docker image and turn that into a container:
@@ -61,7 +72,7 @@ Assuming that you have the [Dev Containers](https://marketplace.visualstudio.com
 </center>
 
 If everything goes well, you can click on the "Open Folder" button in the sidebar under the `Explorer` tab.
-We will choose to open the `/home/scallopie/labs/` folder, as shown in the following screenshot:
+We will choose to open the `/root/labs/` folder, as shown in the following screenshot:
 
 <center>
   <img src="/img/pldi23/open-folder-in-vscode.png" width="760px" />
@@ -72,14 +83,15 @@ We will choose to open the `/home/scallopie/labs/` folder, as shown in the follo
 Now, you might want to check if you can successfully run Scallop.
 To verify that everything has been installed correctly, please run the following command, and see if the output matches:
 
-```
-(base) scallopie@477103f84e48:~/labs$ scli part-0/hello.scl
+``` bash
+(base) root@477103f84e48:~/labs$ conda activate scallop-env
+(scallop-env) root@477103f84e48:~/labs$ scli part-0/hello.scl
 hello: {("Hello World")}
 ```
 
 If they match, you are off to a great start!
 
-In the following parts of the tutorial, we will assume that you stay in the `~/labs` directory with the `base` conda environment.
+In the following parts of the tutorial, we will assume that you stay in the `/root/labs` directory with the `scallop-env` conda environment.
 We will use `$` to replace the command line prompt.
 
 # Part 1A: Graph Reasoning Algorithm
@@ -87,13 +99,13 @@ We will use `$` to replace the command line prompt.
 In this module, we will learn to write simple graph algorithms in Scallop.
 Please navigate to the `part-1` folder and open the file `graph_algo.scl`.
 
-```
+``` bash
 $ scli part-1a/graph_algo.scl
 ```
 
 Initially, you should see that all the relations are empty:
 
-```
+``` bash
 $ scli part-1a/graph_algo.scl
 source_node: {}
 path: {}
@@ -130,7 +142,7 @@ rel edge = {/* Fill in the facts here */}
 
 You should be able to test whether the two relations are populated by running the following commands:
 
-```
+``` bash
 $ scli part-1a/graph_algo.scl --query node
 $ scli part-1a/graph_algo.scl --query edge
 ```
@@ -148,7 +160,7 @@ A directed triangle `abc` is defined when there is an edge from `a` to `b`, an e
 from `c` back to `a`.
 By this definition, our sample graph has three directed triangles: `triangle(1, 2, 4)`, `triangle(2, 4, 1)`, and `triangle(4, 1, 2`:
 
-```
+``` bash
 $ scli part-1a/graph_algo.scl --query triangle
 triangle: {(1, 2, 4), (2, 4, 1), (4, 1, 2)}
 ```
@@ -171,7 +183,7 @@ Write the rule(s) for the `path` relation.
 Note that you can either write two rules or one rule with an `or` inside of it.
 Use the following command to execute the program:
 
-```
+``` bash
 $ scli part-1a/graph_algo.scl --query path
 ```
 
@@ -191,7 +203,7 @@ Note that a node is always in the same SCC as itself.
 In our sample graph, the nodes `1`, `2`, and `4` are in the same SCC. `3` and `5` are in their respective SCC.
 You should execute the following command and see the expected output:
 
-```
+``` bash
 $ scli part-1a/graph_algo.scl --query scc
 scc: {(1, 1), (1, 2), (1, 4), (2, 1), (2, 2), (2, 4), (3, 3), (4, 1), (4, 2), (4, 4), (5, 5)}
 ```
@@ -205,7 +217,7 @@ A node is a *sink* if there is only an incoming edge and no outgoing edge.
 Write two rules for `source_node(usize)` and `sink_node(usize)` that yield the following result
 on our sample graph:
 
-```
+``` bash
 $ scli part-1a/graph_algo.scl --query source_node
 source_node: {}
 $ scli part-1a/graph_algo.scl --query sink_node
@@ -238,7 +250,7 @@ where `RESULT` is assigned a boolean value indicating whether there exist bindin
 
 After executing the program, you should get the following output:
 
-```
+``` bash
 $ scli part-1a/graph_algo.scl --query contains_cycle
 contains_cycle: {(true)}
 ```
@@ -259,7 +271,7 @@ But for this exercise, we probably only need one.
 
 Here's the expected output after executing the rule:
 
-```
+``` bash
 $ scli part-1a/graph_algo.scl --query num_nodes
 num_nodes: {(5)}
 ```
@@ -301,24 +313,6 @@ $ scli part-1a/graph_algo.scl --query in_degree
 in_degree: {(1, 1), (2, 1), (3, 1), (4, 1), (5, 1)}
 $ scli part-1a/graph_algo.scl --query out_degree
 out_degree: {(1, 1), (2, 2), (3, 1), (4, 1), (5, 0)}
-```
-
-## EC1: Shortest Path Length
-
-Here is an extra credit exercise where you want to write a rule to compute the shortest path length between two nodes.
-The definition is `shortest_path_length(usize, usize, usize)`
-where `shortest_path_length(a, b, x)` means the shortest path length is `x` between node `a` and `b`.
-For example, the shortest path between node `1` and `5` has length 3 (`1 --> 2 --> 3 --> 5`).
-There could be a path between a node and itself, e.g. the shortest path between node `4` and `4` has length 3 (`4 --> 1 --> 2 --> 4`).
-
-You might want to create a helper relation that stores the length of paths.
-For this you would need to assume the shortest path length would be less than or equal to the total number of nodes in the graph,
-to avoid computing for path lengths infinitely.
-Lastly, a `min` aggregation would be needed to find the shortest length.
-
-```
-$ scli part-1a/graph_algo.scl --query shortest_path_length
-shortest_path_length: {(1, 1, 3), (1, 2, 1), (1, 3, 2), (1, 4, 2), (1, 5, 3), (2, 1, 2), (2, 2, 3), (2, 3, 1), (2, 4, 1), (2, 5, 2), (3, 5, 1), (4, 1, 1), (4, 2, 2), (4, 3, 3), (4, 4, 3), (4, 5, 4)}
 ```
 
 # Part 1B: Visual Question Answering
@@ -769,7 +763,7 @@ In case the display is not supported due to unknown reasons, we can still run th
 $ python part-2b/run.py --load-model part-2b/model/entity_extractor.pkl --phase test
 ```
 
-## EC2: Train the Agent!
+## P3: Train the Agent! (Optional)
 
 If there is still time left and if you are interested, feel free to train the model from scratch!
 You can run the script
