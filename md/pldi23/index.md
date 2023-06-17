@@ -50,51 +50,54 @@ Please also find our slides which contain the overview and concepts of our talk.
   - [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for connecting with the docker container
   - [Scallop VSCode](https://marketplace.visualstudio.com/items?itemName=scallop-lang.scallop) for syntax highlighting of Scallop code
 
-## Instruction
+## Installation Instructions
 
-We provide the docker files [here](#)
+The docker file for this tutorial is provided right here:
+
+<center>
+  <a class="link-button big" href="https://drive.google.com/drive/folders/1PzxSlR4EJ-APaTvsgi8A-eC7ffSlA7E9?usp=share_link" target="_blank">Download Tutorial Docker File</a>
+</center>
+
+Please download the `scallop-pldi23-docker.zip` file onto your local computer, and uncompress it.
+There will be two possible docker images that you can choose from, one for `x86_64` machine and another for `aarch64` machine.
+For people who use an x86_64 machines, please use the `Dockerfile` under `x86_64`.
+For people who use Arm 64-bit systems, including Apple's M1/M2 Mac, please use the `Dockerfile` under `aarch64`.
+In either case, go to the command line, stay in the root of the uncompressed folder, and build the docker image:
 
 ``` bash
-docker build -t scallop-pldi23-tutorial .
-docker run -it --name my-scallop-container scallop-pldi23-tutorial
+# If you are using x86_64 machine
+docker build -t scallop-pldi23-tutorial -f x86_64/Dockerfile .
+
+# If you are using arm machine (including Mac with M1/M2 chip)
+docker build -t scallop-pldi23-tutorial -f aarch64/Dockerfile .
 ```
 
-**Note**: For users with Mac with Apple Silicon (M1/M2), if you have encountered problem when running the docker container, please replace the second command above with the following:
+Once this is done, we can run the docker image and turn that into a container:
 
 ``` bash
-docker run -it --name my-scallop-container --platform linux/amd64 scallop-pldi23-tutorial
+docker run -it --name my-scallop-container scallop-pldi23-tutorial
 ```
 
 After this, you should see the following prompt:
 
 ``` bash
-(base) scallopie@c36cbd85bb7b:~/labs$
+(base) root@c36cbd85bb7b:~/labs$
 ```
 
 meaning that you have successfully launched our docker container.
-Now, you might want to check if you can successfully run Scallop by invoking the REPL program (Read-eval-print loop, or interactive command-line interface) of Scallop: `sclrepl`.
-You can try to replicate the following by typing in the following two Scallop statements.
-
-``` bash
-(base) scallopie@c36cbd85bb7b:~/labs$ sclrepl
-scl> rel hello = {"hello world"}
-scl> query hello
-hello: {("hello world")}
-```
-
 After verifying that things go well, we can safely quit the docker by pressing `Ctrl + D`.
 From here, we want to launch the docker through [VSCode](https://code.visualstudio.com).
 Assuming that you have the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) plugin installed, you can navigate to the `Remote Explorer` tab on the sidebar, and attach a new VSCode window to the docker by clicking on the rightward arrow as shown in this screenshot:
 
 <center>
-<img src="/img/pldi23/loading-docker-in-vscode.png" width="400px" />
+  <img src="/img/pldi23/loading-docker-in-vscode.png" width="400px" />
 </center>
 
 If everything goes well, you can click on the "Open Folder" button in the sidebar under the `Explorer` tab.
-We will choose to open the `/home/scallopie/labs/` folder, as shown in the following screenshot:
+We will choose to open the `/root/labs/` folder, as shown in the following screenshot:
 
 <center>
-<img src="/img/pldi23/open-folder-in-vscode.png" width="760px" />
+  <img src="/img/pldi23/open-folder-in-vscode.png" width="760px" />
 </center>
 
 # Learn More
@@ -117,5 +120,5 @@ We will choose to open the `/home/scallopie/labs/` folder, as shown in the follo
 
 ## References
 
-- [Our NeurIPS'21 Paper]()
+- [Our NeurIPS'21 Paper](https://www.cis.upenn.edu/~mhnaik/papers/neurips21.pdf)
 - [Our PLDI'23 Paper](https://dl.acm.org/doi/10.1145/3591280)
