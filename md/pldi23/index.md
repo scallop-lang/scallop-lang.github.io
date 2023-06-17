@@ -20,7 +20,7 @@
     ]
   </div>
   <div style="height: 20px"></div>
-  <a class="link-button big" href="/pldi23/tutorial.html" target="_blank" style="margin-top: 20px">Step-by-Step Guide</a>
+  <a class="link-button big" href="/pldi23/tutorial.html" target="_blank" style="margin-top: 20px">Tutorial Instructions</a>
   <div style="height: 50px"></div>
 </center>
 
@@ -34,8 +34,8 @@ Here, neural components can be used to process unstructured data such as images 
 # Structure of Tutorial
 
 This tutorial is going to be divided into two parts:
-- Part A: Get familiar with the Scallop programming language by going through examples of discrete logical reasoning.
-- Part B: Combine Scallop with neural networks to solve tasks involving both perception and reasoning.
+- Part 1: Get familiar with the Scallop by going through examples of discrete and probabilistic reasoning.
+- Part 2: Combine Scallop with neural networks to solve tasks involving both perception and reasoning.
 
 # Getting Started
 
@@ -115,8 +115,6 @@ We will choose to open the `/root/labs/` folder, as shown in the following scree
 * [Scallop Documentation](https://scallop-lang.github.io/doc/index.html)
 * [Scallop Website](https://scallop-lang.github.io/)
 * [Scallop VSCode Plugin](https://marketplace.visualstudio.com/items?itemName=scallop-lang.scallop)
-
-> The recordings will later be posted
 
 ## References
 
