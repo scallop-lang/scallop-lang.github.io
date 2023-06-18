@@ -104,7 +104,7 @@ We will choose to open the `/root/labs/` folder, as shown in the following scree
 
 ## About the Presenters
 
-- [Ziyang Li](https://liby99.github.io) is a 4th year PhD student at the University of Pennsylvania advised by Professor Mayur Naik. He received her dual major of B.S. Computer Science and B.S. Mathematics from the University of California, San Diego in 2019. His research interests lie in the fields of programming languages, machine learning, and the combination of the two. In particular, he is the main system architect of the Scallop programming language.
+- [Ziyang Li](https://liby99.github.io) is a 4th year PhD student at the University of Pennsylvania advised by Professor Mayur Naik. He received his dual major of B.S. Computer Science and B.S. Mathematics from the University of California, San Diego in 2019. His research interests lie in the fields of programming languages, machine learning, and the combination of the two. In particular, he is the main system architect of the Scallop programming language.
 
 - [Jiani Huang](https://www.cis.upenn.edu/~jianih/) is a 5th year PhD student at the University of Pennsylvania advised by Professor Mayur Naik. She received her undergraduate degree from the University of California, San Diego in 2018. Her research interest lies in the intersection of machine learning and programming language, specifically in combining neural and symbolic approaches to develop accurate, reliable, and effient machine-learning solutions. She is the main application developer using the Scallop programming language.
 
