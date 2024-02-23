@@ -3,11 +3,11 @@
 <a href="#" class="markdown-tag">Feb 23, 2024</a>
 
 <center>
-  <a class="link-button" target="_blank" href="/artifacts/papers/aaai24/scallop_aaai24.pdf">Check out our AAAI'24 paper!</a>
+  <a class="link-button" target="_blank" href="/papers/aaai24.pdf">Check out our AAAI'24 paper!</a>
   <a class="link-button" target="_blank" href="https://scallop.build/">Try out our Live Demo!</a>
 </center>
 
-Our paper [Relational Programming with Foundation Models](/artifacts/papers/aaai24/scallop_aaai24.pdf) will appear at AAAI'24 in Vancouver!
+Our paper [Relational Programming with Foundation Models](/papers/aaai24.pdf) will appear at AAAI'24 in Vancouver!
 In this work, we have extended Scallop with fundamental capabilities to connect neuro-symbolic programming with **Foundation Models** through a novel **Foreign Interface**.
 Now, you can utilize Scallop like never before: invoking an external language model or a vision-language model seamlessly using relations!
 
