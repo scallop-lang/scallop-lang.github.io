@@ -264,6 +264,15 @@ footer {
   padding-right: 30px;
 }
 
+.markdown-holder.no-sidebar .markdown-sidebar {
+  width: 0;
+}
+
+.markdown-holder.no-sidebar .markdown-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
 .markdown-sidebar > ul {
   overflow: scroll;
   max-height: calc(100vh - 80px);

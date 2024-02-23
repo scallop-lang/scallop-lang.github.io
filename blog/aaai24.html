@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.0/markdown-it.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.1/markdown-it-footnote.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/base16/tomorrow.min.css">
+    <link rel="stylesheet" href="/vendor/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/basic.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <title>Scallop - SSFT22</title>
+  </head>
+  <body>
+    <nav class="template" data-template="navbar" data-callback="nav_loaded_callback"></nav>
+    <main>
+      <div class="wrapper markdown-holder">
+        <div class="markdown-sidebar"></div>
+        <div class="markdown-content main"></div>
+      </div>
+    </main>
+    <footer class="template" data-template="footer"></footer>
+    <script src="/js/hljs_scallop.js"></script>
+    <script src="/js/load_markdown.js"></script>
+    <script src="/js/load_templates.js"></script>
+    <script>let nav_loaded_callback = () => $("#nav-link-blog").addClass("active");</script>
+    <script>load_markdown_without_sidebar("blog/aaai24")</script>
+  </body>
+</html>

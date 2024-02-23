@@ -129,6 +129,8 @@ function render(markdown, $content, $sidebar) {
   // Load the sidebar if it presents
   if ($sidebar) {
     load_sidebar($content, $sidebar);
+  } else {
+    $(".markdown-holder").addClass("no-sidebar");
   }
 }
 
@@ -141,6 +143,15 @@ function load_markdown_default(file) {
     url: `/md/${file}.md`,
     success: (md) => {
       render(md, $(".markdown-content"), $(".markdown-sidebar"));
+    },
+  });
+}
+
+function load_markdown_without_sidebar(file) {
+  $.ajax({
+    url: `/md/${file}.md`,
+    success: (md) => {
+      render(md, $(".markdown-content"), null);
     },
   });
 }
