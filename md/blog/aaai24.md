@@ -1,4 +1,4 @@
-# Relational Programming with Foundation Models is Appearing at AAAI'24!
+# Paper on Relational Programming with Foundation Models at AAAI'24
 
 <a href="#" class="markdown-tag">Feb 23, 2024</a>
 
