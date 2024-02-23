@@ -27,7 +27,10 @@
 
 ## Papers
 
-[Scallop: From Probabilistic Deductive Databases to Scalable Differentiable Reasoning](https://www.cis.upenn.edu/~mhnaik/papers/neurips21.pdf). NeurIPS 2021.
+- [Scallop: From Probabilistic Deductive Databases to Scalable Differentiable Reasoning](https://www.cis.upenn.edu/~mhnaik/papers/neurips21.pdf). NeurIPS 2021.
+- [Scallop, a Language for Neurosymbolic Programming](https://dl.acm.org/doi/10.1145/3591280), PLDI 2023
+- [Improved Logical Reasoning of Language Models via Differentiable Symbolic Programming](https://arxiv.org/abs/2305.03742), ACL Findings 2023
+- [Relational Programming with Foundation Models](/artifacts/papers/aaai24/scallop_aaai24.pdf), AAAI 2024
 
 ## Tutorials
 
