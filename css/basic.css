@@ -390,6 +390,16 @@ footer {
   margin-left: 10px;
 }
 
+.markdown-content .markdown-tag {
+  background-color: rgba(245, 245, 245, 1);
+  color: rgb(255, 73, 137);
+  line-height: 24px;
+  border-radius: 12px;
+  display: inline-block;
+  font-size: 12px;
+  padding: 0 10px;
+}
+
 .markdown-content .link-button {
   transition: all 0.1s;
   margin-right: 15px;
