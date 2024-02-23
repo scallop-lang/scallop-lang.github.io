@@ -1,4 +1,6 @@
-# Scallop Language Demo Website
+# Scallop Language Website
+
+This is the main Github repo.
 
 ## How to run
 
