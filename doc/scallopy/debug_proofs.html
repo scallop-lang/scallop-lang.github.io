@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Debugging Proofs - Scallop Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Use Scallop for Logic Programming and Neuro-symbolic Programming">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="../installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../crash_course.html"><strong aria-hidden="true">2.</strong> Crash Course</a></li><li class="chapter-item expanded affix "><li class="part-title">Language Reference Guide</li><li class="chapter-item expanded "><a href="../language/index.html"><strong aria-hidden="true">3.</strong> Scallop and Logic Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../language/relation.html"><strong aria-hidden="true">3.1.</strong> Relations and Facts</a></li><li class="chapter-item expanded "><a href="../language/rules.html"><strong aria-hidden="true">3.2.</strong> Writing Rules</a></li><li class="chapter-item expanded "><a href="../language/value_type.html"><strong aria-hidden="true">3.3.</strong> Values and Types</a></li><li class="chapter-item expanded "><a href="../language/query.html"><strong aria-hidden="true">3.4.</strong> Writing a Query</a></li><li class="chapter-item expanded "><a href="../language/recursion.html"><strong aria-hidden="true">3.5.</strong> Recursive Rules</a></li><li class="chapter-item expanded "><a href="../language/negation.html"><strong aria-hidden="true">3.6.</strong> Negations</a></li><li class="chapter-item expanded "><a href="../language/aggregation.html"><strong aria-hidden="true">3.7.</strong> Aggregations</a></li><li class="chapter-item expanded "><a href="../language/constants.html"><strong aria-hidden="true">3.8.</strong> Declaring Constants</a></li><li class="chapter-item expanded "><a href="../language/adt_and_entity.html"><strong aria-hidden="true">3.9.</strong> Algebraic Data Type and Entities</a></li><li class="chapter-item expanded "><a href="../language/magic_set.html"><strong aria-hidden="true">3.10.</strong> On-Demand Predicates</a></li><li class="chapter-item expanded "><a href="../language/loading_csv.html"><strong aria-hidden="true">3.11.</strong> Loading from CSV</a></li><li class="chapter-item expanded "><a href="../language/foreign_functions.html"><strong aria-hidden="true">3.12.</strong> Foreign Functions</a></li><li class="chapter-item expanded "><a href="../language/foreign_predicates.html"><strong aria-hidden="true">3.13.</strong> Foreign Predicates</a></li><li class="chapter-item expanded "><a href="../language/reference_guide.html"><strong aria-hidden="true">3.14.</strong> Reference Guide</a></li></ol></li><li class="chapter-item expanded "><a href="../probabilistic/index.html"><strong aria-hidden="true">4.</strong> Provenance and Probabilistic Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../probabilistic/provenance.html"><strong aria-hidden="true">4.1.</strong> Provenance</a></li><li class="chapter-item expanded "><a href="../probabilistic/proofs.html"><strong aria-hidden="true">4.2.</strong> Proofs Provenance</a></li><li class="chapter-item expanded "><a href="../probabilistic/facts.html"><strong aria-hidden="true">4.3.</strong> Fact with Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/logic.html"><strong aria-hidden="true">4.4.</strong> Logic and Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/library.html"><strong aria-hidden="true">4.5.</strong> Provenance Library</a></li><li class="chapter-item expanded "><a href="../probabilistic/aggregation.html"><strong aria-hidden="true">4.6.</strong> Aggregation and Probability</a></li><li class="chapter-item expanded "><a href="../probabilistic/sampling.html"><strong aria-hidden="true">4.7.</strong> Sampling with Probability</a></li></ol></li><li class="chapter-item expanded "><a href="../scallopy/index.html"><strong aria-hidden="true">5.</strong> scallopy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scallopy/getting_started.html"><strong aria-hidden="true">5.1.</strong> Getting Started</a></li><li class="chapter-item expanded "><a href="../scallopy/context.html"><strong aria-hidden="true">5.2.</strong> Scallop Context</a></li><li class="chapter-item expanded "><a href="../scallopy/branching.html"><strong aria-hidden="true">5.3.</strong> Branching Executions</a></li><li class="chapter-item expanded "><a href="../scallopy/provenance.html"><strong aria-hidden="true">5.4.</strong> Configuring Provenance</a></li><li class="chapter-item expanded "><a href="../scallopy/module.html"><strong aria-hidden="true">5.5.</strong> Creating Module</a></li><li class="chapter-item expanded "><a href="../scallopy/module_input.html"><strong aria-hidden="true">5.6.</strong> Configuring Input Relations</a></li><li class="chapter-item expanded "><a href="../scallopy/module_output.html"><strong aria-hidden="true">5.7.</strong> Configuring Output Relations</a></li><li class="chapter-item expanded "><a href="../scallopy/foreign_function.html"><strong aria-hidden="true">5.8.</strong> Foreign Functions</a></li><li class="chapter-item expanded "><a href="../scallopy/foreign_predicate.html"><strong aria-hidden="true">5.9.</strong> Foreign Predicate</a></li><li class="chapter-item expanded "><a href="../scallopy/save_and_load.html"><strong aria-hidden="true">5.10.</strong> Saving and Loading</a></li><li class="chapter-item expanded "><a href="../scallopy/debug_proofs.html" class="active"><strong aria-hidden="true">5.11.</strong> Debugging Proofs</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Toolchain</li><li class="chapter-item expanded "><a href="../toolchain/cli.html"><strong aria-hidden="true">6.</strong> Scallop CLI</a></li><li class="chapter-item expanded "><a href="../toolchain/scli.html"><strong aria-hidden="true">7.</strong> Scallop Interpreter</a></li><li class="chapter-item expanded "><a href="../toolchain/sclrepl.html"><strong aria-hidden="true">8.</strong> Scallop REPL</a></li><li class="chapter-item expanded "><a href="../toolchain/sclc.html"><strong aria-hidden="true">9.</strong> Scallop Compiler</a></li><li class="chapter-item expanded affix "><li class="part-title">For Developers</li><li class="chapter-item expanded "><a href="../developer/index.html"><strong aria-hidden="true">10.</strong> For Developers</a></li><li class="chapter-item expanded "><a href="../developer/language_construct.html"><strong aria-hidden="true">11.</strong> New Language Construct</a></li><li class="chapter-item expanded "><a href="../developer/binding.html"><strong aria-hidden="true">12.</strong> New Binding</a></li><li class="chapter-item expanded affix "><li class="part-title">Resources</li><li class="chapter-item expanded "><a href="../grammar.html"><strong aria-hidden="true">13.</strong> Full Scallop Grammar</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../misc/contributors.html">Contributors</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Scallop Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="debugging-proofs"><a class="header" href="#debugging-proofs">Debugging Proofs</a></h1>
+<p>We offer capability in Scallop to debug the internal proofs generated by provenance.
+This can be done through using special provenances specifically designed for debugging.</p>
+<h2 id="debugging-top-k-proofs"><a class="header" href="#debugging-top-k-proofs">Debugging Top-K Proofs</a></h2>
+<p>We can use the provenance <code>difftopkproofsdebug</code>.
+Take the <code>sum_2</code> application as an example, we have</p>
+<pre><code class="language-py">ctx = scallopy.ScallopContext(provenance=&quot;difftopkproofsdebug&quot;, k=3)
+ctx.add_relation(&quot;digit_a&quot;, int)
+ctx.add_relation(&quot;digit_b&quot;, int)
+ctx.add_rule(&quot;sum_2(a + b) = digit_a(a) and digit_b(b)&quot;)
+
+# !!! SPECIAL TREATMENT WHEN INSERTING FACTS !!!
+ctx.add_facts(&quot;digit_a&quot;, [((torch.tensor(0.1), 1), (1,)), ((torch.tensor(0.9), 2), (2,))])
+ctx.add_facts(&quot;digit_b&quot;, [((torch.tensor(0.9), 3), (1,)), ((torch.tensor(0.1), 4), (2,))])
+
+ctx.run()
+result = ctx.relation(&quot;sum_2&quot;)
+</code></pre>
+<p>A majority of the code will look identical to the original example,
+but special treatment is required when adding new facts to the context.
+Originally, tags are just <code>torch.tensor(SOME_PROBABILITY)</code>.
+But now, we need to supply an extra positive integer which we call <strong>Fact ID</strong>.
+Each of the fact added should be the following:</p>
+<pre><code class="language-py">ctx.add_facts(&quot;SOME_RELATION&quot;, [
+  ( ( torch.tensor(0.1),       1       ) , (    0,   ) ) # Fact 1
+  #   -- PROBABILITY --  -- FACT ID --
+  # --------------- TAG --------------     -- TUPLE --
+  ( ( torch.tensor(0.9),       2       ) , (    1,   ) ) # Fact 2
+  ( ( torch.tensor(0.1),       3       ) , (    0,   ) ) # Fact 2
+  # ...
+])
+</code></pre>
+<p>Basically, fact IDs are labels that the programmers can add to instrument the computation process.
+All IDs should start from 1, and should be distinct and contiguous for all added facts.
+The programmers will need to be responsible for managing the IDs so that there is no collision.
+Let's say 10 facts are added with probability, then there should be 10 fact IDs ranging from
+1 to 10, inclusive.
+Of course, for non-probabilistic facts, the whole tag can be specified as <code>None</code>.</p>
+<h3 id="debug-in-forward-mode"><a class="header" href="#debug-in-forward-mode">Debug in Forward Mode</a></h3>
+<p>When used in <code>forward</code> mode, one should do the following.
+The forward module should be setup just like before, with the only change being the provenance configuration:</p>
+<pre><code class="language-py">sum_2 = scallopy.Module(
+  provenance=&quot;difftopkproofsdebug&quot;,
+  k=3,
+  program=&quot;&quot;&quot;
+    type digit_a(a: i32), digit_b(b: i32)
+    rel sum_2(a + b) = digit_a(a) and digit_b(b)
+  &quot;&quot;&quot;,
+  output_relation=&quot;sum_2&quot;,
+  output_mapping=[2, 3, 4])
+</code></pre>
+<p>Let's assume that only 1 and 2 are added for each digit in the <code>sum_2</code> task.
+That is, we have digit A and digit B.
+Digit A can be 1 or 2, and the digit B can be 1 or 2 as well.
+Looking at the following code, we have the fact IDs being</p>
+<ul>
+<li>Digit <code>A</code> is 1: Fact ID 1</li>
+<li>Digit <code>A</code> is 2: Fact ID 2</li>
+<li>Digit <code>B</code> is 1: Fact ID 3</li>
+<li>Digit <code>B</code> is 2: Fact ID 4</li>
+</ul>
+<p>Notice that the fact IDs all start from 1 and are contiguous (i.e., no gap in the used fact IDs).
+Also notice that, when in forward mode, the inputs need to be batched.
+In this example, let's only focus on one single data-point, say <code>Datapoint 1</code>.</p>
+<pre><code class="language-py">digit_a = [
+  [((torch.tensor(0.1), 1), (1,)), ((torch.tensor(0.9), 2), (2,))], # Datapoint 1
+  # ...
+]
+digit_b = [
+  [((torch.tensor(0.9), 3), (1,)), ((torch.tensor(0.1), 4), (2,))], # Datapoint 1
+  # ...
+]
+</code></pre>
+<p>After preparing the input facts, we can invoke the debug module as the following</p>
+<pre><code class="language-py">(result_tensor, proofs) = sum_2(digit_a=digit_a, digit_b=digit_b)
+</code></pre>
+<p>Here, the output will be a tuple <code>(result_tensor, proofs)</code>, unlike the non-debug version where only one single PyTorch tensor is returned.
+Specifically, the two components will be</p>
+<pre><code class="language-python">result_tensor = torch.tensor([
+  [0.09, 0.8119, 0.09], # Datapoint 1
+  # ...
+])
+
+proofs = [
+  [ # Datapoint 1
+    [ # Proofs of (2,)
+      [ (True, 1), (True, 3) ], # The first proof is 1 + 1 (using positive fact 1 and 3)
+    ],
+    [ # Proofs of (3,)
+      [ (True, 1), (True, 4) ], # The first proof is 1 + 2 (using positive fact 1 and 4)
+      [ (True, 2), (True, 3) ], # The second proof is 2 + 1 (using positive fact 2 and 3)
+    ],
+    [ # Proofs of (4,)
+      [ (True, 2), (True, 4) ], # The first proof is 2 + 2 (using positive fact 2 and 4)
+    ]
+  ],
+  # ...
+]
+</code></pre>
+<p>Notice that <code>result_tensor</code> is just the original output probability tensor.
+The <code>proofs</code> will be <code>List[List[List[List[Tuple[bool, int]]]]]</code>.
+In particular, it is <code>Batch -&gt; Datapoint Results -&gt; Proofs -&gt; Proof -&gt; Literal</code>.
+Where each <code>Literal</code> is <code>Tuple[bool, int]</code> where the boolean indicates the positivity of the literal and the integer indicates the used fact ID.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../scallopy/save_and_load.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../toolchain/cli.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../scallopy/save_and_load.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../toolchain/cli.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../js/hljs_scallop.js"></script>
+
+
+    </div>
+    </body>
+</html>
