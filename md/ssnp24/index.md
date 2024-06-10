@@ -23,8 +23,8 @@ This tutorial is going to be divided into two parts:
 ## Installation Instructions
 
 This tutorial is available in Docker.
-Please first clone the following [Github repository](https://github.com/scallop-lang/summer-school/).
-Within it you will see a [Dockerfile](https://github.com/scallop-lang/summer-school/tree/main/x86_64/Dockerfile).
+Please first clone the following [Github repository](https://github.com/scallop-lang/summer-school-2024/).
+Within it you will see a [Dockerfile](https://github.com/scallop-lang/summer-school-2024/tree/main/x86_64/Dockerfile).
 You can setup the Docker container using the following commands (build takes roughly ~20mins):
 
 ``` bash
@@ -73,13 +73,13 @@ In this module, we will learn to write simple graph algorithms in Scallop.
 Please navigate to the `part-1` folder and open the file `graph_algo.scl`.
 
 ``` bash
-$ scli part-1a/graph_algo.scl
+$ scli part-1/graph_algo.scl
 ```
 
 Initially, you should see that all the relations are empty:
 
 ``` bash
-$ scli part-1a/graph_algo.scl
+$ scli part-1/graph_algo.scl
 source_node: {}
 path: {}
 triangle: {}
@@ -116,8 +116,8 @@ rel edge = {/* Fill in the facts here */}
 You should be able to test whether the two relations are populated by running the following commands:
 
 ``` bash
-$ scli part-1a/graph_algo.scl --query node
-$ scli part-1a/graph_algo.scl --query edge
+$ scli part-1/graph_algo.scl --query node
+$ scli part-1/graph_algo.scl --query edge
 ```
 
 > **Remark**:
@@ -134,7 +134,7 @@ from `c` back to `a`.
 By this definition, our sample graph has three directed triangles: `triangle(1, 2, 4)`, `triangle(2, 4, 1)`, and `triangle(4, 1, 2`:
 
 ``` bash
-$ scli part-1a/graph_algo.scl --query triangle
+$ scli part-1/graph_algo.scl --query triangle
 triangle: {(1, 2, 4), (2, 4, 1), (4, 1, 2)}
 ```
 
@@ -157,7 +157,7 @@ Note that you can either write two rules or one rule with an `or` inside of it.
 Use the following command to execute the program:
 
 ``` bash
-$ scli part-1a/graph_algo.scl --query path
+$ scli part-1/graph_algo.scl --query path
 ```
 
 The expected output should be as follows:
@@ -177,7 +177,7 @@ In our sample graph, the nodes `1`, `2`, and `4` are in the same SCC. `3` and `5
 You should execute the following command and see the expected output:
 
 ``` bash
-$ scli part-1a/graph_algo.scl --query scc
+$ scli part-1/graph_algo.scl --query scc
 scc: {(1, 1), (1, 2), (1, 4), (2, 1), (2, 2), (2, 4), (3, 3), (4, 1), (4, 2), (4, 4), (5, 5)}
 ```
 
@@ -191,9 +191,9 @@ Write two rules for `source_node(usize)` and `sink_node(usize)` that yield the f
 on our sample graph:
 
 ``` bash
-$ scli part-1a/graph_algo.scl --query source_node
+$ scli part-1/graph_algo.scl --query source_node
 source_node: {}
-$ scli part-1a/graph_algo.scl --query sink_node
+$ scli part-1/graph_algo.scl --query sink_node
 sink_node: {(5)}
 ```
 
@@ -224,7 +224,7 @@ where `RESULT` is assigned a boolean value indicating whether there exist bindin
 After executing the program, you should get the following output:
 
 ``` bash
-$ scli part-1a/graph_algo.scl --query contains_cycle
+$ scli part-1/graph_algo.scl --query contains_cycle
 contains_cycle: {(true)}
 ```
 
@@ -245,7 +245,7 @@ But for this exercise, we probably only need one.
 Here's the expected output after executing the rule:
 
 ``` bash
-$ scli part-1a/graph_algo.scl --query num_nodes
+$ scli part-1/graph_algo.scl --query num_nodes
 num_nodes: {(5)}
 ```
 
@@ -256,7 +256,7 @@ Different from the previous exercise, you might need to introduce more than one 
 Here's the expected output:
 
 ```
-$ scli part-1a/graph_algo.scl --query num_edges
+$ scli part-1/graph_algo.scl --query num_edges
 num_edges: {(5)}
 ```
 
@@ -282,9 +282,9 @@ This will make sure that all the node `a` in our sample graph gets to be involve
 Otherwise, the nodes with, say, 0 in-degree might not appear in the final result.
 
 ```
-$ scli part-1a/graph_algo.scl --query in_degree
+$ scli part-1/graph_algo.scl --query in_degree
 in_degree: {(1, 1), (2, 1), (3, 1), (4, 1), (5, 1)}
-$ scli part-1a/graph_algo.scl --query out_degree
+$ scli part-1/graph_algo.scl --query out_degree
 out_degree: {(1, 1), (2, 2), (3, 1), (4, 1), (5, 0)}
 ```
 
@@ -317,10 +317,10 @@ The joint neurosymbolic model need to learn from scratch on what things are and 
 
 We have provided three files:
 
-- `part-2b/arena.py`: this file contains the game environment; you do not need to touch it
-- `part-2b/run.py`: this is the main driver file written in Python for training the agent under an reinforcement learning (RL) environment.
+- `part-2/arena.py`: this file contains the game environment; you do not need to touch it
+- `part-2/run.py`: this is the main driver file written in Python for training the agent under an reinforcement learning (RL) environment.
   It contains the `EntityExtractor` model and also loads the Scallop module `PathPlanner` that we have as a separate file.
-- `part-2b/path_planner.scl`: this is the file that you are going to be working with. It should encode the logic that chooses the optimal action in order for the PacMan to reach the goal.
+- `part-2/path_planner.scl`: this is the file that you are going to be working with. It should encode the logic that chooses the optimal action in order for the PacMan to reach the goal.
 
 ## P1: Implement the Agent
 
@@ -386,7 +386,7 @@ type next_action(a: Action)
 ```
 
 Please implement a few rules for the 5 relations, `safe_node`, `edge`, `path`, `next_position`, and `next_action`.
-For `edge` and `path`, they should look fairly similar to what we have done in Part-1A.
+For `edge` and `path`, they should look fairly similar to what we have done in Part-1.
 
 If you want, you can also ignore the provided skeleton and implement your own path planner!
 
@@ -404,7 +404,7 @@ Note that working with VSCode and Docker can allow the game environment to be di
 In order to look at your path planner at work, we can use the following command.
 
 ```
-$ python part-2b/run.py --load-model part-2b/model/entity_extractor.pkl --phase test --show-run --show-run-interval 0.1
+$ python part-2/run.py --load-model part-2/model/entity_extractor.pkl --phase test --show-run --show-run-interval 0.1
 ```
 
 If everything goes correctly, you should see the PacMan moving straight to the goal for every single session of the game.
@@ -417,7 +417,7 @@ If not specified, the PacMan would move so fast that you can't catch what is hap
 In case the display is not supported due to unknown reasons, we can still run the testing by removing the `--show-run` and `--show-run-interval` flags.
 
 ```
-$ python part-2b/run.py --load-model part-2b/model/entity_extractor.pkl --phase test
+$ python part-2/run.py --load-model part-2/model/entity_extractor.pkl --phase test
 ```
 
 ## P3: Train the Agent! (Optional)
@@ -426,7 +426,7 @@ If there is still time left and if you are interested, feel free to train the mo
 You can run the script
 
 ```
-$ python part-2b/run.py --phase train
+$ python part-2/run.py --phase train
 ```
 
 This is one example training log produced
@@ -458,7 +458,7 @@ export OPENAI_API_KEY="<YOUR_OPENAI_KEY>"
 The first application we are going to work on is reasoning about Dates.
 In this task, your model should take in a string such as
 
-> Jane finished her PhD in January 5th, 2008. 2 days from today is the 10th anniversary of her PhD. What is the date 10 days ago from today?
+> **Question:** Jane finished her PhD in January 5th, 2008. 2 days from today is the 10th anniversary of her PhD. What is the date 10 days ago from today?
 
 The answer that your model should produce is `"12/24/2017"`.
 The reasoning goes as follows:
@@ -473,52 +473,58 @@ For the perception, we are simply going to read the question and note down the k
 We are going to use three Scallop relations to represent the facts (and also what the question is asking for):
 `mentioned_date`, `relationship`, and `goal`.
 
-The `mentioned_date` relation directly notes the concrete `Date` given a specific label.
+The `mentioned_date` relation directly notes the concrete `DateTime` given a specific label.
 Note that the label for each date can be automatically generated by the language model.
-For the above question, there will be only one mentioned concrete `Date`:
+For the above question, there will be only one mentioned concrete `DateTime`:
 
-```
+``` scl
 mentioned_date: {("finish-phd", t"01/05/2008")}
 ```
 
 The `relationship` relation notes down the relationships between date labels.
 Concretely,
 
-```
+``` scl
 relationship: {
-  ("finish-phd", "10th-anniversary", "10y"), // there is 10-year between Jane finishing PhD and her 10th anniversary
-  ("10th-anniversary", "today", "-2d"), // today is 2 days before 10th anniversary
-  ("10-days-ago", "today", "10d"), // We want to obtain the
+  ("finish-phd", "10th-anniversary", d"10y"), // there is 10-year between Jane finishing PhD and her 10th anniversary
+  ("today", "10th-anniversary", d"2d"), // today is 2 days before 10th anniversary
+  ("10-days-ago", "today", d"10d"), // the difference between 10 days ago and today is 10 days :-)
 }
 ```
 
 Lastly, we will ask GPT to note down which date label is the exact date we want answer from.
 In this case, we want to get the date 10 days ago:
 
-```
+``` scl
 goal: {("10-days-ago")}
 ```
 
 All the prompts and relations are already settled in `part-3/date_understanding.scl`.
+
+**Your Task**:
 What you are going to work on is three rules inside of this file that derives dates from known facts.
+Note that you can directly perform `+` and `-` operations between date time (`DateTime`) and duration (`Duration`) in order to obtain new `DateTime`.
 Once you are done, you can use the command
 
 ``` bash
-scallop part-3/date_understanding.scl
+$ scallop part-3/date_understanding.scl
 ```
 
 to run your rules.
 This run is going to use the above mentioned example as the input question.
 The output that you should see is:
 
-```
-answer: {(t"12/24/2017")}
+``` scl
+answer:
+╭─────────────────────────╮
+│ 2017-12-24 00:00:00 UTC │
+╰─────────────────────────╯
 ```
 
 If you want to try some other questions, you can run the command as the following
 
 ``` bash
-scallop part-3/date_understanding.scl --question "Today is Jan 1, 2020, the first date I get my first monthly salary of $100. When am I going to earn $1000?"
+$ scallop part-3/date_understanding.scl --question "Today is Jan 1, 2020, the first date I get my first monthly salary of $100. When am I going to earn $1000?"
 ```
 
 ## P2: Tracking Shuffled Object
@@ -528,7 +534,7 @@ In this task, your model should look at a natural language description about pos
 At the end, we want to reason what item is possessed by some given people.
 For instance, here is an example:
 
-> Anthony, Ben, and Charles are playing a game. At the start of the game, they are each holding a ball: Anthony has a orange ball, Ben has a white ball, and Charles has a blue ball. \n\nAs the game progresses, pairs of players trade balls. Ben and Charles swap balls. But before that, Anthony and Ben swap balls. At the very end, Anthony and Ben swap balls. But at the very beginning of the game, Anthony and Charles swap balls. At the end of the game, Ben has the _____
+> **Question:** Anthony, Ben, and Charles are playing a game. At the start of the game, they are each holding a ball: Anthony has a orange ball, Ben has a white ball, and Charles has a blue ball. \n\nAs the game progresses, pairs of players trade balls. Ben and Charles swap balls. But before that, Anthony and Ben swap balls. At the very end, Anthony and Ben swap balls. But at the very beginning of the game, Anthony and Charles swap balls. At the end of the game, Ben has the _____
 
 The answer that your program should return is `white ball`.
 Here is the reasoning behind:
@@ -541,7 +547,7 @@ Here is the reasoning behind:
 | 3     | Ben <-> Charles     | white   | orange | blue    |
 | 4     | Anthony <-> Ben     | orange  | **white** | blue    |
 
-You will be working on the `part-3/tracking_objects.scl`.
+**Your Task**: You will be working on the `part-3/tracking_objects.scl`.
 Within it you will see 3 TODOs:
 
 1. Query the foundation model using the `@gpt_extract_info` attribute.
@@ -556,21 +562,130 @@ Within it you will see 3 TODOs:
 After finishing the three TODOs, you can run the following command:
 
 ``` bash
-scallop part-3/tracking_objects.scl
+$ scallop part-3/tracking_objects.scl
 ```
 
 And you should get the following answer when running with the default input:
 
-``` bash
-answer: {("white ball")}
+``` scl
+answer:
+╭────────────╮
+│ object     │
+├────────────┤
+│ white ball │
+╰────────────╯
 ```
 
 In order to run on other examples, you can pass the following argument in the command line
 
 ``` bash
-scallop part-3/tracking_objects.scl --question "<YOUR QUESTION HERE>"
+$ scallop part-3/tracking_objects.scl --question "<YOUR QUESTION HERE>"
 ```
 
 ## P3: Visual Question Answering
 
 Finally let's work on a multi-modal application, [CLEVR](https://cs.stanford.edu/people/jcjohns/clevr/).
+In this task, your Scallop program will take in two things: an image and a natural language question.
+You are going to have your model answer the question by looking at the image.
+For instance, given the following image and natural language pair:
+
+<center>
+  <img src="https://github.com/scallop-lang/summer-school-2024/blob/main/labs/part-3/images/clevr.jpg?raw=true" style="width: 70%" />
+</center>
+
+> **Question:** How many red spheres do we have?
+
+The answer should be `2`.
+
+The technology behind our solution will involve multiple models.
+The first one being a combination of domain specific language (DSL) and semantic parser, which is GPT in our case.
+The second one is an object identification model based on image segmentation and multi-modal image classification.
+Let us first start with discussing the DSL and the semantic parser.
+
+In Scallop, a DSL can be defined with algebraic data type.
+In our case, we are going to define a Scene Graph Query Language (SGQL), where scene graph is a graph representation of our images.
+In scene graphs, object attributes such as color and shape are expressed as unary relations.
+The spatial relation between objects are represented as binary relations.
+In order to query the scene graphs, we design the following SGQL.
+
+``` scl
+type Expr = Scene()
+          | FilterShape(Expr, String)
+          | FilterColor(Expr, String)
+          | Count(Expr)
+          | Exists(Expr)
+          | ...
+```
+
+Based on this DSL, our question above can be actually turned into
+
+| Question | SGQL |
+|----------|------|
+| How many red spheres do we have? | `Count(FilterColor(FilterShape(Scene(), "sphere"), "red"))` |
+| Is there a cube? | `Exists(FilterShape(Scene(), "cube"))` |
+
+For this, we are prompting GPT for the result, as can be seen from line 15 to 35.
+
+We then discuss setting up other Foundation Models for recognizing the image.
+We are going to use OWL-ViT to segment the image into individual objects (line 39-55).
+The outputs, small image segments hopefully each encapsulating an object, should be passed to image classification models.
+For our question "how many red spheres do we have", we need to identify the shape and color of the object.
+Our implementation for classifying `shape` is already provided (line 57-58):
+
+``` scl
+@clip(["cube", "cylinder", "sphere"], prompt="a {{}} shaped object", debug=true)
+type classify_shape(bound img: Tensor, color: String)
+```
+
+See that it takes in an image as input (suggested by the `bound` keyword) and produce a color.
+The color string is specified as the first argument to the `@clip` attribute.
+There are 3 possible shapes, namely cube, cylinder, and sphere.
+In order to match with a natural language sentence, we construct a prompt `"a {{}} shaped object"`.
+Note that the `{{}}` symbol is going to be replaced by each shape.
+At the end, we are using CLIP to classify the image segment to be one of "a cube shaped object", "a cylinder shaped object", and "a sphere shaped object".
+
+**Your Task**:
+Please fill in the implementation for the relations that classify colors and material (line 65 and line 68).
+It does not have to cover the entire space, just inject the foundation model and their respective configurations.
+
+Now that the scene graph has been constructed (partially, since we haven't covered the full space), we can implement the evaluation engine of the SGQL language.
+That is, we want to have `eval_x` relations that evaluates each SGQL variant.
+For example, evaluating the `Scene()` expression should result in a set of objects;
+evaluating the `Count(_)` expression should result in a number.
+
+``` scl
+rel eval_obj(e, o) = case e is Scene() and object(o)
+rel eval_num(e, n) = n := count(o: eval_obj(e1, o) where e: case e is Count(e1))
+```
+
+**Your Task**:
+Please fill in the implementation of `eval_obj` for `FilterShape`, `FilterColor`, and `FilterMaterial` expressions that make use of the `shape`, `color`, and `material` relations (Line 106).
+Also fill in the implementation of `eval_bool` for `Exists` expression.
+This implementation should make use of the `exists` aggregator.
+
+Now that everything is filled, you should now run your program using the following command.
+Note that we are specifying the `--provenance` of `minmaxprob` so that we are performing probabilistic reasoning.
+
+``` bash
+$ scallop part-3/clevr_vqa.scl --provenance minmaxprob
+```
+
+With the default image and question, this should be the expected result.
+Notice that each result is associated with a probability, and that the expected answer `2` is indeed associated with the highest probability.
+
+```
+result:
+╭────────┬────╮
+│ 0.1133 │  0 │
+│ 0.303  │  1 │
+│ 0.0023 │ 10 │
+│ 0.697  │  2 │
+│ 0.2315 │  3 │
+│ 0.0905 │  4 │
+│ 0.0828 │  5 │
+│ 0.0581 │  6 │
+│ 0.0165 │  7 │
+│ 0.0066 │  8 │
+│ 0.0043 │  9 │
+╰────────┴────╯
+```
